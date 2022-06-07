@@ -11,7 +11,7 @@ public class ProductDTO {
 	// 남태현
 	
 	// 김민경
-	private String produtc_phone;
+	private String produtcphone;
 	// 김송이
 	private String product_code;
 	// 은종엽
