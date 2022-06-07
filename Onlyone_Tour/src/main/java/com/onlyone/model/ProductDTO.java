@@ -17,6 +17,6 @@ public class ProductDTO {
 	// 은종엽
 	
 	// 김경민
-	
+	private String productList;
 	
 }
