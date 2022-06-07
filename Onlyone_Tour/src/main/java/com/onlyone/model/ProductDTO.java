@@ -17,6 +17,6 @@ public class ProductDTO {
 	// 은종엽
 	private String product_input_date;
 	// 김경민
-	private String productList;
+	private String product_List;
 	
 }
