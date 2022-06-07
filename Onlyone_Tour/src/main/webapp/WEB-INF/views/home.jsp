@@ -6,18 +6,6 @@
 </head>
 <body>
 
-<h1>지금은 테스트중....nam</h1>
-
-<h3>은종엽 push push push</h3>
-
-
-
-<h3>김민경 push push </h3> <h3>송이님 push</h3> 
-
-ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇ
-
-<h3>김경민 push push </h3>
-
 
 
 </body>
