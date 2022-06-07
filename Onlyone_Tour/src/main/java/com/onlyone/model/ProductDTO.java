@@ -8,8 +8,8 @@ public class ProductDTO {
 	private String productname;
 	private int productnum;
 	private String productaddr;
-	// 남태현
-	
+	// 남태현 
+	// nam
 	// 김민경
 	
 	// 김송이
