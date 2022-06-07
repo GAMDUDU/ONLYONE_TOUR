@@ -9,7 +9,7 @@ public class ProductDTO {
 	private int productnum;
 	private String productaddr;
 	// 남태현 
-	// nam
+	private String product_nayana;
 	// 김민경
 	
 	// 김송이
