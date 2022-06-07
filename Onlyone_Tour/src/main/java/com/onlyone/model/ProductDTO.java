@@ -15,7 +15,7 @@ public class ProductDTO {
 	// 김송이
 	
 	// 은종엽
-	
+	private String product_input_date;
 	// 김경민
 	
 	
