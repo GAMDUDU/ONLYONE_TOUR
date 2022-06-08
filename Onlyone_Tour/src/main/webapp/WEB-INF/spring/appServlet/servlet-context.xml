@@ -22,7 +22,7 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.onlyone" />
-	
+	<context:component-scan base-package="com.admin" />
 	
 	
 </beans:beans>
