@@ -1,0 +1,99 @@
+@charset "UTF-8";
+
+
+
+#container{
+	display:flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 100px 0;
+}
+
+.login-text{
+	width: 100%;
+	text-align: center;
+	margin-left: 20px;
+	margin-bottom: 30px;
+}
+
+.login-text strong{
+	font-size: 30px;
+	margin-bottom: 10px;
+}
+
+.from_login{
+	list-style: none;
+}
+
+.from_login li{
+	margin: 10px 0px;	
+}
+
+.login_box{
+	width: 500px;
+	height: 52px;
+	padding-left: 10px;
+}
+
+.login_box:focus{
+	outline: 1px solid purple;
+}
+
+.login_button{
+	display:flex;
+	justify-content: center;
+	margin-left: 35px;
+	
+}
+
+.login_button input{
+	width: 500px;
+	height: 56px;
+	border-style: none;
+	border-radius: 5px;
+	background: gold;
+	color:white;
+	font-weight: bold;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+
+.login_button input:hover{
+	opacity: 0.7;
+}
+
+.login_bar{
+	display:flex;
+	margin-top: 20px;
+	width:100%;
+	justify-content: center;
+	margin-left: 20px;
+}
+
+.login_bar a{
+	justify-content:center;
+	text-decoration: none;
+	color: #555;
+}
+
+.login_menu_bar::after{
+	content: "•";
+	margin: 5px;
+}
+
+/* 체크박스 커스텀 */
+input[type="checkbox"] {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+  }
+
+input[type="checkbox"]:checked {
+    background: #32e732;
+    border: none;
+ }
+
+
+
+
