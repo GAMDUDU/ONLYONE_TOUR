@@ -13,12 +13,21 @@ public class MemberDAOImpl implements MemberDAO{
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	
-	public List<MemberDTO> getMemberList() {
-		// TODO Auto-generated method stub
-		return null;
+	//로그인 구현 
+	public String login(MemberDTO dto) {
+		return this.sqlSession.selectOne("loginOk", dto);
 	}
-
+	
+	
+	// 회원 전체리스트
+	public List<MemberDTO> getMemberList() {
+		
+		return this.sqlSession.selectList("all");
+	
+	}
+	
+	
+	
 	public int insertMember(MemberDTO dto) {
 		// TODO Auto-generated method stub
 		return 0;
@@ -48,5 +57,11 @@ public class MemberDAOImpl implements MemberDAO{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 	
+
+
+
+
+
 }
