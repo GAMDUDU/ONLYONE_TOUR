@@ -13,54 +13,52 @@ public class MemberDAOImpl implements MemberDAO{
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	//로그인 구현 
-	public String login(MemberDTO dto) {
-		return this.sqlSession.selectOne("loginOk", dto);
-	}
-	
-	
-	// 회원 전체리스트
+	@Override
 	public List<MemberDTO> getMemberList() {
-		
-		return this.sqlSession.selectList("all");
-	
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
-	
-	
+	@Override
+	public MemberDTO loginOk(String id) {
+		return this.sqlSession.selectOne("Login", id);
+	}
+
+	@Override
 	public int insertMember(MemberDTO dto) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
+	@Override
 	public MemberDTO getMember(int num) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
 	public int updateMember(MemberDTO dto) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
+	@Override
 	public int deleteMember(int num) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
+	@Override
 	public void updateSequnce(int num) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	@Override
 	public List<MemberDTO> SearchMemberList(String field, String keyword) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	
-
-
 
 
 

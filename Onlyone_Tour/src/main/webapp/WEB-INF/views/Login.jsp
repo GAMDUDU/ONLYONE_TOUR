@@ -7,14 +7,16 @@
 <html>
 <head>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
+
 <meta charset="UTF-8">
 <title>로그인 페이지</title>
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/login.css">
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
-	<c:set var="member" value="${member}"/>
 	
+
 	<hr width="100%" color="gray">
 	
 	<div id="container">
@@ -22,18 +24,20 @@
 			<strong>로그인</strong>
 		</div>
 		
-		<form method="post" action="<%=request.getContextPath()%>/login_ok.do">
+		
+		<form method="post" action="<%=request.getContextPath()%>/login_ok.do" onsubmit="return frm_check();">
 			<ul class="from_login">
 				<li>
-					<input class="login_box" type="text" placeholder="아이디(이메일계정)" name="login_id">
+					<input id="login_id" class="login_box" type="text" placeholder="아이디(이메일계정)" name="id">
 				</li>
 				<li>
-					<input class="login_box" type="password" placeholder="비밀번호" name="login_pwd">
+					<input class="login_box" type="password" placeholder="비밀번호" name="pwd">
 				</li>
+				
 				<!-- 아이디 저장 체크 기능 -->
 				<li class="form_holder check">
-					<input type="checkbox" id="check_login" name="check_login">
-					<label for="chkLogin01" class="label_checkbox">
+					<input type="checkbox" class="save_id" name="checkId" id="saveId">
+					<label for="saveId" class="label_checkbox">
 						아이디 저장
 					</label>
 				</li>
@@ -61,8 +65,6 @@
 		
 	</div>
 	
-	
-	<p>${member.Member_name}님 어서오세요</p>
 	
 	<hr width="100%" color="gray">
 

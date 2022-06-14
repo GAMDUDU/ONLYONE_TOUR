@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,14 +12,27 @@
 
 </head>
 <body>
-
+		
+	<c:set var="dto" value="${Member}"/>
+	
 	<div class="container">
 	 <div id="top">
-		<ul>
-			<li><a href="<%=request.getContextPath()%>/login.do">로그인</a></li>
-			<li><a href="#">회원가입</a></li>
-			<li><a href="#">고객센터</a></li>
-		</ul>
+		<c:if test="${dto == null}">
+			<ul>
+				<li><a href="<%=request.getContextPath()%>/login.do">로그인</a></li>
+				<li><a href="#">회원가입</a></li>
+				<li><a href="#">고객센터</a></li>
+			</ul>
+		</c:if>
+		
+		<c:if test="${dto != null}">
+			<ul>
+				<li><a href="#">로그아웃</a></li>
+				<li><a href="#">고객센터</a></li>
+			</ul>
+		</c:if>
+		
+		
 	 </div>	
 	 
 	 <div id="middle">
