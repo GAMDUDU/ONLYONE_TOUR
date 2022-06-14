@@ -14,12 +14,13 @@
 </head>
 <body>
 	
-	
-	<%@ include file="include/top.jsp"%>
+	<jsp:include page="include/top.jsp" />
 	
 	<div class="container">
-		
+
+	<a href="<%=request.getContextPath()%>/reserve.do?no=1">예약하기</a>
 	</div>
+	
 
 
 <script type="text/javascript" src="${path}/resources/js/script.js"></script>

@@ -65,9 +65,9 @@
 	 				<option>항공</option>
 	 				<option>호텔/펜션</option>
 	 			</select>
-	 			<a href="#">여행</a>
+	 			<a href="<%=request.getContextPath() %>/travel_list.do">여행</a>
 	 			<a href="#">항공</a>
-	 			<a href="#">호텔/펜션</a>
+	 			<a href="<%=request.getContextPath() %>/hotel_list.do">호텔/펜션</a>
 	 		</nav>
 	 	</div>
 	 </div>
