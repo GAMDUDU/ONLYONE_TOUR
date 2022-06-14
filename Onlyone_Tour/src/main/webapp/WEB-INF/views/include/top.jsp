@@ -87,7 +87,7 @@
 	 				<ul class="full_navi_ui">
 	 					<li><a href="#">여행</a></li>
 	 					<li><a href="#">호텔/숙박</a></li>
-	 					<li><a href="#">항공</a></li>
+	 					<li><a href="<%=request.getContextPath()%>/airport.do">항공</a></li>
 	 				</ul>
 	 			</div>	
 	 		</div>
