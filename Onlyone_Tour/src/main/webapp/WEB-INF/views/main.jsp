@@ -14,10 +14,13 @@
 <body>
 
 	
+
 <jsp:include page="include/top.jsp" />
 	
  <main class="mt-3">
+
 	<div class="container">
+
 		<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
 		  <div class="carousel-indicators">
 		    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -76,10 +79,13 @@
 			 </div>
 			</a>
 		</div>
+		<a href="<%=request.getContextPath()%>/reserve.do?no=1">예약하기</a>
 	</div>
+
  </main>
  
  
   <jsp:include page="include/footer.jsp" />
+
 </body>
 </html>
