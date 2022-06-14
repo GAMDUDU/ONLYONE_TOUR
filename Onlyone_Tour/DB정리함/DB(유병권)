@@ -13,7 +13,7 @@ create table Member_Trip(
 
 );
 
-insert into member_trip values(1,'홍길동','hong','1234','010-3333-4444','hong@naver.com',sysdate,'길동이');
+insert into member_trip values('hong',1,'홍길동','1234','010-3333-4444','hong@naver.com',sysdate,'길동이');
 
 
 # DB 어드민
