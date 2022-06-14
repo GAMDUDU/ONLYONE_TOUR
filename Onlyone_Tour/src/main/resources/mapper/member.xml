@@ -10,7 +10,7 @@
 
 <mapper namespace="com.onlyone.model.MemberDAO">
 
-	<select id="Login" parameterType="String" resultType="com.onlyone.model.MemberDTO">
+	<select id="Login" parameterType="String" resultType="memberdto">
 		
 		select * from Member_trip
 			where member_id = #{member_id}
