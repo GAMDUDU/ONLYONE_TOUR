@@ -13,26 +13,28 @@
 </head>
 <body>
 
-<c:set var="dto" value="${Member}"/>
 	<div class="container">
 	 <div id="total" class="total">
 	  <div class="middle">
 	   <div class="login_top">
 	   <div class="a1"></div>
 	   <div class="a2">
-	   <c:if test="${dto == null}">
+		
+		<%
+		if(session.getAttribute("member_id") == null){ 
+		%>
 		<ul>
 			<li><a href="<%=request.getContextPath()%>/login.do">로그인</a></li>
-			<li><a href="#">회원가입</a></li>
+			<li><a href="<%=request.getContextPath()%>/join.do">회원가입</a></li>
 			<li><a href="#">고객센터</a></li>
 		</ul>
-		</c:if>
-		<c:if test="${dto != null}">
-			<ul>
-				<li><a href="#">로그아웃</a></li>
-				<li><a href="#">고객센터</a></li>
-			</ul>
-		</c:if>	
+		<%}else{%>
+		<ul>
+			<li><a href="<%=request.getContextPath()%>/logout.do">로그아웃</a></li>
+			<li><a href="#">고객센터</a></li>
+		</ul>
+	   	<% } %>
+	   
 	   </div>
 	  </div>	
 	 </div>

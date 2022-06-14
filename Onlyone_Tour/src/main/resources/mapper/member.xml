@@ -8,7 +8,7 @@
     
 
 
-<mapper namespace="com.onlyone.model.MemberDAO">
+<mapper namespace="memberdao">
 
 	<select id="Login" parameterType="String" resultType="memberdto">
 		
@@ -16,5 +16,12 @@
 			where member_id = #{member_id}
 					
 	</select>
-
+	
+	
+	<insert id="Join" parameterType="memberdto">
+		insert into member_trip values((select max(member_num) from member_trip) + 1,
+ 		#{member_id},#{member_name},#{member_pwd, jdbcType=VARCHAR},
+ 		#{member_phone},#{member_email, jdbcType=VARCHAR},sysdate,#{member_nickname})
+	</insert>
+	
 </mapper>

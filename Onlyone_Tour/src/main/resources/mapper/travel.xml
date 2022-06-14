@@ -9,7 +9,7 @@
     
 <!-- namespace 명은 패키지명을 포함해서 DAO 인터페이스 이름으로 작성하는 것이 관례.
      namespace 명은 mapper 틀을 구분하는데 식별자로 사용됨. -->
-<mapper namespace="com.travel.model.TravelDAO" >
+<mapper namespace="traveldao" >
 
 	<!-- 형식) <![CDATA[쿼리문]]> 
 		쿼리문을 작성할 때 조건식 기호(>, <, &)를 사용해야 하는데 
