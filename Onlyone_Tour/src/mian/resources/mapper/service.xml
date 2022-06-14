@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="ServiceDAO">
+	
+	
+	<!-- 자주찾는 질문 -->		
+	<select id="questionCount" resultType="int">
+		select count(*) from service_question_trip
+	</select>
+	
+	<select id="questionList" parameterType="PageServDTO" resultType="ServiceQuestionDTO">
+		<![CDATA[
+			select * from 
+				(select q.*, row_number() 
+					over(order by q_num desc) rnum from service_question_trip q) 
+					where rnum >= #{startNo} and rnum <= #{endNo} 
+		]]>
+	</select>
+	
+	<!-- 
+	       일반적으로 DB 작업을 하다 보면 먼저 사전에 어떤 값을 가져와서 해당 값을 증가시킨후 입력하거나
+	       혹은 입력된 후에 증가값을 가져올 필요가 있는 경우가 많이 발생함.
+	       이런 경우에는 MyBatis에서 제공하는 selectKey 태그를 이용하면 별도의 쿼리 로직을 사용할
+	       필요 없이 일괄 처리 작업을 할 수 있게 됨.
+	    keyProperty 속성은 해당 결과값이 들어갈 DTO 객체의 멤버 변수명이 오면 됨.
+	    order 속성은 해당 쿼리문의 실행 순서를 의미함. BEFORE라고 하면 insert 쿼리문 이전에
+	    selectKey가 실행이 되고, AFTER라고 하면 insert 쿼리문 이후에 selectKey가 실행이 됨.
+	       주의사항 : 반드시 멤버변수에 해당하는 setter() 와 getter() 메서드가 존재해야 함.
+	 -->
+	<insert id="insertQuestion" parameterType="ServiceQuestionDTO">
+		<selectKey resultType="int" keyProperty="q_num" order="BEFORE">
+			select max(q_num) from service_question_trip
+		</selectKey>
+		
+		insert into service_question_trip values(#{q_num} + 1, 
+			#{q_title}, #{q_cont}, sysdate)
+	</insert>
+	
+	<select id="questionContent" parameterType="int" resultType="ServiceQuestionDTO">
+		select * from service_question_trip where q_num = #{num}
+	</select>
+	
+	<update id="questionUpdate" parameterType="ServiceQuestionDTO">
+		update service_question_trip set q_title = #{q_title},
+			q_cont = #{q_cont}, q_date = sysdate 
+				where q_num = #{q_num}
+	</update>
+	
+	<!-- admin_question_list 에서의 검색 / name 값이 title과 cont일 경우  -->
+	<select id="title" resultType="int" parameterType="String">
+		select count(*) from service_question_trip
+			where q_title like '%' || #{keyword} || '%' 
+	</select>
+	
+	<select id="cont" resultType="int" parameterType="String">
+		select count(*) from service_question_trip
+			where q_cont like '%' || #{keyword} || '%' 
+	</select>
+	
+	<select id="title1" parameterType="PageServDTO" resultType="ServiceQuestionDTO">
+		<![CDATA[
+			select * from 
+				(select q.*, row_number() 
+					over(order by q_num desc) rnum from service_question_trip q 
+					where q_title like '%' || #{keyword} || '%') 
+					where rnum >= #{startNo} and rnum <= #{endNo}
+		]]>
+	</select>
+	
+	<select id="cont1" parameterType="PageServDTO" resultType="ServiceQuestionDTO">
+		<![CDATA[
+			select * from 
+				(select q.*, row_number() 
+					over(order by q_num desc) rnum from service_question_trip q 
+					where q_cont like '%' || #{keyword} || '%') 
+					where rnum >= #{startNo} and rnum <= #{endNo} 
+		]]>
+	</select>
+	
+	<delete id="questionDelete" parameterType="int">
+		delete from service_question_trip where q_num = #{num}
+	</delete>
+	
+	<update id="sequence" parameterType="int">
+		<![CDATA[
+			update service_question_trip set q_num = q_num - 1
+				where q_num > #{num} 
+		]]>
+		
+	</update>
+</mapper>    
