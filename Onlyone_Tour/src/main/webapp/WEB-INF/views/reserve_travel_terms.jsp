@@ -23,6 +23,9 @@
 	
 	<hr>
 	
+	<form method="post" action="<%=request.getContextPath() %>/reserve_travel_ok.do?no=${dto.travel_num}">
+	
+	
 	<div><!-- 인클루드? 지금껄로해도되나... -->
 		<h3>약관동의</h3>
 		<ul>
@@ -41,11 +44,11 @@
 		</ul>
 	
 	</div>
-	
+	<input type="submit" value="예약하기">
 		
-	<input type="button" value="예약하기" 
+<%-- 	<input type="button" value="예약하기" 
 	      onclick="location.href='reserve_travel_ok.do?no=${dto.travel_num}'">
-	
+ --%>	
 
 
 </body>

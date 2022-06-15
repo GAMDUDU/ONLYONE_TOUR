@@ -15,10 +15,12 @@
 	</style>
 </head>
 <body>
-
-	<!-- 패키지 예약 페이지  -->
 <c:set var="dto" value="${Cont }" />
 <c:set var="mem" value="${Member }" />
+
+<form method="post" action="<%=request.getContextPath() %>/reserve_travel_ok.do?no=${dto.travel_num}">
+	<!-- 패키지 예약 페이지  -->
+
 <div>
 	<div class="reserve-travel">
 		<h2>예약하기</h2>
@@ -28,6 +30,10 @@
 			<li><a class="infor-items">☑예약완료</a></li>
 		</ul>
 	</div>
+	
+	<input type="hidden" name="travel_num" value="${dto.travel_num }">
+	
+	
 	
 	
 	<div class="reserve-travel-cont">
@@ -63,7 +69,7 @@
 				<td>${mem.member_name }</td>
 				
 				<th>생년월일</th>
-				<td>${mem.member_date.substring(0,10) }</td>
+				<td>${mem.member_birth.substring(0,10) }</td>
 			</tr>
 			
 			<tr>
@@ -97,14 +103,15 @@
 			<button class="btn_member_down">
 			‹
 			</button>
-			<span class="inpt_conter">1</span>
-			<button class="btn_member_up">
+			<input name="reserve_count" value="1">
+			<button class="btn_member_up" >
 			›
 			</button>
 			</span>
 			<div class="price_group">
 			<span class="price"><fmt:formatNumber>${dto.travel_price }</fmt:formatNumber>원</span><br>
 			<span class="txt">유류할증료/제세공과금 포함</span>
+			<input name="price_account" value="1999900">
 			</div>
 			</li>
 		
@@ -122,24 +129,24 @@
 				<table border="1" cellspacing="0" width="650">
 					<tr>
 					<th>성명(한글)</th>
-					<td colspan="3"><input name="name">
+					<td colspan="3"><input name="reserve_name"></td>
 					</tr>
 					
 					<tr>
 					<th>생년월일</th>
-					<td><input name="date">
-					<th>성별</th>
+					<td><input name="reserve_date"></td>
+			 		<th>성별</th>
 					<td>
 					<input type="radio" name="gender" value="남자">남자
 					&nbsp;&nbsp;&nbsp;
 					<input type="radio" name="gender" value="여자">여자
+					</td>
 					</tr>
 										
 					<tr>
-					<th>휴대폰번호</th>
-					<td><input name="phone">
-					<th>이메일</th>
-					<td><input name="email">
+					<th>휴대폰번호</th> <td><input name="reserve_phone"></td>
+					
+					<th>이메일</th> <td><input name="reserve_email"></td>
 					</tr>
 					
 				</table>
@@ -167,11 +174,13 @@
 	
 
 	</div>
-	
+	<%-- 
 	<input type="button" value="다음단계" 
-	      onclick="location.href='reserve_travel_terms.do?no=${dto.travel_num}'">
+	      onclick="location.href='reserve_travel_terms.do?no=${dto.travel_num}'"> --%>
 	
+		
+   <input type="submit" value="다음단계">
 	
-
+</form>
 </body>
 </html>
