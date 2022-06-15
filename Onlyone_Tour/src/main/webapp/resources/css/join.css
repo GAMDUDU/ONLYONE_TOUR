@@ -1,0 +1,75 @@
+@charset "UTF-8";
+
+
+.join_main{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.form-group{
+	display:flex;
+	flex-direction:column;
+	justify-content: center;
+	align-items: center;
+	margin: 1.2em 0;
+}
+
+.form-group > label{
+	width: 25%;
+	text-align: left;
+	margin-bottom: 10px;
+	padding-left: 20px;
+	font-weight: bold;
+}
+
+
+.form-group > input{
+	width: 500px;
+	height: 40px;
+	border-radius: 5px;
+	padding-left: 10px;
+}
+
+.reg_button{
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 40px;
+}
+
+.reg_button > button{
+	margin-right: 50px;
+	width: 120px;
+	height: 50px;
+	border-style: none;
+	border-radius: 5px;
+	background: #558BCF;
+	cursor: pointer;
+}
+
+.reg_button > button i{
+	padding: 10px;
+	color:white;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.reg_button a{
+	width: 120px;
+	height: 50px;
+	text-decoration: none;
+	border-style:none;
+	border-radius: 5px;
+	background: #F05650;
+}
+
+.reg_button > a i{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	height: 50px;
+	color:white;
+	font-weight: bold;
+	font-size: 16px;
+}

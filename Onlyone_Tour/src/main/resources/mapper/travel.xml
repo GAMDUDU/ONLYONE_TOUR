@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- DTD(Document Type Definition)
+	 - 작성한 문서가 어떤 문서인지에 대해서 정의하는 것. 
+	 - 하나의 시스템 내에서 사용할 XML 데이터의 구조를 정의하여 유효성을 점검 시 사용함. -->
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<!-- namespace 명은 패키지명을 포함해서 DAO 인터페이스 이름으로 작성하는 것이 관례.
+     namespace 명은 mapper 틀을 구분하는데 식별자로 사용됨. -->
+<mapper namespace="traveldao" >
+
+	<!-- 형식) <![CDATA[쿼리문]]> 
+		쿼리문을 작성할 때 조건식 기호(>, <, &)를 사용해야 하는데 
+		XML에서는 이런 기호들을 쿼리문의 조건식 기호로 인식하는 것이 아니라
+		태그로 인식하는 경우가 발생함. 이런 경우에는 에러가 발생함.
+		따라서 조건식 기호들을 단순한 문자열로 인식을 시켜주어야 함. -->
+			
+	<!-- resultType을 mybatis-config.xml 파일과 
+		root-context.xml 파일에서	따로 설정해줌 -->
+	
+	<select id="travelList" resultType="traveldto">
+		<![CDATA[
+			select * from travel_trip order by travel_num desc
+		]]>	
+	</select>
+	
+	<select id="travelNormalList" resultType="traveldto">
+		<![CDATA[
+			select * from travel_trip where travel_spec='일반' order by travel_num desc
+		]]>	
+	</select>
+	
+	<select id="travelHitList" resultType="traveldto">
+		<![CDATA[
+			select * from travel_trip where travel_spec='인기' order by travel_num desc
+		]]>	
+	</select>
+	
+	<select id="travelRecommendList" resultType="traveldto">
+		<![CDATA[
+			select * from travel_trip where travel_spec='추천' order by travel_num desc
+		]]>	
+	</select>
+	
+	<select id="travelNewList" resultType="traveldto">
+		<![CDATA[
+			select * from travel_trip where travel_spec='신규' order by travel_num desc
+		]]>	
+	</select>
+	
+	
+	
+
+</mapper>

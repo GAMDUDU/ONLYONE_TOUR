@@ -1,0 +1,187 @@
+@charset "UTF-8";
+
+#total{
+	height: 170px;
+	background: 
+}
+#total > .middle{
+	position: relative;
+}
+.login_top{
+	width: 1100px;
+	height: 48px;
+	margin: 0 auto;
+}
+#total .a1, #total .a2{
+	position: relative;
+}
+.a1{
+	float: left;
+}
+.a2{
+	float: right;
+}
+.login_top ul{
+	overflow: hidden;
+}
+ul, li{
+	list-style: none;
+}
+.login_top li:first-child {
+	margin-left: 0;
+}
+.login_top li{
+	height: 48px;
+	float: left;
+	line-height: 45px;
+	margin-left: 14px;
+	position: relative;
+}
+.login_top li a{
+	font-size: 12px;
+	letter-spacing: -0.3px;
+}
+a{
+	color: #333;
+	text-decoration: none;
+}
+
+/* 이미지 부분*/
+.img_menu{
+	width: 1100px;
+	height: 65px;
+	margin: 0 auto;
+}
+.logo{
+	display: block;
+	width: 150px;
+	height: 36px;
+	margin-top: 8px;
+	float: left;
+}
+.logo a{
+	display: block;
+	height: 36px;
+	font-size: 0;
+	overflow: hidden;
+	line-height: 0;
+}
+
+/* 검색 관련*/
+.img_menu .search{
+	float: left;
+	margin: 1px 0 0 30px;
+	width: 400px;
+	height: 44px;
+	border-radius: 100px;
+	border: solid 2px #111;
+}
+.img_menu .search *{
+	box-sizing: border-box;
+}
+.legend{
+	overflow: hidden;
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	clip: rect(0 0 0 0);
+	margin: -1px;
+}
+.img_menu .search .search_a{
+	position: relative;
+	overflow: hidden;
+	margin: 0 12px 0 20px;
+	height: 40px;
+}
+.img_menu .search .keyword{
+	height: 40px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    width: 334px;
+    float: left;
+    line-height: 40px;
+    font-size: 15px;
+    color: #111;
+}
+.img_menu .search .s-span{
+	position: absolute;
+    top: 2px;
+    right: 40px;
+    width: 24px;
+    height: 35px;
+    font-size: 0;
+    cursor: pointer;
+}
+.img_menu .search .btn_search{
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    position: relative;
+    font-size: 0;
+    line-height: 0;
+}
+
+/* 오른쪽 메뉴*/
+.my_menu{
+	float: left;
+}
+.img_menu .my_menu > ul > li{
+	float: left;
+	margin: 2px 0 0 24px;
+}
+.img_menu .my_menu > ul > li > a {
+	display: block;
+	font-size: 12px;
+	line-height: 13px;
+	padding-top: 29px;
+	position: relative;
+	color: #333;
+}
+
+/* 네비게이션 */
+.navi{
+	width: 1100px;
+	height: 57px;
+	margin: 0 auto;
+	background-color: #9370DB;
+}
+.navi .full_menu{
+	float: left;
+    display: block;
+    width: 138px;
+    height: 57px;
+    line-height: 57px;
+    border: 1px solid #ddd;
+    border-bottom: 1px solid #111;
+    font-size: 15px;
+    position: relative;
+    padding-left: 57px;
+    color: #111;
+}
+vv{
+	position: absolute;
+	height: 57px;
+	display: inline-block;
+	width: 820px;
+}
+.navi .full_navi_ui > li:first-child {
+	padding-left: 26px;
+}
+.navi .full_navi_ui > li{
+	padding-left: 25px;
+    font-size: 15px;
+    color: #111;
+    float: left;
+    line-height: 56px;
+    height: 57px;
+}
+.navi .full_navi_ui > li>a{
+	float: left;
+    line-height: 56px;
+    height: 57px;
+    color: #111;
+    position: relative;
+}

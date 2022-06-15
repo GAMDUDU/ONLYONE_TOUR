@@ -21,11 +21,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.onlyone" />
-	<context:component-scan base-package="com.admin" />
-	<context:component-scan base-package="com.travel" />
-	<context:component-scan base-package="com.reserve" />
-	
+	<context:component-scan base-package="com.*" />
 	
 	
 </beans:beans>

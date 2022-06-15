@@ -2,7 +2,6 @@ package com.onlyone.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.http.HttpResponse;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -35,7 +33,7 @@ public class MemberController {
 	public void loginOk(@RequestParam("id") String id, @RequestParam("pwd") String pwd,
 			HttpServletResponse response, HttpServletRequest request, Model model) throws IOException {
 		
-		MemberDTO dto = this.dao.loginOk(id);
+		MemberDTO dto= this.dao.loginOk(id);
 		
 		response.setContentType("text/html; charset=UTF-8");
 		
@@ -64,18 +62,13 @@ public class MemberController {
 			out.println("history.back()");
 			out.println("</script>");
 			
-		}else if(dto.getMember_id() != null) {
-			if(dto.getMember_id().equals(id)) { // 입력id와 데이터베이스 id와 같을 경우
-				if(dto.getMember_pwd().equals(pwd)) {
+		}else if(dto.getMemberId() != null) {
+			if(dto.getMemberId().equals(id)) { // 입력id와 데이터베이스 id와 같을 경우
+				if(dto.getMemberPwd().equals(pwd)) {
 					
-					session.setAttribute("member_id", dto.getMember_id());
-					session.setAttribute("member_num", dto.getMember_num());
-					session.setAttribute("member_name", dto.getMember_name());
-					session.setAttribute("member_pwd", dto.getMember_pwd());
-					session.setAttribute("member_phone", dto.getMember_phone());
-					session.setAttribute("member_email", dto.getMember_email());
-					session.setAttribute("member_date", dto.getMember_date());
-					session.setAttribute("member_nickname", dto.getMember_nickname());
+					session.setAttribute("member_id", dto.getMemberId());
+					session.setAttribute("member_pwd", dto.getMemberPwd());
+					
 					
 					
 					out.println("<script>");
@@ -95,6 +88,44 @@ public class MemberController {
 		}
 	} // loginOk() end문
 		
+	@RequestMapping("logout.do")
+	public String logOut(HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		
+		session.invalidate();
+		
+		return "main";
+		
+	}
+	
+	@RequestMapping("join.do")
+	public String join(Model model) {
+		
+		return "join";
+	}
 	
 	
+	@RequestMapping("joinOk.do")
+	public void joinOk(MemberDTO dto, HttpServletResponse response) throws IOException {
+		
+		int check = this.dao.insertMember(dto);
+		
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		if(check > 0) {
+			out.println("<script>");
+			out.println("alert('회원가입 완료')");
+			out.println("location.href='login.do'");
+			out.println("<script>");
+		}else {
+			out.println("<script>");
+			out.println("alert('회원가입 실패')");
+			out.println("history.back()");
+			out.println("<script>");
+		}
+		
+	}
 }

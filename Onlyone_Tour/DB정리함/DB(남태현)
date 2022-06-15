@@ -1,0 +1,38 @@
+create table service_trip(
+    service_num number(30) primary key,
+    service_name varchar2(30) not null,
+    service_pwd varchar2(10) not null,
+    service_title varchar2(100) not null,
+    service_cont varchar2(3000) ,
+    service_code number(20) references service_qcategory_trip(c_code),
+    service_check varchar2(20),
+    service_group number(5),
+    service_step number(5),
+    service_indent number(5),
+    service_view number(5),
+    service_date date
+    
+);
+
+
+create table service_qcategory_trip (
+    c_code number(20) primary key,
+    c_name varchar2(200) not null
+    
+);
+
+create table service_question_trip(
+    q_num number(30) primary key,
+    q_title varchar2(1000) not null,
+    q_cont varchar2(3000),
+    q_date date
+);
+
+create table service_notice_trip(
+    n_num number(30) primary key,
+    n_name varchar2(30) not null,
+    n_title varchar2(100) not null,
+    n_cont varchar2(3000),
+    n_view number(5),
+    n_date date
+);
