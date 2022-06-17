@@ -31,9 +31,9 @@ public class MemberController {
 	
 	@RequestMapping("login_ok.do")
 	public void loginOk(@RequestParam("id") String id, @RequestParam("pwd") String pwd,
-			HttpServletResponse response, HttpServletRequest request, Model model) throws IOException {
+			HttpServletResponse response, HttpServletRequest request) throws IOException {
 		
-		MemberDTO dto= this.dao.loginOk(id);
+		MemberDTO dto = this.dao.loginOk(id);
 		
 		response.setContentType("text/html; charset=UTF-8");
 		
@@ -62,19 +62,17 @@ public class MemberController {
 			out.println("history.back()");
 			out.println("</script>");
 			
-		}else if(dto.getMemberId() != null) {
-			if(dto.getMemberId().equals(id)) { // 입력id와 데이터베이스 id와 같을 경우
-				if(dto.getMemberPwd().equals(pwd)) {
+		}else if(dto.getMember_id() != null) {
+			if(dto.getMember_id().equals(id)) { // 입력id와 데이터베이스 id와 같을 경우
+				if(dto.getMember_pwd().equals(pwd)) {
 					
-					session.setAttribute("member_id", dto.getMemberId());
-					session.setAttribute("member_pwd", dto.getMemberPwd());
-					
+					session.setAttribute("member_id", dto.getMember_id());
+					session.setAttribute("member_pwd", dto.getMember_pwd());
 					
 					
 					out.println("<script>");
 					out.println("location.href='/'");
 					out.println("</script>");
-					
 					
 					
 				}else { // 비밀번호가 틀린 경우
@@ -119,13 +117,48 @@ public class MemberController {
 			out.println("<script>");
 			out.println("alert('회원가입 완료')");
 			out.println("location.href='login.do'");
-			out.println("<script>");
+			out.println("</script>");
 		}else {
 			out.println("<script>");
 			out.println("alert('회원가입 실패')");
 			out.println("history.back()");
-			out.println("<script>");
+			out.println("</script>");
+		}
+	} // joinOk.do() end
+	
+	@RequestMapping("idCheck.do")
+	public String idCheck(@RequestParam("memberId") String id, HttpServletResponse response) throws IOException{
+		
+		int res = this.dao.checkUserId(id);
+		
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		if(res == 1) {
+			// ajax에게 응답을 해준다.
+			out.println(res);
 		}
 		
-	}
+		return null;
+		
+	
+	} // idCheck() end 부분
+	
+	@RequestMapping("emailCheck.do")
+	public String emailCheck(@RequestParam("memberEmail") String email, HttpServletResponse response) throws IOException {
+		
+		int res = this.dao.checkUserEmail(email);
+		
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		if(res == 1) {
+			out.println(res);
+		}
+		
+		return null;
+	} // emailCheck() end 부분
+	
 }

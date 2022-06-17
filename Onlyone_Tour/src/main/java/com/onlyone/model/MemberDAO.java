@@ -10,6 +10,13 @@ public interface MemberDAO {
 	// 로그인 ok
 	MemberDTO loginOk(String id);
 	
+	// 아이디 체크
+	int checkUserId(String id);
+	
+	// 이메일 체크 
+	int checkUserEmail(String email);
+	
+	
 	// 회원정보 가져오기
 	int insertMember(MemberDTO dto);
 	

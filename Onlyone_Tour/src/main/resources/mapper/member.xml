@@ -11,17 +11,32 @@
 <mapper namespace="memberdao">
 
 	<select id="Login" parameterType="String" resultType="memberdto">
-		
-		select * from Member_trip
+			
+		select * from member_trip 
 			where member_id = #{member_id}
 					
 	</select>
 	
-	
 	<insert id="Join" parameterType="memberdto">
-		insert into member_trip values((select max(member_num) from member_trip) + 1,
- 		#{member_id},#{member_name},#{member_pwd, jdbcType=VARCHAR},
- 		#{member_phone},#{member_email, jdbcType=VARCHAR},sysdate,#{member_nickname})
+		insert into member_trip values(
+			#{member_id},#{member_pwd, jdbcType=VARCHAR},#{member_name},#{member_email},#{member_gender},
+			#{member_phone},#{member_birth},#{member_addr},#{member_detailaddr},sysdate
+		)
 	</insert>
+	
+	<select id="idCheck" parameterType="String" resultType="int">
+		
+		select count(*) from member_trip
+			where member_id = #{member_id}
+	
+	</select>
+	
+	
+	<select id="emailCheck" parameterType="String" resultType="int">
+			
+		select count(*) from member_trip
+			where member_email = #{member_email}
+			
+	</select>
 	
 </mapper>

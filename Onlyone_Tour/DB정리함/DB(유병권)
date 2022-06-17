@@ -8,13 +8,14 @@ create table member_trip(
     member_email varchar2(50),
     member_gender varchar2(10),
     member_phone varchar2(50),
-    member_addr varchar2(200),
-    member_reg date,
-    member_birth date
+    member_birth varchar2(50),
+    member_addr varchar2(200) not null,
+    member_detailaddr varchar2(200) not null,
+    member_reg date
 
 );
 
-insert into member_trip values('hong','1234','홍길동','hong@naver.com','남자','01044445555','서울시 강남구',sysdate,'2012-03-28');
+insert into member_trip values('hong','1234','홍길동','hong@naver.com','남자','01044445555','1992-02-03','서울시 강남구','비자아파트',sysdate);
 
 
 # DB 어드민

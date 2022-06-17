@@ -1,6 +1,10 @@
 @charset "UTF-8";
 
 
+input{
+	border: 1px solid gray;	
+}
+
 .join_main{
 	display: flex;
 	justify-content: center;
@@ -12,15 +16,20 @@
 	flex-direction:column;
 	justify-content: center;
 	align-items: center;
-	margin: 1.2em 0;
+	margin: 2em 0;
+}
+
+.form-group:nth-child(2){
+	margin-top: -20px;
 }
 
 .form-group > label{
+	display:inline-block;
 	width: 25%;
 	text-align: left;
 	margin-bottom: 10px;
-	padding-left: 20px;
 	font-weight: bold;
+	padding-right: 15px
 }
 
 
@@ -36,6 +45,7 @@
 	justify-content: center;
 	align-items: center;
 	margin-top: 40px;
+	margin-left: 50px;
 }
 
 .reg_button > button{
@@ -72,4 +82,121 @@
 	color:white;
 	font-weight: bold;
 	font-size: 16px;
+}
+
+/* 라디오버튼 커스텀 */
+
+#radio_box{
+	display:flex;
+	width: 25%;
+	margin: 10px 5px;
+}
+
+.form_radio_btn {
+	width: 47%;
+	height : 45px;
+	border: 1px solid #EAE7E7;
+	border-radius: 10px;
+	margin-left: 20px;
+}
+.form_radio_btn input[type=radio] {
+		display: none;
+}
+.form_radio_btn label {
+		display: block;
+  		border-radius: 10px;
+ 		margin: 0 auto;
+  		text-align: center;
+  		height: -webkit-fill-available;
+  		line-height: 45px;
+}
+ 
+/* Checked */
+.form_radio_btn input[type=radio]:checked + label {
+	background: #184DA0;
+	color: #fff;
+}
+ 
+/* Hover */
+.form_radio_btn label:hover {
+	color: #666;
+}
+ 
+/* Disabled */
+.form_radio_btn input[type=radio] + label {
+	background: #F9FAFC;
+	color: #666;
+}
+
+
+/* 주소 커스텀 */
+.search_addr{
+	width: 250px;
+	height: 50px;
+	border-style: none;
+	border-radius: 3px;
+	background: gold;
+	color: rgb(0,0,0, 0.8);
+	font-weight: bold;
+	padding: 15px;
+	word-spacing: 5px;
+	margin: 20px 0px;
+}
+
+/* 버튼정리 */
+#btn_userId{
+	position: relative; 
+	bottom: 45px;
+	left: 340px;
+	width: 120px;
+	height: 44px;
+	font-size: 14px;
+	line-height: 40px;
+	border-radius: 3px;
+	outline: none;
+	text-align: center;
+	margin-right: 10px;
+	cursor: pointer;
+	border: 1px solid blue;
+	background: white;
+	color: blue;	
+	font-weight: bold;
+}
+
+#btn_userEmail{
+	position: relative; 
+	bottom: 45px;
+	left: 340px;
+	width: 120px;
+	height: 44px;
+	font-size: 14px;
+	border-radius: 3px;
+	outline: none;
+	text-align: center;
+	margin-right: 10px;
+	cursor: pointer;
+	border: 1px solid blue;
+	background: white;
+	color: blue;	
+	font-weight: bold;
+}
+
+.text_box1{
+	width: 500px;
+	display: flex;
+	flex-direction: column;
+	margin-top: -30px;
+	justify-content: flex-start;
+	font-size: 12px;
+	z-index: 1;
+	margin-bottom: 20px;
+}
+
+.text_box2, .text_box3{
+	width: 500px;
+	display:flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	font-size: 12px;
+	margin-top: 10px;
 }

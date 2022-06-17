@@ -59,6 +59,14 @@ public class MemberDAOImpl implements MemberDAO{
 		return null;
 	}
 
+	@Override
+	public int checkUserId(String id) {
+		return this.sqlSession.selectOne("idCheck", id);
+	}
 
+	@Override
+	public int checkUserEmail(String email) {
+		return this.sqlSession.selectOne("emailCheck", email);
+	}
 
 }

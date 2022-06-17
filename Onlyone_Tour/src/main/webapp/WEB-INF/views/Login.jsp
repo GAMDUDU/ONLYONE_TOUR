@@ -25,7 +25,7 @@
 		</div>
 		
 		
-		<form method="post" action="<%=request.getContextPath()%>/login_ok.do" onsubmit="return frm_check();">
+		<form method="post" action="<%=request.getContextPath()%>/login_ok.do">
 			<ul class="from_login">
 				<li>
 					<input id="login_id" class="login_box" type="text" placeholder="아이디(이메일계정)" name="id">
