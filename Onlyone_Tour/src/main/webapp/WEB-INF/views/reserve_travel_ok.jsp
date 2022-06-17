@@ -25,9 +25,10 @@
 		</ul>
 	</div>
 	<c:set var="dto" value="${Cont }" />
-<c:set var="mem" value="${Member }" />
+	<c:set var="mem" value="${Member }" />
 	
 	
+
 		<div class="infor-txt">
 		<h3>${mem.member_name }님<br>
 		 예약이 완료 되었습니다.</h3>
@@ -50,10 +51,10 @@
 	
 	</div>
 	
-	
-		<input type="button" value="홈으로">
+		<input type="button" value="홈으로" onclick="location.href='main.do'">
 	      
 	      	<input type="button" value="예약내역 확인하기">
+	      	
 
 </body>
 </html>

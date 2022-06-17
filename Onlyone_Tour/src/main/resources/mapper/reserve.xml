@@ -9,9 +9,17 @@
     select * from travel_trip where travel_num=1
     </select>
     
-    <select id="member" parameterType="int" resultType="memberdto">
-    select*from member_trip where member_num=1
+    <select id="member" parameterType="string" resultType="memberdto">
+    select*from member_trip where member_id='hong'
     </select>
+    
+    <insert id="add" parameterType="ReserveDTO" >
+    <selectKey resultType="int" keyProperty="reserve_num" order="BEFORE">
+    	select max(reserve_num) from reserve_travel
+    </selectKey>
+    insert into reserve_travel values(#{reserve_num}+1, #{travel_num}, #{reserve_count},
+    #{reserve_name}, #{reserve_date}, #{reserve_email}, #{reserve_phone}, #{price_account})
+    </insert>
     
     
     

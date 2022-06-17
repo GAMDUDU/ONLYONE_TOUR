@@ -27,8 +27,16 @@ public class ReserveDAOImpl implements ReserveDAO {
 
 
 	@Override
-	public MemberDTO getMemberCont(int no) {
-		return this.sqlSession.selectOne("member", no);
+	public MemberDTO getMemberCont(String id) {
+		return this.sqlSession.selectOne("member", id);
+	}
+
+
+
+	@Override
+	public int reserveInsert(ReserveDTO rdto) {
+		return this.sqlSession.insert("add", rdto);
+		
 	}
 	
 
