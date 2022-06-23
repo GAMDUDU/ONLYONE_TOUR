@@ -3,9 +3,11 @@ package com.onlyone.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -68,7 +70,8 @@ public class MemberController {
 					
 					session.setAttribute("member_id", dto.getMember_id());
 					session.setAttribute("member_pwd", dto.getMember_pwd());
-					
+					session.setAttribute("member_name", dto.getMember_name());
+					session.setAttribute("verify", dto.getVerify());
 					
 					out.println("<script>");
 					out.println("location.href='/'");
@@ -105,25 +108,29 @@ public class MemberController {
 	
 	
 	@RequestMapping("joinOk.do")
-	public void joinOk(MemberDTO dto, HttpServletResponse response) throws IOException {
+	public String joinOk(MemberDTO dto, HttpServletResponse response, HttpServletRequest request, Model model) throws IOException {
 		
 		int check = this.dao.insertMember(dto);
+		String name = dto.getMember_name();
+		String ok = "";
 		
 		response.setContentType("text/html; charset=UTF-8");
 		
 		PrintWriter out = response.getWriter();
+		model.addAttribute("name", name);
 		
 		if(check > 0) {
-			out.println("<script>");
-			out.println("alert('회원가입 완료')");
-			out.println("location.href='login.do'");
-			out.println("</script>");
+			ok = "joinOk";
+			
 		}else {
 			out.println("<script>");
 			out.println("alert('회원가입 실패')");
 			out.println("history.back()");
 			out.println("</script>");
 		}
+		
+		return ok;
+		
 	} // joinOk.do() end
 	
 	@RequestMapping("idCheck.do")
@@ -160,5 +167,55 @@ public class MemberController {
 		
 		return null;
 	} // emailCheck() end 부분
+	
+	
+	// 아이디 찾기
+	@RequestMapping("findId.do")
+	public String idsearch(MemberDTO dto,
+		HttpServletResponse response, HttpServletRequest request, Model model) throws IOException {
+		
+		MemberDTO findId = this.dao.findId(dto);
+		
+		response.setContentType("text/html; charset=UTF-8");
+		
+		
+		if(findId != null) {
+			model.addAttribute("check", 0);
+			model.addAttribute("FindId", findId.getMember_id());
+		}else {
+			model.addAttribute("check", 1);
+
+		}
+		
+		return "idFind";
+		
+	} // idsearch(end)
+	
+	
+	// 비밀번호 찾기
+	@RequestMapping("findPwd.do")
+	public String pwdSearch(MemberDTO dto, Model model, HttpServletResponse response) {
+		
+		MemberDTO findPwd = this.dao.findPwd(dto);
+		
+		response.setContentType("text/html; charset=UTF-8");
+		
+		if(findPwd != null) {
+			model.addAttribute("check", 0);
+			model.addAttribute("FindPwd", findPwd.getMember_pwd());
+		}else {
+			model.addAttribute("check", 1);
+		}
+		return "pwdFind";
+	}
+	
+	
+	// 고객정보 페이지로 보내기
+	@RequestMapping("admin_memberlist.do")
+	public String memberList() {
+		return "/admin/admin_memberlist";
+	}
+	
+	
 	
 }

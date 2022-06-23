@@ -39,4 +39,20 @@
 			
 	</select>
 	
+	<select id="findId" parameterType="memberdto" resultType="memberdto">
+		
+		select * from member_trip
+			where member_name = #{member_name} and member_phone = #{member_phone}
+	
+	</select>
+	
+	
+	<select id="findPwd" parameterType="memberdto" resultType="memberdto">
+		
+		select * from member_trip
+			where member_id = #{member_id} and member_email = #{member_email}
+	
+	</select>
+	
+	
 </mapper>

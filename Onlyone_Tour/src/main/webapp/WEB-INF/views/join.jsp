@@ -9,6 +9,7 @@
 <script src="https://kit.fontawesome.com/27a0dd965d.js" crossorigin="anonymous"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
 
 // ajax를 사용하여 입력창 유효검사하기
@@ -64,22 +65,19 @@ $(function(){
 			success: function(data){
 				if(data == 1){
 					textId2.css("color", "red");
-					alert("중복된 아이디 입니다.");
+					swal("알림메시지", "중복된 아이디 입니다.");
 					$("#user_id_check").val(0);
 					$("#member_id").val('').focus();
-				}else if(memberId == ""){
-					alert("중복확인전 아이디를 입력해주세요.");
-					$("#member_id").val('').focus();
 				}else if(memberId.length < 4){
-					alert("아이디는 4자이상 입력해주세요.")
+					swal("알림메시지", "아이디는 4자이상 입력해주세요.")
 					$("#member_id").val('').focus();
 				}else if(userIdCheck.test(memberId)){
-					alert("아이디는 영어와 숫자로만 입력가능합니다.")
+					swal("알림메시지", "아이디는 영어와 숫자만 입력가능합니다.")
 					$("#member_id").val('').focus();
 				}
 				else{
 					textId2.css("color", "green");
-					alert("사용가능한 아이디 입니다.");
+					swal("알림메시지","사용가능한 아이디 입니다.");
 					$("#user_id_check").val(1);
 				}
 			},
@@ -130,15 +128,14 @@ $(function(){
 			datatype: "text",
 			success: function(data){
 				if(data == 1){
-					alert("중복된 이메일 입니다.")
+					swal("알림메시지", "중복된 이메일 입니다.")
 					$("#member_email").val('').focus();
 					$("#member_email_check").val(0);
 				}else if(!emailCheck.test(userEmail)){
-					alert("잘못된 이메일 형식입니다.")
+					swal("알림메시지","잘못된 이메일 형식입니다.")
 					$("#member_email").focus();
-				}
-				else{
-					alert("사용 가능한 이메일 입니다.")
+				}else{
+					swal("알림메시지","사용 가능한 이메일 입니다.")
 					$("#member_email_check").val(1);
 				}
 			},
@@ -169,7 +166,7 @@ $(function(){
 	<form method="post" action="<%=request.getContextPath()%>/joinOk.do" onsubmit="return submitCheck();">
 		<!-- 아이디  -->
 		<div class="form-group">
-			<label for="user_id">아이디</label>
+			<span class="main-text">아이디</span>
 				<input type="text" maxlength="12" class="form-control" id="member_id" name="member_id" placeholder="아이디">
 				<button type="button" id="btn_userId" class="btn btn-outline-secondary">중복확인</button>
 				<input type="hidden" id="user_id_check" value="0">
@@ -181,7 +178,7 @@ $(function(){
 		
 		<!-- 비밀번호  -->
 		<div class="form-group">
-			<label for="user_pw">비밀번호</label>
+			<span class="main-text">비밀번호</span>
 				<input type="password" maxlength="16" class="form_control" id="member_pwd1" name="member_pwd" placeholder="패스워드"> 
 				<div class="text_box2">
 					<span class="text_pwd1">8자 이상 입력 (영문/숫자/특수문자 하나이상 포함)</span>
@@ -190,7 +187,7 @@ $(function(){
 		
 		<!-- 비밀번호 재확인 -->
 		<div class="form-group">
-			<label for="user_pw2">비밀번호 확인</label>
+			<span class="main-text">비밀번호 확인</span>
 				<input type="password" maxlength="16" class="form_control" id="member_pwd2" name="member_pwd2" placeholder="패스워드 확인">
 				<div class="text_box3">
 					<span class="text_pwd2">동일한 비밀번호를 입력해주세요.</span>
@@ -199,14 +196,14 @@ $(function(){
 		
 		<!-- 이름 -->
 		<div class="form-group">
-			<label for="user_name">이름</label>
+			<span class="main-text">이름</span>
 				<input type="text" maxlength="10" class="form_control" id="member_name" name="member_name" placeholder="이름">
 			<div class="check_font" id="name_check"></div>		
 		</div>
 
 		<!-- 이메일 -->
 		<div class="form-group">
-			<label for="user_email">이메일</label>
+			<span class="main-text">이메일</span>
 				<input type="email" class="form-control" name="member_email" id="member_email" placeholder="ex)email@email.com">
 				<button type="button" id="btn_userEmail" class="btn btn-outline-secondary">중복확인</button>
 				<input type="hidden" id="member_email_check" value="0">
@@ -214,7 +211,7 @@ $(function(){
 		
 		<!-- 성별 -->
 		<div class="form-group">
-		<label for="userSex" class="form-label">성별</label>
+		<span class="main-text">성별</span>
 			<div id="radio_box" class="form_toggle row-vh d-flex flex-row justify-content-between" >
 				<div class="form_radio_btn radio_male">
 					<input id="radio-1" type="radio" name="member_gender" value="male" checked>
@@ -230,21 +227,21 @@ $(function(){
 		
 		<!-- 휴대전화 -->
 		<div class="form-group">
-			<label for="member_phone">전화번호</label>
+			<span class="main-text">전화번호</span>
 			<input type="text" class="form-control" id="member_phone" name="member_phone" placeholder="('-'제외하고 입력해주세요.)">
 			<div class="check_font" id="phone_check"></div>
 		</div>
 		
 		<!-- 생년월일 -->
 		<div class="form-group">
-			<label for="member_birth">생년월일</label>
+			<span class="main-text">생년월일</span>
 			<input type="text" name="member_birth" id="member_birth" placeholder="ex)19990101">
 			<div class="check_font" id="birth_check"></div>
 		</div>
 		
 		<!-- 주소 -->
 		<div class="form-group">
-			<label for="member_addr">주소</label>
+			<span class="main-text">주소</span>
 				<input type="text" id="sample6_postcode" placeholder="우편번호">
 				<button type="button" class="search_addr" onclick="sample6_execDaumPostcode()">
 					<i class="fa-solid fa-magnifying-glass fa-lg">주소 검색</i>

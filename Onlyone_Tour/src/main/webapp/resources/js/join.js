@@ -69,6 +69,7 @@ function sample6_execDaumPostcode() {
 
 
 function submitCheck(){
+
 	// 멤버 정리
 	let userId = $("#member_id").val();
 	let userPwd1 = $("#member_pwd1").val();
@@ -89,69 +90,74 @@ function submitCheck(){
 	let user_email_check = $("#user_email_check").val();
 	
 	if(user_id_check == 0){
-		alert("아이디 중복체크를 진행해 주세요");
+		swal("아이디 중복체크를 진행해 주세요");
 		$("#member_id").focus();
 		return false;
 	}
 	
 	if(user_email_check == 0){
-		alert("이메일 중복체크를 진행해 주세요");
+		swal("이메일 중복체크를 진행해 주세요");
 		$("#member_email").focus();
 		return false;
 	}
 	
 	
 	if(userId == null || userId == ""){
-		alert("아이디를 입력해 주세요.");
+		swal("아이디를 입력해 주세요.");
 		$("#member_id").focus();
 		return false;	
 	}
 	
 	if(userPwd1 == null || userPwd1 == ""){
-		alert("비밀번호를 입력해 주세요.");
+		swal("비밀번호를 입력해 주세요.");
 		$("#member_pwd1").focus();
 		return false;
 	}
 	
 	if(!passwordRule.test(userPwd1)){
-		alert("비밀번호를 다시 입력해주세요");
+		swal("비밀번호를 다시 입력해주세요");
 		$("#member_pwd1").val('').focus();
 		return false;
 	}
 	
 	if(userPwd1 != userPwd2){
-		alert("비밀번호를 동일하게 입력해주세요.");
+		swal("비밀번호를 동일하게 입력해주세요.");
 		$("#member_pwd2").focus();
 		return false;
 	}
 	
 	if(userName == null || userName == ""){
-		alert("이름을 입력해 주세요.");
+		swal("이름을 입력해 주세요.");
 		$("#member_name").focus();
 		return false;
 	}
 	
 	if(userEmail == null || userEmail == ""){
-		alert("이메일을 입력해주세요.");
+		swal("이메일을 입력해주세요.");
 		$("#member_email").focus();
 		return false;
 	}
 	
 	if(userPhone == null || userPhone == ""){
-		alert("전화번호를 입력해주세요.");
+		swal("전화번호를 입력해주세요.");
 		$("#member_phone").focus();
 		return false;
 	}
 	
 	
 	if(userBirth == null || userBirth == ""){
-		alert("생년월일을 입력해주세요.");
+		swal("생년월일을 입력해주세요.");
 		$("#member_birth").focus();
 		return false;
 	}
 	if(userJibunAddress == null | userJibunAddress == ""){
-		alert("주소를 입력해주세요");
+		swal("주소를 입력해주세요");
 		$("#sample6_address").focus();
+		return false;
+	}
+	if(userDetailAddress == null | userDetailAddress == ""){
+		swal("상세주소를 입력해주세요");
+		$("#sample6_detailAddress").focus();
 		return false;
 	}
 }

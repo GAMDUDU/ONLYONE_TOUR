@@ -28,6 +28,11 @@
 			<li><a href="<%=request.getContextPath()%>/join.do">회원가입</a></li>
 			<li><a href="#">고객센터</a></li>
 		</ul>
+		<%}else if(session.getAttribute("member_id") != null && (int)session.getAttribute("verify") == 9){%>
+		<ul>
+			<li><a href="<%=request.getContextPath()%>/admin.do">관리자 화면</a>
+			<li><a href="<%=request.getContextPath()%>/logout.do">로그아웃</a></li>		
+		</ul>
 		<%}else{%>
 		<ul>
 			<li><a href="<%=request.getContextPath()%>/logout.do">로그아웃</a></li>

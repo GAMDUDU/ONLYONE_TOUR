@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+	
 
 input{
 	border: 1px solid gray;	
@@ -23,13 +24,15 @@ input{
 	margin-top: -20px;
 }
 
-.form-group > label{
-	display:inline-block;
-	width: 25%;
-	text-align: left;
-	margin-bottom: 10px;
+.main-text{
+	display:flex;
+	flex-direction:row;
+	position:relative;
+	right: 200px;
+	margin-bottom: 15px;
+	font-size:15px;
 	font-weight: bold;
-	padding-right: 15px
+	width: 100px;
 }
 
 
@@ -88,8 +91,10 @@ input{
 
 #radio_box{
 	display:flex;
-	width: 25%;
+	justify-content:center;
+	align-items:center;
 	margin: 10px 5px;
+	width: 500px;
 }
 
 .form_radio_btn {
@@ -109,6 +114,7 @@ input{
   		text-align: center;
   		height: -webkit-fill-available;
   		line-height: 45px;
+  		
 }
  
 /* Checked */
@@ -200,3 +206,5 @@ input{
 	font-size: 12px;
 	margin-top: 10px;
 }
+
+

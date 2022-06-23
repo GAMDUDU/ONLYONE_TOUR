@@ -68,5 +68,17 @@ public class MemberDAOImpl implements MemberDAO{
 	public int checkUserEmail(String email) {
 		return this.sqlSession.selectOne("emailCheck", email);
 	}
-
+	
+	
+	// 아이디 찾기
+	@Override
+	public MemberDTO findId(MemberDTO dto) {
+		return this.sqlSession.selectOne("findId", dto);
+	}
+	
+	// 비밀번호 찾기
+	@Override
+	public MemberDTO findPwd(MemberDTO dto) {
+		return this.sqlSession.selectOne("findPwd", dto);
+	}
 }

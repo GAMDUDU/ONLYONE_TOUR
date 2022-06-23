@@ -15,6 +15,6 @@ public class MemberDTO {
 	private String member_addr;
 	private String member_detailaddr;
 	private String member_reg;
-	
+	private int verify;
 	
 }
