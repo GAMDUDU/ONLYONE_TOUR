@@ -16,12 +16,11 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
+	<jsp:include page="include/top.jsp" />
 	
-
 	<hr width="100%" color="gray">
 	
-	
-	<!-- 아이디 찾기  -->
+		<!-- 아이디 찾기  -->
 	 <div class="black-bg1">
         <div class="white-bg1">
           <h4>아이디 찾기</h4>
@@ -68,7 +67,7 @@
 		</div>
 		
 		
-		<form method="post" action="<%=request.getContextPath()%>/login_ok.do">
+		<form method="post" action="<%=request.getContextPath()%>/login_ok.do" onsubmit="return frm_check();">
 			<ul class="from_login">
 				<li>
 					<input id="login_id" class="login_box" type="text" placeholder="아이디(이메일계정)" name="id">
@@ -104,7 +103,9 @@
 	</div>
 	
 	<hr width="100%" color="gray">
-
+	
+	<jsp:include page="include/footer.jsp" />
+	
 <script type="text/javascript" src="${path}/resources/js/login.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>

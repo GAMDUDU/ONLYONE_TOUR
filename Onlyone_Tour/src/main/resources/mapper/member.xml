@@ -20,7 +20,7 @@
 	<insert id="Join" parameterType="memberdto">
 		insert into member_trip values(
 			#{member_id},#{member_pwd, jdbcType=VARCHAR},#{member_name},#{member_email},#{member_gender},
-			#{member_phone},#{member_birth},#{member_addr},#{member_detailaddr},sysdate
+			#{member_phone},#{member_birth},#{member_addr},#{member_detailaddr},sysdate,default
 		)
 	</insert>
 	
@@ -53,6 +53,28 @@
 			where member_id = #{member_id} and member_email = #{member_email}
 	
 	</select>
+	
+	
+	<select id="count" resultType="int">
+		
+		select count(*) from member_trip
+	
+	</select>
+	
+	
+	<select id="list" parameterType="pageDto" resultType="memberdto">
+		<![CDATA[
+		select * from
+			(select m.*, row_number()
+				over(order by member_reg desc) rnum from member_trip m)
+			where  rnum >= #{startNo} and rnum <= #{endNo}
+		]]>	
+	</select>
+	
+	
+	<delete id="del" parameterType="String">
+		delete from member_trip where member_id = #{id}
+	</delete>
 	
 	
 </mapper>

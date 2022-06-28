@@ -37,7 +37,7 @@
           <h4>비밀번호 찾기</h4>
                 <c:if test="${check == 1}">
 	                <div class="my-3">
-	                    <span>등록된 패스워드 정보가 없습니다.</span>
+	                    <span>아이디 또는 이메일 정보가 맞지 않습니다.</span>
 	                </div>
                 </c:if>
                 

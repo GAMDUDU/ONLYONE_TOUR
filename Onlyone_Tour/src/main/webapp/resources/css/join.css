@@ -12,6 +12,13 @@ input{
 	align-items: center;
 }
 
+.join_main img{
+	width: 500px;
+	height: 300px;
+	margin-bottom: -60px;
+}
+
+
 .form-group{
 	display:flex;
 	flex-direction:column;
@@ -28,11 +35,11 @@ input{
 	display:flex;
 	flex-direction:row;
 	position:relative;
-	right: 200px;
+	right: 180px;
 	margin-bottom: 15px;
 	font-size:15px;
 	font-weight: bold;
-	width: 100px;
+	width: 150px;
 }
 
 
@@ -49,6 +56,7 @@ input{
 	align-items: center;
 	margin-top: 40px;
 	margin-left: 50px;
+	margin-bottom: 50px;
 }
 
 .reg_button > button{
@@ -137,7 +145,7 @@ input{
 
 /* 주소 커스텀 */
 .search_addr{
-	width: 250px;
+	width: 500px;
 	height: 50px;
 	border-style: none;
 	border-radius: 3px;
@@ -147,6 +155,7 @@ input{
 	padding: 15px;
 	word-spacing: 5px;
 	margin: 20px 0px;
+	cursor: pointer;
 }
 
 /* 버튼정리 */

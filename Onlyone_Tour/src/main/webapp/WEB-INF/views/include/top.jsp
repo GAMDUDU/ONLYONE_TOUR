@@ -9,7 +9,6 @@
 <c:set var="top" value="${pageContext.request.contextPath}"/>
 <link rel="stylesheet" type="text/css" href="${top}/resources/css/top.css">
 <script src="https://kit.fontawesome.com/27a0dd965d.js" crossorigin="anonymous"></script>
-
 </head>
 <body>
 
@@ -23,18 +22,18 @@
 		<%
 		if(session.getAttribute("member_id") == null){ 
 		%>
-		<ul>
+		<ul class="top_menu_bar">
 			<li><a href="<%=request.getContextPath()%>/login.do">로그인</a></li>
 			<li><a href="<%=request.getContextPath()%>/join.do">회원가입</a></li>
 			<li><a href="#">고객센터</a></li>
 		</ul>
 		<%}else if(session.getAttribute("member_id") != null && (int)session.getAttribute("verify") == 9){%>
-		<ul>
+		<ul class="top_menu_bar">
 			<li><a href="<%=request.getContextPath()%>/admin.do">관리자 화면</a>
 			<li><a href="<%=request.getContextPath()%>/logout.do">로그아웃</a></li>		
 		</ul>
 		<%}else{%>
-		<ul>
+		<ul class="top_menu_bar">
 			<li><a href="<%=request.getContextPath()%>/logout.do">로그아웃</a></li>
 			<li><a href="#">고객센터</a></li>
 		</ul>

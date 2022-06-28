@@ -10,20 +10,24 @@
 <style type="text/css">
 
 	#top_bar{
-		display: flex;
-		justify-content: center;
 		margin: 20px;
-		padding-bottom: 12px;
-		background: #9D968F;
+		padding: 10px;
 		border-radius: 3px;
-		border: 1px solid black;
+		border: 2px solid gray;
+	}
+	
+	.top_logo{
+		position:relative;
+		width: 230px;
+		height: 160px;
+		left: 48%;
 	}
 	
 	.main_go{
 		display:flex;
-		position: relative;
-		left: 500px;
+		justify-content:flex-end;
 		list-style: none;
+		margin-right: 60px;
 	}
 	
 	.main_go li{
@@ -51,14 +55,15 @@
 <body>
 	<div id="top_bar">
 		<div class="top_nav_bar">
-			<h2 class="main_top_text">온리원  투어</h2>
+			
+			<img class="top_logo" alt="온리원투어로고" src="../resources/image/Free_Sample_By_Wix.jpg">
 			
 			<ul class="main_go">
 				<%if(session.getAttribute("member_id") != null){ %>
 				<li class="admin_member"><i class="fa-solid fa-user"></i>${member_name}님 어서오세요</li>	
 				<%} %>
-				<li><a href="<%=request.getContextPath()%>/admin.do">메인 화면</a></li>
-				<li><a href="<%=request.getContextPath()%>/logout.do">로그아웃</a></li>
+				<li><a href="<%=request.getContextPath()%>/admin.do"><i class="fa-solid fa-house"></i>메인 화면</a></li>
+				<li><a href="<%=request.getContextPath()%>/logout.do"><i class="fa-solid fa-right-from-bracket"></i>로그아웃</a></li>
 			</ul>
 		</div>
 	</div>

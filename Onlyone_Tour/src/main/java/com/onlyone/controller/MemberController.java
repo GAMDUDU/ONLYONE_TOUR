@@ -2,6 +2,7 @@ package com.onlyone.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
@@ -17,13 +18,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.onlyone.model.MemberDAO;
 import com.onlyone.model.MemberDTO;
+import com.onlyone.model.PageDTO;
 
 @Controller
 public class MemberController {
 	
 	@Autowired
 	private MemberDAO dao;
+	private final int rowsize = 5; // 한 페이지당 보여질 게시물의 수
+	private int totalRecord = 0; // DB 상의 전체 게시물의 수
 	
+	
+	// 로그인 페이지로
 	@RequestMapping("login.do")
 	public String loginMain(Model model) {
 		
@@ -31,6 +37,14 @@ public class MemberController {
 		
 	}
 	
+	// 관리자 페이지로
+	@RequestMapping("admin.do")
+	public String adminMain() {
+		return "/admin/admin_main";
+	}
+	
+	
+	// 로그인 완료한경우
 	@RequestMapping("login_ok.do")
 	public void loginOk(@RequestParam("id") String id, @RequestParam("pwd") String pwd,
 			HttpServletResponse response, HttpServletRequest request) throws IOException {
@@ -77,7 +91,6 @@ public class MemberController {
 					out.println("location.href='/'");
 					out.println("</script>");
 					
-					
 				}else { // 비밀번호가 틀린 경우
 				
 					out.println("<script>");
@@ -88,7 +101,9 @@ public class MemberController {
 			}
 		}
 	} // loginOk() end문
-		
+	
+	
+	// 로그아웃
 	@RequestMapping("logout.do")
 	public String logOut(HttpServletRequest request) {
 		
@@ -100,13 +115,14 @@ public class MemberController {
 		
 	}
 	
+	// 회원가입 페이지로 보내기
 	@RequestMapping("join.do")
 	public String join(Model model) {
 		
 		return "join";
 	}
 	
-	
+	// 로그인이 성공한 경우
 	@RequestMapping("joinOk.do")
 	public String joinOk(MemberDTO dto, HttpServletResponse response, HttpServletRequest request, Model model) throws IOException {
 		
@@ -133,6 +149,8 @@ public class MemberController {
 		
 	} // joinOk.do() end
 	
+	
+	// 회원가입 아이디 체크하기
 	@RequestMapping("idCheck.do")
 	public String idCheck(@RequestParam("memberId") String id, HttpServletResponse response) throws IOException{
 		
@@ -152,6 +170,7 @@ public class MemberController {
 	
 	} // idCheck() end 부분
 	
+	// 회원가입 이메일 체크하기
 	@RequestMapping("emailCheck.do")
 	public String emailCheck(@RequestParam("memberEmail") String email, HttpServletResponse response) throws IOException {
 		
@@ -212,10 +231,54 @@ public class MemberController {
 	
 	// 고객정보 페이지로 보내기
 	@RequestMapping("admin_memberlist.do")
-	public String memberList() {
+	public String memberList(HttpServletRequest request, Model model) {
+		
+		int page; // 현재 페이지 변수
+		
+		if(request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}else {
+			page = 1; // 처음으로 게시물 전체 목록 태그를 선택한 경우
+		}
+		
+		// DB 상의 전체 게시물의 수를 확인하는 메서드 호출
+		totalRecord =  this.dao.getListCount();
+		
+		PageDTO dto = new PageDTO(page, rowsize, totalRecord);
+		
+		// 페이지에 해당하는 게시물을 가져오는 메서드 호출
+		List<MemberDTO> list = this.dao.getMemberList(dto);
+		
+		model.addAttribute("List", list);
+		model.addAttribute("Paging",dto);
+		model.addAttribute("total", totalRecord);
+		
 		return "/admin/admin_memberlist";
 	}
 	
-	
-	
+	// 관리자페이지에서 회원 탈퇴
+	@RequestMapping("member_delete.do") 
+	public void deleteMember(@RequestParam("id") String id, 
+			@RequestParam("page") int nowPage, 
+			HttpServletResponse response, MemberDTO dto) throws IOException {
+		
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		int del = this.dao.deleteMember(id);
+		
+		if(del > 0) {
+			out.println("<script>");
+			out.println("alert('회원을 삭제하였습니다.')");
+			out.println("location.href='admin_memberlist.do?page="+nowPage+"'");
+			out.println("</script>");
+		}else {
+			out.println("<script>");
+			out.println("alert('회원을 삭제하지 못했습니다.')");
+			out.println("history.back()");
+			out.println("</script>");
+		}
+		
+	}
 }

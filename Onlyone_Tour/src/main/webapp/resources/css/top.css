@@ -185,3 +185,12 @@ vv{
     color: #111;
     position: relative;
 }
+
+.top_menu_bar li>a{
+	font-size: 12px;
+	font-weight: 600;
+}
+
+.top_menu_bar li>a:hover{
+	color:purple;	
+}
