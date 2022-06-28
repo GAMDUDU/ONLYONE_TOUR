@@ -77,4 +77,17 @@
 	</delete>
 	
 	
+	
+	
+	
+	
+	
+	
+	<!-- 회원정보 수정 -->
+	<update id="update" parameterType="memberdto">
+		update member_trip set member_email = #{member_email},
+			member_addr = #{member_addr}, member_detailaddr = #{member_detailaddr}
+			where member_id = #{member_id}
+	</update>
+	
 </mapper>

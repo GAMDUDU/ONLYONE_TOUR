@@ -11,11 +11,14 @@
 <style type="text/css">
 #footer{
 	padding: 30px;
+	width: 1200px;
+	height: 200px
 }
 #footer ul{
 	list-style: none;
 }
 #footer h2{
+	width:1200px;
 	padding:10px;
 	background-color: #9370DB;
 }
@@ -33,6 +36,7 @@
 			<li>※ 부득이한 사정에 의해 여행일정이 변경되는 경우 사전 동의를 받습니다. </li>
 		</ul>
 	</div>
+ </div>
 
 </body>
 </html>

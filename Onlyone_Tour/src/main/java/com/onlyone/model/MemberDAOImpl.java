@@ -31,8 +31,8 @@ public class MemberDAOImpl implements MemberDAO{
 
 	@Override
 	public int updateMember(MemberDTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return this.sqlSession.update("update", dto);
 	}
 	
 	
