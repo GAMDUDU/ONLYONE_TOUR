@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    
+<mapper namespace="airportDAO">
+
+	<select id="datePart" resultType="airportdto" parameterType="airportdto">
+		select *
+		from AIR_TRIP
+		where (AIR_DEPARTURE=#{air_departure} and AIR_ARRIVAL=#{air_arrival}
+				and AIR_DATE=#{air_departure_date})
+		or (AIR_DEPARTURE=#{air_arrival} and AIR_ARRIVAL=#{air_departure} 
+				and AIR_DATE=#{air_arrival_date}) 
+	</select>
+
+
+</mapper>

@@ -6,9 +6,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
-	<c:set var="path" value="${pageContext.request.contextPath}"/>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 	
-	<title>온리원투어</title>
+<title>온리원투어</title>
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/style.css">
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/main.css">
 <script src="https://kit.fontawesome.com/27a0dd965d.js" crossorigin="anonymous"></script>
@@ -287,7 +287,11 @@
    </div>
  </main>
  
- 
+ <!-- 민경님 -->
+ <a href="<%=request.getContextPath()%>/reserve_travel.do?no=1">패키지예약하기</a> <!-- no> travel_num -->
+ <a href="<%=request.getContextPath()%>/reseve_air.do?no=1">항공예약하기</a><!-- air_num -->
+ <a href="<%=request.getContextPath()%>/reseve_hotel.do?no=1">숙소예약하기</a><!-- hotel_num -->
+      
  <jsp:include page="include/footer.jsp" />
  
 
