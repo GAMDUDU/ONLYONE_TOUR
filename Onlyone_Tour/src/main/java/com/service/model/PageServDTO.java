@@ -6,7 +6,10 @@ import lombok.Data;
 
 @Data
 public class PageServDTO {
-
+	
+	//세션 멤버 아이디
+	private String member_id;
+	
 	// 페이징 처리 관련 멤버 선언
 	private int page;                 // 현재 페이지
 	private int rowsize;              // 한 페이지당 보여질 게시물의 수

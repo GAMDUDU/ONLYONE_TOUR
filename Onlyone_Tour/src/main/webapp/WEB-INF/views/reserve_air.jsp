@@ -77,6 +77,7 @@ function btn_count(cal){
 		
 		}else if(current_cnt == 3){
 			alert("최대 3명의 인원을 선택해주세요.");
+			
 		}
 		
 	}else{

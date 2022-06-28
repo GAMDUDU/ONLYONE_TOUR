@@ -9,5 +9,5 @@ public class ServiceQuestionDTO {
 	private String q_title;
 	private String q_cont;
 	private String q_date;
-	
+	private String q_oc;
 }

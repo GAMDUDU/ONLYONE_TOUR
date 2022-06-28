@@ -19,7 +19,7 @@
 		<form method="post"
 	      action="<%=request.getContextPath() %>/question_search.do">
 	   
-	   	  <input type="hidden" name="page" value="${paging.getPage() }">
+	   	  <input type="hidden" name="page" value="1">
 	   	  
 	      <select name="field">
 	         <option value="title">제목</option>
@@ -34,13 +34,14 @@
 	<div class="question_table">
 		<table>
 			<tr>	
-				<th>번호</th><th>제목</th><th>작성일</th><th>삭 제</th>
+				<th>번호</th><th>공개여부</th><th>제목</th><th>작성일</th><th>삭 제</th>
 			</tr>
 			
 			<c:if test="${!empty list }">
 				<c:forEach items="${list }" var="i">
 					<tr>
 						<td>${i.q_num }</td>
+						<td>${i.q_oc }</td>
 						<td>
 							<a href="<%=request.getContextPath() %>/admin_question_content.do?num=${i.getQ_num() }&page=${paging.page }">
 								${i.q_title }

@@ -14,6 +14,16 @@
 			
 			<table>
 				<tr>
+					<th>공개여부</th>
+					<td>
+						<select name="q_oc">
+							<option value="공개">공개</option>
+							<option value="비공개">비공개</option>
+						</select>
+					</td>
+				</tr>
+			
+				<tr>
 					<th>질문</th>
 					<td><input name="q_title"></td>	
 				</tr>

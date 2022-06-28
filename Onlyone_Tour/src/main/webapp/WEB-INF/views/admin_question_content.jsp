@@ -13,6 +13,10 @@
 		<c:set var="dto" value="${Cont }" />
 		<table>
 			<tr>
+				<th>공개여부</th>
+				<td>${dto.q_oc }</td>
+			</tr>
+			<tr>
 				<th>질문</th>
 				<td><input name="q_title" value="${dto.q_title }" readonly="readonly" ></td>	
 			</tr>
@@ -24,7 +28,7 @@
 		
 			<tr>
 				<td colspan="2">
-					<input type="submit" value="수정하기" 
+					<input type="button" value="수정하기" 
 						onclick="location.href='admin_qeustion_modify.do?num=${dto.q_num}&page=${Page }'">
 					<input type="button" value="목록으로" 
 						onclick="location.href='question_list.do?page=${Page }'">

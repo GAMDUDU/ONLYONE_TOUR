@@ -1,2 +1,65 @@
 @charset "UTF-8";
 
+.tab-wrapper {
+	width : 900px;
+	margin : auto;
+}	
+
+.tab-menu {
+	padding-left : 0;
+	position: relative;
+	z-index: 1;
+}	
+
+.tab-menu li {
+	float : left;
+	list-style : none;
+	margin-right: 10px;
+}
+
+.tab-menu:after {
+	content:'';
+	display: block;
+	clear: both;
+}
+	
+.tab-menu li a{
+	color:#999;
+	text-transform: uppercase;
+	font-weight: bold;
+	line-height: 27px;
+	text-decoration: none;
+	padding: 0 20px;
+	display: block;
+}	
+
+#tab-content{
+	min-height: 300px;
+}
+
+#tab-content > div {
+	display: none;	
+}
+
+#tab-content > div:first-child{
+	display : block;
+}
+
+.tab-menu li a.active{
+	coloer: #fff;
+}
+
+.navi {
+	position: relative;
+}
+
+.higlight {
+	
+	position : absolute;
+	width: 98px;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	background:  #000;
+	transition : 0.4s cublic-bezier(0.65, 0, 0.35, 1);
+}
