@@ -1,20 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-    
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>onlyone 투어</title>
-<style type="text/css">
-.infor-txt table{font-size: 13px;}
-</style>
 </head>
 <body>
-<!-- 예약정보 reserve db로 insert 해줘야함. -->
 
 	<div class="reserve-travel">
 		<h2>예약하기</h2>
@@ -24,14 +19,14 @@
 			<li><a class="infor-items" style="font-weight: bold; color: blue">☑예약완료</a></li>
 		</ul>
 	</div>
-	<c:set var="dto" value="${Cont }" />
+	
+	<%-- <c:set var="dto" value="${Cont }" />
 	<c:set var="mem" value="${Member }" />
 	<c:set var="res" value="${Res }" />
-	
-	
-	
 
-		<div class="infor-txt">
+
+	<div>
+	<div class="infor-txt">
 		<h3>${mem.member_Name }님<br>
 		 예약이 완료 되었습니다.</h3>
 		<table border="1" cellspacing="0" width="650">
@@ -51,12 +46,7 @@
 			
 		</table>
 	
-	</div>
-	
-		<input type="button" value="홈으로" onclick="location.href='main.do'">
-	      
-	      	<input type="button" value="예약내역 확인하기">
-	      	
+	</div> --%>
 
 </body>
 </html>

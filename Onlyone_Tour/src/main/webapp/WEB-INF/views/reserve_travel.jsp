@@ -9,36 +9,195 @@
 <head>
 <meta charset="UTF-8">
 <title>onlyone 투어</title>
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/style.css">
+<script src="https://kit.fontawesome.com/27a0dd965d.js" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
 	<style type="text/css">
 	.reserve-travel-notice li{font-size: 10px}
 	.txt{font-size: 4px}
+	.mr{margin-right:25px;}
+	.reserve-travel{	
+	margin-top:10px;
+	margin-bottom:60px;
+	width: 100%;
+	height: 50px;
+	line-height:50px;
+	text-align:left;
+/* 	position: absolute; */
+	left: 0;
+	bottom: 0;}
+	
+	.reserve-travel ul {
+	display: flex;
+	margin-left: 500px;
+}
+
+.reserve-travel ul li {
+	font-size: 17px;
+	/* width: 25%; */
+}
+
+.reserve-travel-main{
+	 padding: 3% 8%;
+}
 	</style>
+	
+	<script type="text/javascript">
+	function btn_count(cal){
+		var c = cal;
+		var current_cnt = $("#reserve_count").val(); 
+		var price = $("#price").val(); 
+		var price_account = $("#price_account").val();
+		
+		if(c == 'plus'){  //plus를 누르면
+			$("#reserve_count").val(Number(current_cnt)+1); // reserve_count +1 이됨.
+			/* $("#price_account").val(Number(price)*Number(current_cnt)*2); */
+			if(current_cnt == 1 ){ // reserv_count가 2일때
+				/* $("#price_account").val((Number(price)*Number(current_cnt))*2);//199*1*2 */
+				$("#price_account").val((Number(price)*Number(current_cnt))+Number(price));
+				var content = '<table border="1" cellspacing="0" width="650" style="margin-top:20px; class="table table-striped"">';
+				 	content	+= '<tr>';
+				 	content	+= '<th>성명(한글)</th>';
+				 	content	+= '<td colspan="3"><input name="reserve_name_2"></td>';
+				 	content	+= '</tr>';
+				 	content	+= '<tr>';
+				 	content	+= '<th>생년월일</th>';
+			 		content	+= '<td><input name="reserve_date_2"></td>';
+			 		content	+= '<th>성별</th>';
+			 		content	+= '<td>';
+			 		content	+= '<input type="radio" name="reserve_gender_2" value="male">';
+			 		content	+= '<label for="male">남자</label>';
+			 		content	+= '<input type="radio" name="reserve_gender_2" value="female">';
+			 		content	+= '<label for="female">여자</label>';
+			 		content	+= '</td>';
+			 		content	+= '</tr>';
+			 		content	+= '<tr>';
+			 		content	+= '<th>휴대폰번호</th> <td><input name="reserve_phone_2"></td>';
+			 		content	+= '<th>이메일</th> <td><input name="reserve_email_2"></td>';
+			 		content	+= '</tr>';
+			 		content	+= '</table>';
+				$('#travel-member-info').append(content);
+				
+			}else if(current_cnt == 2 ){
+				
+				/* var count = Number(current_cnt)+1; */
+				/* $("#price_account").val(Number(current_cnt)*(Number(price)*1.5)); */
+				$("#price_account").val((Number(price)*Number(current_cnt))+Number(price));
+				var content = '<table border="1" cellspacing="0" width="650" style="margin-top:20px;">';
+				 	content	+= '<tr>';
+				 	content	+= '<th>성명(한글)</th>';
+				 	content	+= '<td colspan="3"><input name="reserve_name_3"></td>';
+				 	content	+= '</tr>';
+				 	content	+= '<tr>';
+				 	content	+= '<th>생년월일</th>';
+			 		content	+= '<td><input name="reserve_date_3"></td>';
+			 		content	+= '<th>성별</th>';
+			 		content	+= '<td>';
+			 		content	+= '<input type="radio" name="reserve_gender_3" value="male">';
+			 		content	+= '<label for="male">남자</label>';
+			 		content	+= '<input type="radio" name="reserve_gender_3" value="female">';
+			 		content	+= '<label for="female">여자</label>';
+			 		content	+= '</td>';
+			 		content	+= '</tr>';
+			 		content	+= '<tr>';
+			 		content	+= '<th>휴대폰번호</th> <td><input name="reserve_phone_3"></td>';
+			 		content	+= '<th>이메일</th> <td><input name="reserve_email_3"></td>';
+			 		content	+= '</tr>';
+			 		content	+= '</table>';
+				$('#travel-member-info').append(content);
+				event.preventDefault();
+			
+			}else if(current_cnt == 3){
+				//3이상 클릭하면 안됩니다..ㅎ...
+				alert("최대 3명의 인원을 선택해주세요.");
+			}
+			
+		}else{
+			if(current_cnt == 1){
+				alert("최소 1명의 인원을 선택해주세요.");
+		
+			
+			}
+			$("#reserve_count").val(Number(current_cnt)-1);
+			$("#price_account").val((Number(price)*Number(current_cnt))-Number(price));
+			$('#travel-member-info').children().last().remove();
+		}
+	}
+
+	function form_submit(){
+		//var formData = $("#reserve_form").serialize();
+		var formData = $("#reserve_form").serializeArray();
+		console.log('formData', formData);
+		var reserveNum=$("#reserve_num").val(Number());
+		
+		$.ajax({
+			type:"POST",
+			url:"reserve_submit.do", //reserve_travel_ok.do
+			dataType : "text",
+			contentType: 'application/x-www-form-urlencoded; charset=UTF-8', 
+			data: formData, //보낼데이터
+			success: function(e){
+				if(e == 'T'){
+					/* alert('예약이 완료 되었습니다.'); */
+					//완료한 페이지 이동↓ 
+					/* window.location.href="reserve_travel_ok.do?no=${dto.travel_num}"; */
+					/* window.location.href="reserve_travel_terms.do"; //약관페이지로이동... */
+					
+					alert('reserveNum')
+					window.location.href="reserve_travel_ok.do?no=1";  //reserve_num을 넣어야하는데 모르겠습니다...
+					
+				}else{
+					alert('예약에 실패하였습니다.2');
+					return;
+				}
+			},
+			error: function(){
+				alert('예약에 실패하였습니다.');
+				return;
+			}
+		});
+	}
+	</script>
+	
+	
+	
+	
 </head>
 <body>
 <c:set var="dto" value="${Cont }" />
 <c:set var="mem" value="${Member }" />
+<c:set var="res" value="${Res }" />
 
-<form method="post" action="<%=request.getContextPath() %>/reserve_travel_ok.do?no=${dto.travel_num}">
+
+
+
+<%-- <form method="post" action="<%=request.getContextPath() %>/reserve_travel_ok.do?no=${dto.travel_num}"> --%>
+<form method="post" name="reserve_member_form" id="reserve_form">
 	<!-- 패키지 예약 페이지  -->
+<jsp:include page="include/top.jsp" />
 
-<div>
+<div class="reserve-travel-main">
 	<div class="reserve-travel">
-		<h2>예약하기</h2>
+		<h3>예약하기</h3>
 		<ul>
 			<li><a class="infor-items" style="font-weight: bold; color: blue" ><i class="fa-solid fa-clipboard-check">예약정보확인</i></a></li>
-			<li><a class="infor-items">￦옵션정보/약관/결제</a></li>
+			<!-- <li><a class="infor-items">￦옵션정보/약관/결제</a></li> -->
 			<li><a class="infor-items">☑예약완료</a></li>
 		</ul>
 	</div>
 	
-	<input type="hidden" name="travel_num" value="${dto.travel_num }">
+	<input type="hidden" name="no" value="${dto.travel_num }">
+	 <input type="hidden" id="reserve_num" name="num" value="${res.reserve_num }">
 	
 	
 	
 	
 	<div class="reserve-travel-cont">
-		<h2>${dto.travel_name }</h2>
-		<table border="1" cellspacing="0" width="650">
+		<h3>${dto.travel_name }</h2>
+		<table border="1" cellspacing="0" width="650" class="table table-striped">
 			<tr>
 				<th>여행기간</th>
 				<td>${dto.travel_departure_date.substring(0,13)} ~ ${dto.travel_return_date.substring(0,13)} / ${dto.travel_calender }</td>
@@ -63,7 +222,7 @@
 
 	<div class="reserve-travel-member">
 		<h2>예약자정보</h2>
-		<table border="1" cellspacing="0" width="650">
+		<table border="1" cellspacing="0" width="650" class="table table-striped">
 			<tr>
 				<th>이름</th>
 				<td>${mem.member_name }</td>
@@ -86,32 +245,22 @@
 	<div class="reserve-travel-count">
 		<div>
 		<h2>인원정보</h2>
-<!-- 		<table border="1" cellspacing="0" width="650">
-			ajax활용 도전 
-			<tr>
-			<th>여행인원</th>
-			<td> <a>‹</a> </td>
-			<td>1</td>
-			<td> <a>›</a> </td>
-			<td>유류할증료/제세공과금포함</td>
-			</tr>
-		</table> -->
+
 		
 		<ul>
 			<li><p class="tit">인원</p>
-			<span class="num_count_group">
-			<button class="btn_member_down">
-			‹
-			</button>
-			<input name="reserve_count" value="1">
-			<button class="btn_member_up" >
-			›
-			</button>
-			</span>
+			<input type="button" value="◀ " onclick="btn_count('minus')" id="btn_member_down">
+			<input id="reserve_count" value="1" readonly="readonly" name="reserve_count">
+			<input type="button" value="▶ " onclick="btn_count('plus')" id="btn_member_up">
+
+
+
 			<div class="price_group">
-			<span class="price"><fmt:formatNumber>${dto.travel_price }</fmt:formatNumber>원</span><br>
+
+	<%-- 		<span name="price" id="price"><fmt:formatNumber>${dto.travel_price }</fmt:formatNumber>원</span><br> --%>
+			<input name="price" id="price" value="${dto.travel_price }"><br>
 			<span class="txt">유류할증료/제세공과금 포함</span>
-			<input name="price_account" value="1999900">
+			<input name="price_account" id="price_account" value="${dto.travel_price }">
 			</div>
 			</li>
 		
@@ -124,40 +273,39 @@
 	
 	<div class="reserve-travel-member-cont">
 		<h2>여행자 정보</h2>
-<%-- 		<c:if test="${!empty 여행자수 }">
-			<c:forEach begin="1" end="${ 예약수 }"> --%>
-				<table border="1" cellspacing="0" width="650">
+
+			<div id="travel-member-info">
+				<table border="1" cellspacing="0" width="650" class="table table-striped">
 					<tr>
 					<th>성명(한글)</th>
-					<td colspan="3"><input name="reserve_name"></td>
+					<td colspan="3"><input name="reserve_name_1"></td>
 					</tr>
 					
 					<tr>
 					<th>생년월일</th>
-					<td><input name="reserve_date"></td>
+					<td><input name="reserve_date_1"></td>
 			 		<th>성별</th>
 					<td>
-					<input type="radio" name="gender" value="남자">남자
-					&nbsp;&nbsp;&nbsp;
-					<input type="radio" name="gender" value="여자">여자
+						<input type="radio" name="reserve_gender_1" value="male">
+						<label for="male">남자</label>
+						<input type="radio" name="reserve_gender_1" value="female">
+						<label for="female">여자</label>
 					</td>
 					</tr>
 										
 					<tr>
-					<th>휴대폰번호</th> <td><input name="reserve_phone"></td>
+					<th>휴대폰번호</th> <td><input name="reserve_phone_1"></td>
 					
-					<th>이메일</th> <td><input name="reserve_email"></td>
+					<th>이메일</th> <td><input name="reserve_email_1"></td>
 					</tr>
-					
 				</table>
-<%-- 			</c:forEach>
-		</c:if> --%>
+			</div>
 	</div>
 	
-	<div class="reserve-travel-notice" style="background-color: #F4F2F2; display: inline-block; margin-top: 50px">
+	<div class="reserve-travel-notice" style="background-color: #F4F2F2; margin-top: 50px">
 	<h4 style="margin-left: 20px;">예약 시 유의사항</h4>
 	<hr>
-	<ul style="display: inline-block; width: 650px" >
+	<ul style="display: inline-block; width: 950px" >
 	<li>여행 관련 변경사항 발생 시 안내 드리고자 만 19세 이상의 모든 여행자는 휴대폰번호를 필수로 입력하셔야 합니다.</li>
 	<li>휴대폰이 없으실 경우 연락 가능한 보호자의 휴대폰번호를 입력해 주시기 바랍니다.</li>
 	<li>(단, 동일 예약번호 내 동일한 이메일 및 휴대폰번호 입력 불가)</li>
@@ -179,8 +327,10 @@
 	      onclick="location.href='reserve_travel_terms.do?no=${dto.travel_num}'"> --%>
 	
 		
-   <input type="submit" value="다음단계">
-	
+<!--    <input type="submit" value="예약완료"> -->
+   <input type="button" value="예약완료" onClick="form_submit()">
+   	
 </form>
+
 </body>
 </html>

@@ -11,6 +11,7 @@
 <body>
 <c:set var="dto" value="${Cont }" />
 <c:set var="mem" value="${Member }" />
+<c:set var="res" value="${Res }" />
 
 	<div class="reserve-travel">
 		<h2>예약하기</h2>
@@ -23,7 +24,7 @@
 	
 	<hr>
 	
-	<form method="post" action="<%=request.getContextPath() %>/reserve_travel_ok.do?no=${dto.travel_num}">
+	<form method="post" action="<%=request.getContextPath() %>/reserve_travel_ok.do?no=${res.reserve_num}">
 	
 	
 	<div><!-- 인클루드? 지금껄로해도되나... -->

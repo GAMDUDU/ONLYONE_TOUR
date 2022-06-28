@@ -4,22 +4,57 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
     <mapper namespace="com.reserve.model.ReserveDAO">
-    
+  
+    <!-- 패키지 -->
     <select id="content" parameterType="int" resultType="traveldto">
     select * from travel_trip where travel_num=1
     </select>
     
     <select id="member" parameterType="string" resultType="memberdto">
-    select*from member_trip where member_id='hong'
+    select*from member_trip where member_id=#{member_id}
     </select>
     
     <insert id="add" parameterType="ReserveDTO" >
     <selectKey resultType="int" keyProperty="reserve_num" order="BEFORE">
-    	select max(reserve_num) from reserve_travel
-    </selectKey>
-    insert into reserve_travel values(#{reserve_num}+1, #{travel_num}, #{reserve_count},
-    #{reserve_name}, #{reserve_date}, #{reserve_email}, #{reserve_phone}, #{price_account})
+    	select nvl(max(reserve_num), 0) from reserve_travel
+    </selectKey>  
+    insert into reserve_travel values(#{reserve_num}+1, 1, #{reserve_count},
+    #{reserve_name_1}, #{reserve_date_1}, #{reserve_email_1}, #{reserve_phone_1},#{reserve_gender_1},
+     #{reserve_name_2}, #{reserve_date_2}, #{reserve_email_2}, #{reserve_phone_2},#{reserve_gender_2},
+     #{reserve_name_3}, #{reserve_date_3}, #{reserve_email_3}, #{reserve_phone_3},#{reserve_gender_3},
+      #{price_account})
     </insert>
     
+    <select id="reserveOk" parameterType="int" resultType="ReserveDTO">
+    select*from reserve_travel where reserve_num=#{reserve_num}
+    </select>
+    
+    
+    <!-- 항공 -->
+    
+    <select id="contentAir" parameterType="int" resultType="AirportDTO">
+    select * from air_trip where air_num=1
+    </select>
+
+    <insert id="Airadd" parameterType="ReserveAirDTO" >
+    <selectKey resultType="int" keyProperty="reserve_num" order="BEFORE">
+    	select nvl(max(reserve_num), 0) from reserve_air
+    </selectKey>
+    insert into reserve_air values(#{reserve_num}+1, 1, #{reserve_count},
+    #{reserve_name_1}, #{reserve_date_1}, #{reserve_email_1}, #{reserve_phone_1},#{reserve_gender_1},
+     #{reserve_name_2}, #{reserve_date_2}, #{reserve_email_2}, #{reserve_phone_2},#{reserve_gender_2},
+     #{reserve_name_3}, #{reserve_date_3}, #{reserve_email_3}, #{reserve_phone_3},#{reserve_gender_3},
+      #{price_account})
+    </insert>
+    
+    <select id="Aircontent" parameterType="int" resultType="AirportDTO">
+    select * from air_trip where travel_num=1
+    </select>
+    
+    <select id="AirreserveOk" parameterType="int" resultType="ReserveAirDTO">
+    select*from reserve_air where reserve_num=#{reserve_num}
+    </select>
+    
+   
     
  </mapper>

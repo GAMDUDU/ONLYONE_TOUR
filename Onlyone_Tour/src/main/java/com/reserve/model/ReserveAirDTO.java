@@ -3,10 +3,10 @@ package com.reserve.model;
 import lombok.Data;
 
 @Data
-public class ReserveDTO {
-	
+public class ReserveAirDTO {
+
 	private int reserve_num;
-	private int travel_num;
+	private int air_num;
 	private int reserve_count;
 	private String reserve_name_1;
 	private String reserve_date_1;
@@ -25,5 +25,4 @@ public class ReserveDTO {
 	private String reserve_gender_3;
 
 	private int price_account;
-
 }
