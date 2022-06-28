@@ -9,7 +9,7 @@
     
 <!-- namespace 명은 패키지명을 포함해서 DAO 인터페이스 이름으로 작성하는 것이 관례.
      namespace 명은 mapper 틀을 구분하는데 식별자로 사용됨. -->
-<mapper namespace="traveldao" >
+<mapper namespace="hoteldao" >
 
 	<!-- 형식) <![CDATA[쿼리문]]> 
 		쿼리문을 작성할 때 조건식 기호(>, <, &)를 사용해야 하는데 
@@ -20,42 +20,34 @@
 	<!-- resultType을 mybatis-config.xml 파일과 
 		root-context.xml 파일에서	따로 설정해줌 -->
 	
-	<select id="travelList" resultType="traveldto">
+	<select id="allHotelList" resultType="hoteldto">
 		<![CDATA[
-			select * from travel_trip order by travel_num desc
+			select * from hotel_trip order by hotel_num desc
 		]]>	
 	</select>
 	
-	<select id="travelNormalList" resultType="traveldto">
+	<select id="hotelDomList" resultType="hoteldto">
 		<![CDATA[
-			select * from travel_trip where travel_spec='일반' order by travel_num desc
+			select * from hotel_trip where hotel_country='국내' order by hotel_num desc
 		]]>	
 	</select>
 	
-	<select id="travelHitList" resultType="traveldto">
+	<select id="hotelOverList" resultType="hoteldto">
 		<![CDATA[
-			select * from travel_trip where travel_spec='인기' order by travel_num desc
+			select * from hotel_trip where hotel_country='해외' order by hotel_num desc
 		]]>	
 	</select>
 	
-	<select id="travelRecommendList" resultType="traveldto">
+	<select id="justHotelList" resultType="hoteldto">
 		<![CDATA[
-			select * from travel_trip where travel_spec='추천' order by travel_num desc
+			select * from hotel_trip where hotel_hname like '%호텔%' order by hotel_num desc
 		]]>	
 	</select>
 	
-	<select id="travelNewList" resultType="traveldto">
+	<select id="justPensionList" resultType="hoteldto">
 		<![CDATA[
-			select * from travel_trip where travel_spec='신규' order by travel_num desc
+			select * from hotel_trip where hotel_hname like '%펜션%' order by hotel_num desc
 		]]>	
 	</select>
 	
-	<select id="travelCont" parameterType="int" resultType="traveldto">
-		<![CDATA[
-			select * from travel_trip where travel_num = #{num}
-		]]>	
-	</select>
-	
-	
-
 </mapper>

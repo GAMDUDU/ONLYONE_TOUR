@@ -1,4 +1,4 @@
-package com.onlyone.model;
+package com.hotel.model;
 
 public interface HotelReviewDAO {
 

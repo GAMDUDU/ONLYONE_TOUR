@@ -9,8 +9,8 @@
 <head>
 	<c:set var="path" value="${pageContext.request.contextPath}"/>
 	<meta charset="UTF-8">
-	<title>온리원투어 패키지</title>
-	<link rel="stylesheet" type="text/css" href="${path}/resources/css/travel_list.css">
+	<title>온리원투어 숙소</title>
+	<link rel="stylesheet" type="text/css" href="${path}/resources/css/hotel_list.css">
 	<meta
       name="viewport"
       content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
@@ -65,7 +65,7 @@
       .swiper-slide img {
         display: block;
         width: 100%;
-        height: 60%;
+        height: 100%;
         object-fit: cover;
       }
 
@@ -78,7 +78,7 @@
 	    position: absolute;
 	    left: 20%;
 	    width: 40%;
-	    bottom: 10px;
+	    bottom: 50px;
 	    background: #fff;
 	    padding: 10px 20px;
 	    z-index: 2;
@@ -105,6 +105,91 @@
 	    color: #fff !important;
 	    border: none;
 	}
+	
+	/* 3칸 탭 */
+	#content article:nth-child(3) h2 {
+		text-align : center;
+		padding : 50px 0 50px 0;
+		margin: 400px 0 0 0;
+	}
+	
+	.main input[type=radio] {
+		display: none;
+	}
+	
+	#tab-1:checked ~ .tab label:nth-child(1),
+	#tab-2:checked ~ .tab label:nth-child(2),
+	#tab-3:checked ~ .tab label:nth-child(3){
+		background-color: blueviolet;
+		box-shadow: none;
+		color: white;
+	}
+	
+	.content > div {
+		display: none;
+	}
+	
+	#tab-1:checked ~ .content div:nth-child(1),
+	#tab-2:checked ~ .content div:nth-child(2),
+	#tab-3:checked ~ .content div:nth-child(3){
+		display: block;
+	}
+	
+	.main {
+		margin: 0 auto;
+		main-width:1200px;
+		max-width: 90%;
+		font-family: Nanum Gothic;
+	}
+	
+	.tab {
+		overflow: hidden;
+	}	
+	
+	.tab label {
+		font-size: 18px;
+		cursor: pointer;
+		float: left;
+		width: calc(100% / 3);
+		text-align: center;
+		padding: 15px 0;
+		font-weight: bold;
+		letter-spacing: 2px;
+		user-select: none;
+		-webkit-user-select: none;
+	}
+	
+	.content {
+		background-color: white;
+		min-height: 400px;
+	}
+	
+	.content > div{
+		padding: 50px;
+		line-height: 1.5;
+		font-size: 15px;
+		line-height: 30px;
+		margin-left: 50px;
+	}
+	
+	.content > div h4 {
+		font-size: 20px;
+	}
+	
+	.content #tabimg1 {
+		float: right;
+		margin: -200px -30px 0 0;
+	}
+	
+	.content #tabimg2 {
+		float: right;
+		margin: -210px 100px 0 0;
+	}
+	
+	.content #tabimg3 {
+		float: right;
+		margin: -220px 40px 0 0;
+	}
 	</style>
 	
 	<!-- bootstrap css -->
@@ -112,29 +197,26 @@
 	
 </head>
 <body>
-	<c:set var="travelList" value="${List }" />
-	<c:set var="normalList" value="${NormalList }" />
-	<c:set var="hitList" value="${HitList }" />
-	<c:set var="recommendList" value="${RecommendList }" />
-	<c:set var="newList" value="${NewList }" />
+	<c:set var="allList" value="${List }" />
+	<c:set var="domList" value="${DomList }" />
+	<c:set var="overList" value="${OverList }" />
+	<c:set var="hotelList" value="${HotelList }" />
+	<c:set var="pensionList" value="${PensionList }" />
 
 	<jsp:include page="include/top.jsp" />
 
 	<!-- Swiper -->
     <div class="swiper mySwiper">
-    	<form method="post" id="search_package" action="<%=request.getContextPath() %>/travel_search.do">
+    	<form method="post" id="search_package" action="<%=request.getContextPath() %>/hotel_search.do">
     		<input name="search_package_input" class="input" placeholder="어디로 여행가세요?">
     		<input type="submit" value="검색" class="redbtn">    	
     	</form>
       <div class="swiper-wrapper">
-      	
-       <div class="swiper-slide">
-        	<img src="<%=request.getContextPath() %>/resources/image_package/괌 5일 두짓타니.jpg">
-        </div>
-        <div class="swiper-slide"><img src="<%=request.getContextPath() %>/resources/image_package/제주 신화관.jpg"></div>
-        <div class="swiper-slide"><img src="<%=request.getContextPath() %>/resources/image_package/스위스 일주 8일.jpg"></div>
-        <div class="swiper-slide"><img src="<%=request.getContextPath() %>/resources/image_package/울릉도 4일.jpg"></div>
-        <div class="swiper-slide"><img src="<%=request.getContextPath() %>/resources/image_package/홋카이도 후라노 비에이.jpg"></div>
+        <div class="swiper-slide"><img src="<%=request.getContextPath() %>/resources/image_hotel/경주 서남산한옥스테이 펜션.jpg"></div>
+        <div class="swiper-slide"><img src="<%=request.getContextPath() %>/resources/image_hotel/그랜드 조선 제주.jpg"></div>
+        <div class="swiper-slide"><img src="<%=request.getContextPath() %>/resources/image_hotel/신라 모노그램 꽝남 다낭.jpg"></div>
+        <div class="swiper-slide"><img src="<%=request.getContextPath() %>/resources/image_hotel/여수 밤바다 힐링파크.jpg"></div>
+        <div class="swiper-slide"><img src="<%=request.getContextPath() %>/resources/image_hotel/하와이 하얏트 플레이스.jpg"></div>
       </div>
       <div class="swiper-button-next"></div>
       <div class="swiper-button-prev"></div>
@@ -170,21 +252,98 @@
 	        </div>
 	    </div>
 	    <br><br><br><br>
+
 	    
+	    <section id="content">
+		    <article>
+			    <h2>
+					<h5><b>전국 방방곡곡 BEST 숙소✨</b></h5>
+				</h2>
+				<br>
+				<div class="main">
+					<input type="radio" id="tab-1" name="show" checked/>
+					<input type="radio" id="tab-2" name="show" />
+					<input type="radio" id="tab-3" name="show" />
+					<div class="tab">
+						<label for="tab-1">제주인기숙소</label>
+						<label for="tab-2">도심근교호캉스</label>
+						<label for="tab-3">해외감성숙소</label>
+					</div>
+					<div class="content">
+						<div class="content-dis">
+							<h4>Example</h4>
+							explanation<br>
+							explanation<br>
+							<br>
+							something : something<br>
+							something : something
+							<img id="tabimg1" src="<%=request.getContextPath() %>/resources/image/AC.jpg" title="Data Flow Diagram 일부" 
+									width="380px" height="290px">
+						</div>
+						
+						<div class="content-dis">
+							<h4>Example</h4>
+							explanation<br>
+							explanation<br>
+							<br>
+							something : something<br>
+							something : something
+							<img id="tabimg1" src="<%=request.getContextPath() %>/resources/image/AC.jpg" title="Data Flow Diagram 일부" 
+									width="380px" height="290px">
+						</div>
+						
+						<div class="content-dis">
+							<h4>Example</h4>
+							explanation<br>
+							explanation<br>
+							<br>
+							something : something<br>
+							something : something
+							<img id="tabimg1" src="<%=request.getContextPath() %>/resources/image/AC.jpg" title="Data Flow Diagram 일부" 
+									width="380px" height="290px">						
+						</div>
+					</div>
+				</div>
+		    </article>
+	    </section>
+	    
+	    <br><hr><br>
 	    <div class="row">
-	    	<h5><b>따끈따끈 신규 상품</b></h5><br><br>
-	    	<c:if test="${!empty newList }">
-				<c:forEach items="${newList }" var="dto" begin="0" end="3">
+	    	<h5><b>분위기 낼땐 호텔</b></h5><br><br>
+	    	<c:if test="${!empty hotelList }">
+				<c:forEach items="${hotelList }" var="dto" begin="0" end="3">
 			        <div class="col-md-3">
-			        	<a href="<%=request.getContextPath() %>/travel_cont.do?num=${dto.getTravel_num()}">
-			        		<img src="<%=request.getContextPath() %>/resources/image_package/${dto.getTravel_image() }"
+			        	<a href="<%=request.getContextPath() %>/hotel_cont.do?num=${dto.getHotel_num()}">
+			        		<img src="<%=request.getContextPath() %>/resources/image_hotel/${dto.getHotel_image() }"
 										width="300" height="200" style="margin-bottom: 10px;">
 							<br>
-							<span style="font-size: 16px;"><b>${dto.getTravel_name().substring(0, 20)}...</b></span>
+							<span style="font-size: 16px;"><b>${dto.getHotel_hname()}</b></span>
 							<br>
-							<span style="font-size: 13px;">${dto.getTravel_cont().substring(0, 25)}...</span>
+							<span style="font-size: 13px;">${dto.getHotel_ename()}</span>
 							<br>
-							<span style="font-size: 20px;"><b><fmt:formatNumber value="${dto.getTravel_price() }" /></b></span>
+							<span style="font-size: 20px;"><b><fmt:formatNumber value="${dto.getHotel_price1() }" /></b></span>
+							<span style="font-size: 16px;">원~</span>
+						</a>	
+			        </div>
+			    </c:forEach>
+			</c:if>
+	    </div>
+	    <br><hr><br>
+	    
+	    <div class="row">
+	    	<h5><b>감성은 펜션</b></h5><br><br>
+	    	<c:if test="${!empty PensionList }">
+				<c:forEach items="${PensionList }" var="dto" begin="0" end="3">
+			        <div class="col-md-3">
+			        	<a href="<%=request.getContextPath() %>/hotel_cont.do?num=${dto.getHotel_num()}">
+			        		<img src="<%=request.getContextPath() %>/resources/image_hotel/${dto.getHotel_image() }"
+										width="300" height="200" style="margin-bottom: 10px;">
+							<br>
+							<span style="font-size: 16px;"><b>${dto.getHotel_hname()}</b></span>
+							<br>
+							<span style="font-size: 13px;">${dto.getHotel_ename()}</span>
+							<br>
+							<span style="font-size: 20px;"><b><fmt:formatNumber value="${dto.getHotel_price1() }" /></b></span>
 							<span style="font-size: 16px;">원~</span>
 						</a>
 			        </div>
@@ -193,29 +352,7 @@
 	    </div>
 	    <br><hr><br>
 	    
-	    <div class="row">
-	    	<h5><b>베스트 상품</b></h5><br><br>
-	    	<c:if test="${!empty hitList }">
-				<c:forEach items="${hitList }" var="dto" begin="0" end="3">
-			        <div class="col-md-3">
-			        	<a href="<%=request.getContextPath() %>/travel_cont.do?num=${dto.getTravel_num()}">
-			        		<img src="<%=request.getContextPath() %>/resources/image_package/${dto.getTravel_image() }"
-										width="300" height="200" style="margin-bottom: 10px;">
-							<br>
-							<span style="font-size: 16px;"><b>${dto.getTravel_name().substring(0, 20)}...</b></span>
-							<br>
-							<span style="font-size: 13px;">${dto.getTravel_cont().substring(0, 25)}...</span>
-							<br>
-							<span style="font-size: 20px;"><b><fmt:formatNumber value="${dto.getTravel_price() }" /></b></span>
-							<span style="font-size: 16px;">원~</span>
-						</a>
-			        </div>
-			    </c:forEach>
-			</c:if>
-	    </div>
-	    <br><hr><br>
-	    
-	    <div class="row">
+	   <%--  <div class="row">
 	    	<h5><b>온리원투어 추천 상품</b></h5><br><br>
 	        <c:if test="${!empty recommendList }">
 				<c:forEach items="${recommendList }" var="dto" begin="0" end="3">
@@ -224,9 +361,9 @@
 			        		<img src="<%=request.getContextPath() %>/resources/image_package/${dto.getTravel_image() }"
 										width="300" height="200" style="margin-bottom: 10px;">
 							<br>
-							<span style="font-size: 16px;"><b>${dto.getTravel_name().substring(0, 20)}...</b></span>
+							<span style="font-size: 16px;"><b>${dto.getTravel_name()}</b></span>
 							<br>
-							<span style="font-size: 13px;">${dto.getTravel_cont().substring(0, 25)}...</span>
+							<span style="font-size: 13px;">${dto.getTravel_cont()}</span>
 							<br>
 							<span style="font-size: 20px;"><b><fmt:formatNumber value="${dto.getTravel_price() }" /></b></span>
 							<span style="font-size: 16px;">원~</span>
@@ -276,7 +413,8 @@
 			</c:if>
 	        <br>
 	        
-	    </div>
+	    </div> --%>
+	    
 	</div>
 	<br>
 	

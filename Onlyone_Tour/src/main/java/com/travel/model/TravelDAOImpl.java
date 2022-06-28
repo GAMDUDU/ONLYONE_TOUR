@@ -59,4 +59,10 @@ public class TravelDAOImpl implements TravelDAO {
 		return this.sqlSession.selectList("travelNewList");
 	}
 
+	@Override
+	public TravelDTO getTravelCont(int num) {
+		
+		return this.sqlSession.selectOne("travelCont", num);
+	}
+
 }

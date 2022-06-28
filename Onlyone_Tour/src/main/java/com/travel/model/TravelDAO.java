@@ -16,5 +16,6 @@ public interface TravelDAO {
 	public List<TravelDTO> getHitList();
 	public List<TravelDTO> getRecommendList();
 	public List<TravelDTO> getNewList();
+	public TravelDTO getTravelCont(int num);
 
 }
