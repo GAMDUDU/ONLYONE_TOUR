@@ -25,11 +25,14 @@
 		</ul>
 	</div>
 	<c:set var="dto" value="${Cont }" />
-<c:set var="mem" value="${Member }" />
+	<c:set var="mem" value="${Member }" />
+	<c:set var="res" value="${Res }" />
 	
 	
+	
+
 		<div class="infor-txt">
-		<h3>${mem.member_name }님<br>
+		<h3>${mem.member_Name }님<br>
 		 예약이 완료 되었습니다.</h3>
 		<table border="1" cellspacing="0" width="650">
 			<tr>
@@ -42,7 +45,7 @@
 			<th>여행기간</th><td>${dto.travel_departure_date.substring(0,20) }~${dto.travel_return_date.substring(25,41) }</td>
 			</tr>
 			<tr>
-			<th>여행인원</th><td>여행인원정보</td>
+			<th>여행인원</th><td>${res.reserve_count }명${res.reserve_num }</td>
 			</tr>
 
 			
@@ -50,10 +53,10 @@
 	
 	</div>
 	
-	
-		<input type="button" value="홈으로">
+		<input type="button" value="홈으로" onclick="location.href='main.do'">
 	      
 	      	<input type="button" value="예약내역 확인하기">
+	      	
 
 </body>
 </html>

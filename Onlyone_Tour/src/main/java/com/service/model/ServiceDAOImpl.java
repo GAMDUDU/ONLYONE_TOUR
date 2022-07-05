@@ -1,10 +1,13 @@
 package com.service.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.onlyone.model.MemberDTO;
 
 @Repository
 public class ServiceDAOImpl implements ServiceDAO{
@@ -21,9 +24,9 @@ public class ServiceDAOImpl implements ServiceDAO{
 	
 //1:1 문의
 	@Override
-	public List<ServiceDTO> getServiceList(PageServDTO dto) {
+	public List<ServiceDTO> getOneServiceList(PageServDTO dto) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.sqlSession.selectList("getServiceList", dto);
 	}
 
 	@Override
@@ -95,6 +98,237 @@ public class ServiceDAOImpl implements ServiceDAO{
 		
 	}
 
+//공지사항
+	@Override
+	public int getNoticeListCount() {
+		
+		return this.sqlSession.selectOne("noticeCount");
+	}
 
+	@Override
+	public List<ServiceNoticeDTO> getServiceNoticeList(PageServDTO dto) {
+
+		return this.sqlSession.selectList("noticeList", dto);
+	}
+
+	@Override
+	public int insertNotice(ServiceNoticeDTO dto) {
+		
+		return this.sqlSession.insert("insertNotice", dto);
+	}
+
+	@Override
+	public ServiceNoticeDTO getNoticeContent(int num) {
+		
+		return this.sqlSession.selectOne("noticeContent", num);
+		
+	}
+
+	@Override
+	public int update_notice(ServiceNoticeDTO dto) {
+		
+		return this.sqlSession.update("updateNotice", dto);
+	}
+
+	@Override
+	public int deleteNotice(int num) {
+		
+		return this.sqlSession.delete("deleteNotice", num);
+	}
+
+	@Override
+	public void updateNoticeSequence(int num) {
+		
+		this.sqlSession.update("noticeSeq", num);
+		
+	}
+
+	@Override
+	public int searchNoticeCount(String field, String keyword) {
+		
+		return this.sqlSession.selectOne(field, keyword);
+	}
+
+	@Override
+	public List<ServiceNoticeDTO> searchNoticeList(PageServDTO pdto) {
+		
+		return this.sqlSession.selectList(pdto.getField() + "1", pdto);
+	}
+
+//회원 공지사항
+	@Override
+	public int userNoticeListCount() {
+		
+		return this.sqlSession.selectOne("userNoticeCount");
+	}
+
+	@Override
+	public List<ServiceNoticeDTO> userServiceNoticeList(PageServDTO dto) {
+		
+		return this.sqlSession.selectList("userNoticeList", dto);
+	}
+
+	@Override
+	public void viewCount(int num) {
+		
+		this.sqlSession.update("viewCount", num);
+		
+	}
+
+//회원 자주 찾는 질문
+	@Override
+	public int userQuestionListCount() {
+		
+		return this.sqlSession.selectOne("userQuestionCount");
+	}
+
+	@Override
+	public List<ServiceQuestionDTO> userServiceQuestionDTO(PageServDTO dto) {
+		
+		return this.sqlSession.selectList("userQuestionList", dto);
+	}
+	
+	//문의유형 리스트 
+	@Override
+	public List<ServiceCategoryDTO> getCategoryList() {
+		
+		return this.sqlSession.selectList("qCategoryList");
+	}
+
+	@Override
+	public int addFile(ServiceFileDTO dto) {
+		
+		return this.sqlSession.insert("fileUpload", dto);
+	}
+
+	@Override
+	public int writeOneQuestion(ServiceDTO dto) {
+		// TODO Auto-generated method stub
+		return this.sqlSession.insert("insertOneQuestion", dto);
+	}
+
+	@Override
+	public int getServiceNumValue() {
+		// TODO Auto-generated method stub
+		return this.sqlSession.selectOne("getServNumValue");
+	}
+
+	//1:1 게시판 아이디로 질문리스트 조회
+	@Override
+	public List<ServiceDTO> getOneQuestionList(PageServDTO dto) {
+		// TODO Auto-generated method stub
+		return this.sqlSession.selectList("getOneQuestionList", dto);
+	}
+	
+	
+	//관리자 1:1 게시판
+	@Override
+	public int adminOneQuestionListCount() {
+		
+		return this.sqlSession.selectOne("adminOneQuestionListCount");
+	}
+
+	@Override
+	public ServiceDTO getAdminOneQuestionContent(int num) {
+		// TODO Auto-generated method stub
+		return this.sqlSession.selectOne("getAdminOneQuestionContent", num);
+	}
+
+	@Override
+	public void oneQviewCount(int num) {
+		this.sqlSession.insert("oneQviewCount", num);
+		
+	}
+
+	@Override
+	public List<ServiceFileDTO> getUserFileToAdmin(int num) {
+		// TODO Auto-generated method stub
+		return this.sqlSession.selectList("getFileToAdmin", num);
+	}
+
+	@Override
+	public int writeOneQuestionFile(ServiceDTO serviceDTO, ArrayList<ServiceFileDTO> fileList) {
+
+		return 0;
+	}
+
+	@Override
+	public ServiceFileDTO getOneUserFileToAdmin(int num) {
+		// TODO Auto-generated method stub
+		return this.sqlSession.selectOne("getOneFile", num);
+	}
+
+	@Override
+	public int addOneQuestionReply(ServiceDTO dto) {
+		// TODO Auto-generated method stub
+		return this.sqlSession.insert("insertReply", dto);
+	}
+
+	@Override
+	public int getMaxServiceNum() {
+		// TODO Auto-generated method stub
+		return this.sqlSession.selectOne("maxServNum");
+	}
+
+	@Override
+	public int getStep(int service_group) {
+		// TODO Auto-generated method stub
+		return this.sqlSession.selectOne("step", service_group);
+	}
+
+	
+	@Override
+	public int getIndent(int service_group) {
+		// TODO Auto-generated method stub
+		return this.sqlSession.selectOne("indent", service_group);
+	}
+
+	@Override
+	public void updateOneQuetionOrgingSi(int num) {
+
+		this.sqlSession.update("updateOnQuOrignCheck", num);
+	}
+
+	@Override
+	public int deleteOneQuestion(int num) {
+		// TODO Auto-generated method stub
+		return this.sqlSession.delete("deleteOneQuestion", num);
+	}
+
+	@Override
+	public int getUserQuListCount(String id) {
+		// TODO Auto-generated method stub
+		return this.sqlSession.selectOne("getUserQuListCount", id);
+	}
+
+	@Override
+	public int searchOneQuestionACount(String field, PageServDTO pDto) {
+		// TODO Auto-generated method stub
+		return this.sqlSession.selectOne(field + "adminOQ", pDto);
+	}
+
+	@Override
+	public int searchOneQuestionAALLCount(String field, PageServDTO pDto) {
+		// TODO Auto-generated method stub
+		return this.sqlSession.selectOne(field + "Allselect", pDto);
+	}
+
+	@Override
+	public List<ServiceDTO> getOneQuestionSearchList(String field, PageServDTO pDto) {
+		// TODO Auto-generated method stub
+		return this.sqlSession.selectList(field + "adminOQList", pDto);
+	}
+
+	@Override
+	public List<ServiceDTO> getOneQuestionSearchAllList(String field, PageServDTO pDto) {
+		// TODO Auto-generated method stub
+		return this.sqlSession.selectList(field + "adminOQAllList", pDto);
+	}
+	
+	
+	
+	
+	
+	
 	
 }

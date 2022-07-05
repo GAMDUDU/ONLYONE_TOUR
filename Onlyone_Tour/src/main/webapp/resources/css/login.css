@@ -9,6 +9,39 @@
 	margin: 100px 0;
 }
 
+/* modal 창 커스텀 */
+.show{
+   display: block;
+}
+
+.black-bg1, .black-bg2{
+    width : 1300px;
+    height: 500px;
+    position : fixed;
+    background : rgba(0,0,0,0.5);
+    z-index : 5;
+    padding: 30px;
+ 	visibility: hidden; 
+    opacity: 0;
+}
+
+.show-modal{
+    visibility: visible;
+    opacity: 1;
+}
+
+.white-bg1, .white-bg2{
+	width: 50%;
+	background: white;
+    border-radius: 5px;
+    padding: 30px;
+   	margin-left: 350px;
+   	margin-top: 50px;
+}
+
+
+
+
 .login-text{
 	width: 100%;
 	text-align: center;
@@ -77,6 +110,13 @@
 	color: #555;
 }
 
+.login_bar button{
+	background: white;
+	border-style: none;
+	color: #555;
+}
+
+
 .login_menu_bar::after{
 	content: "•";
 	margin: 5px;
@@ -93,6 +133,8 @@ input[type="checkbox"]:checked {
     background: #32e732;
     border: none;
  }
+
+
 
 
 

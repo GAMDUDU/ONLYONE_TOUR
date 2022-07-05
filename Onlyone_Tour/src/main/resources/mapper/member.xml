@@ -5,23 +5,94 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
-    
-
 
 <mapper namespace="memberdao">
 
 	<select id="Login" parameterType="String" resultType="memberdto">
-		
-		select * from Member_trip
+			
+		select * from member_trip 
 			where member_id = #{member_id}
 					
 	</select>
 	
-	
 	<insert id="Join" parameterType="memberdto">
-		insert into member_trip values((select max(member_num) from member_trip) + 1,
- 		#{member_id},#{member_name},#{member_pwd, jdbcType=VARCHAR},
- 		#{member_phone},#{member_email, jdbcType=VARCHAR},sysdate,#{member_nickname})
+		insert into member_trip values(
+			#{member_id},#{member_pwd, jdbcType=VARCHAR},#{member_name},#{member_email},#{member_gender},
+			#{member_phone},#{member_birth},#{member_addr},#{member_detailaddr},sysdate,default
+		)
 	</insert>
+	
+	<select id="idCheck" parameterType="String" resultType="int">
+		
+		select count(*) from member_trip
+			where member_id = #{member_id}
+	
+	</select>
+	
+	
+	<select id="emailCheck" parameterType="String" resultType="int">
+			
+		select count(*) from member_trip
+			where member_email = #{member_email}
+			
+	</select>
+	
+	
+	<select id="phoneCheck" parameterType="String" resultType="int">
+		
+		select count(*) from member_trip
+			where member_phone = #{member_phone}
+		
+	</select>
+	
+	
+	<select id="findId" parameterType="memberdto" resultType="memberdto">
+		
+		select * from member_trip
+			where member_name = #{member_name} and member_phone = #{member_phone}
+	
+	</select>
+	
+	
+	<select id="findPwd" parameterType="memberdto" resultType="memberdto">
+		
+		select * from member_trip
+			where member_id = #{member_id} and member_email = #{member_email}
+	
+	</select>
+	
+	
+	<select id="count" resultType="int">
+		
+		select count(*) from member_trip
+	
+	</select>
+	
+	
+	<select id="list" parameterType="pageDto" resultType="memberdto">
+		<![CDATA[
+		select * from
+			(select m.*, row_number()
+				over(order by member_reg desc) rnum from member_trip m)
+			where  rnum >= #{startNo} and rnum <= #{endNo}
+		]]>	
+	</select>
+	
+	
+	<!-- 회원삭제 -->
+	<delete id="del" parameterType="String">
+		delete from member_trip where member_id = #{id} 
+	</delete>
+	
+	
+	<!-- 회원정보 수정 -->
+	<update id="update" parameterType="memberdto">
+		<![CDATA[
+		update member_trip set member_email = #{member_email}, member_pwd = #{member_pwd},
+			member_phone = #{member_phone},
+			member_addr = #{member_addr}, member_detailaddr = #{member_detailaddr}
+			where member_id = #{member_id}
+		]]>
+	</update>
 	
 </mapper>

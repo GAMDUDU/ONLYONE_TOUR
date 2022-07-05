@@ -1,8 +1,28 @@
 /**
  * 
  */
+// 아이디 및 비밀번호 찾기 modal 창 제어 
 
- $(function() {
+$('#login').on('click', ()=>{
+	$('.black-bg1').addClass('show-modal');
+});
+ 
+$('#password-search').on('click', ()=>{
+	$('.black-bg2').addClass('show-modal');
+});
+ 
+$('#close1').on('click', ()=>{
+	$('.black-bg1').removeClass('show-modal');
+});
+
+$('#close2').on('click', ()=>{
+	$('.black-bg2').removeClass('show-modal');
+});
+
+
+
+// 아이디 저장 구현하기
+$(function() {
            fnInit();
      });
      
@@ -65,9 +85,12 @@
             }else{
            expdate.setTime(expdate.getTime() - 1000 * 3600 * 24 * 30);
             setCookie("saveid", $("#login_id").val(), expdate);
-             
         }
     }
- 
-    
-    
+
+
+
+
+
+
+

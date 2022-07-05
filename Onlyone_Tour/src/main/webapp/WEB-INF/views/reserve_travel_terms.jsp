@@ -11,6 +11,7 @@
 <body>
 <c:set var="dto" value="${Cont }" />
 <c:set var="mem" value="${Member }" />
+<c:set var="res" value="${Res }" />
 
 	<div class="reserve-travel">
 		<h2>예약하기</h2>
@@ -22,6 +23,9 @@
 	</div>
 	
 	<hr>
+	
+	<form method="post" action="<%=request.getContextPath() %>/reserve_travel_ok.do?no=${res.reserve_num}">
+	
 	
 	<div><!-- 인클루드? 지금껄로해도되나... -->
 		<h3>약관동의</h3>
@@ -41,11 +45,11 @@
 		</ul>
 	
 	</div>
-	
+	<input type="submit" value="예약하기">
 		
-	<input type="button" value="예약하기" 
+<%-- 	<input type="button" value="예약하기" 
 	      onclick="location.href='reserve_travel_ok.do?no=${dto.travel_num}'">
-	
+ --%>	
 
 
 </body>

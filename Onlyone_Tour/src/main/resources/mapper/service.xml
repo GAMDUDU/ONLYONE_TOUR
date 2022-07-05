@@ -33,11 +33,11 @@
 	 -->
 	<insert id="insertQuestion" parameterType="ServiceQuestionDTO">
 		<selectKey resultType="int" keyProperty="q_num" order="BEFORE">
-			select max(q_num) from service_question_trip
+			select nvl(max(q_num),0) from service_question_trip
 		</selectKey>
 		
 		insert into service_question_trip values(#{q_num} + 1, 
-			#{q_title}, #{q_cont}, sysdate)
+			#{q_title}, #{q_cont}, sysdate, #{q_oc})
 	</insert>
 	
 	<select id="questionContent" parameterType="int" resultType="ServiceQuestionDTO">
@@ -46,7 +46,7 @@
 	
 	<update id="questionUpdate" parameterType="ServiceQuestionDTO">
 		update service_question_trip set q_title = #{q_title},
-			q_cont = #{q_cont}, q_date = sysdate 
+			q_cont = #{q_cont}, q_date = sysdate , q_oc = #{q_oc} 
 				where q_num = #{q_num}
 	</update>
 	
@@ -92,4 +92,397 @@
 		]]>
 		
 	</update>
+	
+	<!-- 공지사항 -->	
+	<select id="noticeCount" resultType="int">
+		select count(*) from service_notice_trip
+	</select>
+	
+	<select id="noticeList" parameterType="PageServDTO" resultType="ServiceNoticeDTO">
+		
+		<![CDATA[
+			select * from 
+				(select n.*, row_number()
+					over(order by n_num desc) rnum from service_notice_trip n)
+						where rnum >= #{startNo} and rnum <= #{endNo} 
+		]]>
+		
+	</select>
+	
+	<insert id="insertNotice" parameterType="ServiceNoticeDTO">
+		<selectKey resultType="int" keyProperty="n_num" order="BEFORE">
+			select nvl(max(n_num),0) from service_notice_trip
+		</selectKey>
+		
+		insert into service_notice_trip values(#{n_num} + 1, 
+			#{n_name}, #{n_title}, #{n_cont}, 0, sysdate, #{n_oc})
+	</insert>
+	
+	<select id="noticeContent" parameterType="int" resultType="ServiceNoticeDTO">
+		select * from service_notice_trip where n_num = #{num}
+	</select>
+	
+	<update id="updateNotice" parameterType="ServiceNoticeDTO">
+		update service_notice_trip set n_title = #{n_title}, 
+			n_cont = #{n_cont} , n_date = sysdate , n_oc = #{n_oc}
+				where n_num = #{n_num}
+	</update>
+	
+	<delete id="deleteNotice" parameterType="int">
+		delete from service_notice_trip where n_num = #{num}
+	</delete>
+	
+	<update id="noticeSeq" parameterType="int">
+		
+		<![CDATA[
+			update service_notice_trip set n_num = n_num - 1
+				where n_num > #{num}
+		]]>
+		
+	</update>
+	
+	<select id="n_num" parameterType="String" resultType="int">
+		
+		select count(*) from service_notice_trip
+			where n_num like '%' || #{keyword} || '%' 
+		
+	</select>
+	
+	<select id="n_title" parameterType="String" resultType="int">
+		
+		select count(*) from service_notice_trip
+			where n_title like '%' || #{keyword} || '%' 
+		
+	</select>
+	
+	<select id="n_cont" parameterType="String" resultType="int">
+		
+		select count(*) from service_notice_trip
+			where n_cont like '%' || #{keyword} || '%' 
+		
+	</select>
+	
+	<select id="n_num1" parameterType="PageServDTO" resultType="ServiceNoticeDTO">
+		<![CDATA[
+			select * from 
+				(select n.*, row_number() 
+					over(order by n_num desc) rnum from service_notice_trip n 
+					where n_num like '%' || #{keyword} || '%') 
+					where rnum >= #{startNo} and rnum <= #{endNo}
+		]]>
+	</select>
+	
+	<select id="n_title1" parameterType="PageServDTO" resultType="ServiceNoticeDTO">
+		<![CDATA[
+			select * from 
+				(select n.*, row_number() 
+					over(order by n_num desc) rnum from service_notice_trip n 
+					where n_title like '%' || #{keyword} || '%') 
+					where rnum >= #{startNo} and rnum <= #{endNo}
+		]]>
+	</select>
+	
+	<select id="n_cont1" parameterType="PageServDTO" resultType="ServiceNoticeDTO">
+		<![CDATA[
+			select * from 
+				(select n.*, row_number() 
+					over(order by n_num desc) rnum from service_notice_trip n 
+					where n_cont like '%' || #{keyword} || '%') 
+					where rnum >= #{startNo} and rnum <= #{endNo}
+		]]>
+	</select>
+	
+<!-- 회원 공지사항 -->
+
+	<select id="userNoticeCount" resultType="int">
+		select count(*) from service_notice_trip where n_oc = '공개'
+	</select>
+	
+	<select id="userNoticeList" parameterType="PageServDTO" resultType="ServiceNoticeDTO">
+		
+		<![CDATA[
+			select * from 
+				(select n.*, row_number()
+					over(order by n_num desc) rnum from service_notice_trip n where n_oc = '공개')
+						where rnum >= #{startNo} and rnum <= #{endNo} 
+		]]>
+		
+	</select>
+	
+	<update id="viewCount" parameterType="int">
+		update service_notice_trip set n_view = n_view + 1 where n_num = #{num}
+	</update>
+	
+<!-- 회원 자주 찾는 질문 -->	
+	<select id="userQuestionCount" resultType="int">
+		select count(*) from service_question_trip where q_oc = '공개'
+	</select>
+	
+	<select id="userQuestionList" parameterType="PageServDTO" resultType="ServiceQuestionDTO">
+		
+		<![CDATA[
+			select * from 
+				(select q.*, row_number()
+					over(order by q_num desc) rnum from service_question_trip q where q_oc = '공개')
+						where rnum >= #{startNo} and rnum <= #{endNo} 
+		]]>
+		
+	</select>
+	
+	
+<!-- 회원 1:1 문의 -->	
+	<select id="qCategoryList" resultType="ServiceCategoryDTO">
+		
+		select * from service_qcategory_trip order by c_code
+	
+	</select>
+		
+	<insert id="insertOneQuestion" parameterType="ServiceDTO" >
+		
+		<selectKey resultType="int" keyProperty="service_num" order="BEFORE">
+			select nvl(max(service_num),0) + 1 from service_trip
+		</selectKey>
+		
+		insert into service_trip values(#{service_num} , 
+			#{service_name}, #{service_title}, #{service_cont}, #{service_code},
+			default, #{service_num}, 0, 0, 0, sysdate, #{member_id})
+		
+	</insert>	
+		
+	<select id="getServNumValue" resultType="int">
+		select nvl(max(service_num), 1) from service_trip
+		<!-- nvl(max(service_num), 1) : 
+			조회했을 때 값이 null이면 1을, 아니면 servcie_num의 max를 가져와라 -->
+	</select>	
+		
+	<insert id="fileUpload" parameterType="com.service.model.ServiceFileDTO">
+		
+		<selectKey resultType="int" keyProperty="file_no" order="BEFORE">
+			select nvl(max(file_no),0) + 1 from service_file_trip
+		</selectKey>
+		
+		insert into service_file_trip values(#{file_no },
+			#{service_num }, #{file_name}, #{file_path})
+		
+	</insert>	
+		
+
+		
+		
+	<!-- 관리자 1:1  -->
+	<select id="adminOneQuestionListCount" resultType="int">
+		select count(*) from service_trip
+	</select>	
+	
+	<select id="getServiceList" parameterType="PageServDTO" resultType="ServiceDTO">
+		<![CDATA[
+			select * from 
+				(select q.*, c.*, row_number() 
+				over(order by service_group desc, service_step ) rnum 
+				from service_trip q join service_qcategory_trip c on q.service_code = c.c_code) 
+				where rnum >= #{startNo} and rnum <= #{endNo}
+		]]>
+	</select>
+	
+	<select id="getAdminOneQuestionContent" parameterType="int" resultType="ServiceDTO">
+		
+		select * from service_trip s join service_qcategory_trip c on s.service_code = c.c_code where service_num = #{num}
+		
+	</select>
+	
+	<select id="oneQviewCount" parameterType="int">
+		update service_trip set service_view = service_view + 1 where service_num = #{num }
+	</select>
+	
+	<!-- 반환형 리스트 -->
+	<select id="getFileToAdmin" parameterType="int" resultType="com.service.model.ServiceFileDTO">
+		select * from service_file_trip where service_num = #{num } order by file_no 
+	</select>
+	
+	<!-- 반환형 객체 -->
+	<select id="getOneFile" parameterType="int" resultType="com.service.model.ServiceFileDTO">
+		select * from service_file_trip where file_no = #{num }
+	</select>
+	
+	<select id="insertReply" parameterType="ServiceDTO" resultType="int">
+				
+		insert into service_trip values(#{service_num} + 1, #{service_name}, #{service_title}, #{service_cont},
+			#{c_code}, '답변완료', #{service_group}, #{service_step} + 1, #{service_indent} + 1, 0, sysdate, #{member_id})
+		
+	</select>
+	
+	<select id="maxServNum" resultType="int">
+		select max(service_num) from service_trip
+	</select>
+	
+	<select id="step" parameterType="int" resultType="int">
+		select max(service_step) from service_trip where service_group = #{service_group}
+	</select>
+	
+	<select id="indent" parameterType="int" resultType="int">
+		select max(service_indent) from service_trip where service_group = #{service_group}
+	</select>
+	
+	<update id="updateOnQuOrignCheck" parameterType="int">
+		
+		update service_trip set service_check = '답변완료' where service_num = #{num}
+		
+	</update>
+	
+	<delete id="deleteOneQuestion" parameterType="int">
+		
+		delete from service_trip where service_group = #{num}
+		
+	</delete>
+	
+	<select id="getOneQuestionList" parameterType="PageServDTO" resultType="ServiceDTO">
+		
+		<![CDATA[
+			select * from 
+				(select q.*, row_number() 
+				over(order by service_group desc, service_step) rnum 
+				from service_trip q where service_group in 
+				(select service_group from service_trip where member_id = #{member_id})) 
+				where rnum >= #{startNo} and rnum <= #{endNo}
+		]]>
+		
+		
+	</select>
+	
+	<select id="getUserQuListCount" parameterType="String" resultType="int">
+		select count(*) from service_trip where service_group in 
+			(select service_group from service_trip where member_id = #{id})
+	</select>
+	
+	<select id="nameadminOQ" parameterType="PageServDTO" resultType="int">
+		<![CDATA[
+		select count(*) from 
+			service_trip q join service_qcategory_trip c 
+			on q.service_code = c.c_code 
+			where service_group in
+			(select service_group from service_trip
+				where service_name like '%' || #{keyword} || '%' 
+				and service_date >= #{startDate} and service_date <= #{endDate} 
+				and service_check = #{reply} and service_code = #{service_code})
+			
+		]]>	
+	</select>
+	
+	<select id="idadminOQ" parameterType="PageServDTO" resultType="int">
+		<![CDATA[
+		select count(*) from 
+			service_trip q join service_qcategory_trip c 
+			on q.service_code = c.c_code 
+			where service_group in
+			(select service_group from service_trip
+				where member_id like '%' || #{keyword} || '%' 
+				and service_date >= #{startDate} and service_date <= #{endDate} 
+				and service_check = #{reply} and service_code = #{service_code})
+		]]>
+	</select>
+	
+	<select id="nameAllselect" parameterType="PageServDTO" resultType="int">
+		<![CDATA[
+		select count(*) from 
+			service_trip q join service_qcategory_trip c 
+			on q.service_code = c.c_code 
+			where service_group in
+			(select service_group from service_trip
+				where service_name like '%' || #{keyword} || '%' 
+				and service_date >= #{startDate} and service_date <= #{endDate}
+				and service_code = #{service_code} )
+		]]>	
+	</select>
+	
+	<select id="idAllselect" parameterType="PageServDTO" resultType="int">
+		<![CDATA[
+		select count(*) from 
+			service_trip q join service_qcategory_trip c 
+			on q.service_code = c.c_code 
+			where service_group in
+			(select service_group from service_trip
+				where member_id like '%' || #{keyword} || '%' 
+				and service_date >= #{startDate} and service_date <= #{endDate}
+				and service_code = #{service_code} )
+		]]>
+	</select>
+	
+	<select id="nameadminOQList" parameterType="PageServDTO" resultType="ServiceDTO">
+		<![CDATA[
+		select * from 
+			(select q.*, c.*, row_number() 
+			over(order by service_group desc, service_step ) rnum 
+			from service_trip q join service_qcategory_trip c 
+			on q.service_code = c.c_code 
+			where service_group in
+			(select service_group from service_trip
+				where service_name like '%' || #{keyword} || '%' 
+				and service_date >= #{startDate} and service_date <= #{endDate} 
+				and service_check = #{reply} and service_code = #{service_code}))
+				where rnum >= #{startNo} and rnum <= #{endNo}
+		]]>	
+	</select>
+	
+	<select id="idadminOQList" parameterType="PageServDTO" resultType="ServiceDTO">
+		<![CDATA[
+		select * from 
+			(select q.*, c.*, row_number() 
+			over(order by service_group desc, service_step ) rnum 
+			from service_trip q join service_qcategory_trip c 
+			on q.service_code = c.c_code 
+			where service_group in
+			(select service_group from service_trip
+				where member_id like '%' || #{keyword} || '%' 
+				and service_date >= #{startDate} and service_date <= #{endDate} 
+				and service_check = #{reply} and service_code = #{service_code}))
+				where rnum >= #{startNo} and rnum <= #{endNo}
+		]]>
+	</select>
+	
+	<select id="nameadminOQAllList" parameterType="PageServDTO" resultType="ServiceDTO">
+		<![CDATA[
+		select * from 
+			(select q.*, c.*, row_number() 
+			over(order by service_group desc, service_step ) rnum 
+			from service_trip q join service_qcategory_trip c 
+			on q.service_code = c.c_code 
+			where service_group in
+			(select service_group from service_trip
+				where service_name like '%' || #{keyword} || '%' 
+				and service_date >= #{startDate} and service_date <= #{endDate}
+				and service_code = #{service_code}))
+				where rnum >= #{startNo} and rnum <= #{endNo}
+		]]>	
+	</select>
+	
+	<select id="idadminOQAllList" parameterType="PageServDTO" resultType="ServiceDTO">
+		<![CDATA[
+		select * from 
+			(select q.*, c.*, row_number() 
+			over(order by service_group desc, service_step ) rnum 
+			from service_trip q join service_qcategory_trip c 
+			on q.service_code = c.c_code 
+			where service_group in
+			(select service_group from service_trip
+				where member_id like '%' || #{keyword} || '%' 
+				and service_date >= #{startDate} and service_date <= #{endDate}
+				and service_code = #{service_code}))
+				where rnum >= #{startNo} and rnum <= #{endNo}
+		]]>
+		
+<!-- 		<![CDATA[
+			select * from 
+				(select q.*, c.*, row_number() 
+				over(order by service_group desc, service_step ) rnum 
+				from service_trip q join service_qcategory_trip c on q.service_code = c.c_code) 
+				where rnum >= #{startNo} and rnum <= #{endNo}
+				
+			select * from service_trip where service_group in
+			(select service_group from service_trip
+				where member_id like '%' || #{keyword} || '%' 
+				and service_date >= #{startDate} and service_date <= #{endDate}
+				and service_code = #{service_code})	
+				
+		]]> -->
+	</select>
 </mapper>    

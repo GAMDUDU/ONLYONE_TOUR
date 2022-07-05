@@ -1,0 +1,153 @@
+@charset "UTF-8";
+
+/* 검색바 디자인 */
+#search_main{
+	margin: 100px 0px;
+}
+
+
+.search_top_bar{
+	position:relative;
+	left:35%;
+	margin:30px;
+	width: 100%;
+	padding-left: -70px;
+}
+
+.search_input{
+	margin-right: 100px;
+	margin-left: -300px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.search_count{
+	position:relative;
+	left: 1350px;
+	top: -10px;
+	font-size: 13px;
+	font-weight: 600;
+}
+
+.search_main_name{
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	width: 50%;
+	margin-bottom: -50px;
+	margin-top: -20px;
+}
+
+.search_main_name h5{
+	
+	margin-right: 90px;
+	font-size: 23px;
+
+}
+
+.search_data{
+	
+	position: relative;
+	right: 300px;
+	font-size: 20px;
+	color: purple;
+	font-weight: bold;
+	
+	
+	
+}
+
+
+/* 패키지 상품 커스텀 */
+.package_main{
+	display:flex;
+	justify-content: flex-start;
+	align-items: center;
+	margin-left: 380px;
+}
+
+.bottom_hr{
+	position: relative;
+	left: 380px;
+	text-align:center;
+	margin: 20px 0px;
+	width: 60%;
+}
+
+.package_box{
+	position:relative;
+	top:-40px;
+	border:1px solid purple;
+	color: purple;
+	font-size: 12px;
+	padding: 3px;
+	margin-left: 20px;
+}
+
+.travel_name{
+	position: relative;
+	margin-left:20px;
+	top:-30px;
+	font-size: 20px;
+	font-weight: bold;
+	font-family: nomal;
+}
+
+.travel_price{
+	position: relative;
+	left: 720px;
+	top: -20px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.travel_subname{
+	position: relative;
+	margin-left: 20px;
+	font-size: 15px;
+	color: gray;
+	font-weight: 300;
+	top:40px;
+}
+
+.move_product{
+	
+	position: relative;
+	left: 700px;
+	top:20px;
+	height: 40px;
+	width: 140px;
+	background: none;
+	border: 1px solid purple;
+	color: purple;
+	border-radius: 5px;
+	font-weight: 400;
+	cursor: pointer;
+	
+}
+
+
+/* 검색이 안된 경우 화면  */
+.not_find{
+	display:flex;
+	flex-direction:column;
+	justify-content: center;
+	align-items: center;
+	margin-top: 50px;
+	margin-bottom: 200px;
+}
+
+.not_find_text1{
+	font-size: 21px;
+	font-weight: bold;
+}
+
+.not_find p:not(.not_find_text1, .not_find_icon){
+	font-size: 15px;
+	color: #868e96;
+	font-weight: 600;
+}
+
+.not_find_icon{
+	margin-bottom: 50px;
+}

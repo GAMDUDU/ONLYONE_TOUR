@@ -14,12 +14,6 @@ public class MemberDAOImpl implements MemberDAO{
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public List<MemberDTO> getMemberList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	@Override
 	public MemberDTO loginOk(String id) {
 		return this.sqlSession.selectOne("Login", id);
 	}
@@ -37,16 +31,17 @@ public class MemberDAOImpl implements MemberDAO{
 
 	@Override
 	public int updateMember(MemberDTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return this.sqlSession.update("update", dto);
 	}
-
+	
+	// 회원삭제
 	@Override
-	public int deleteMember(int num) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deleteMember(String id) {
+		return this.sqlSession.delete("del",id);
 	}
-
+	
+	
 	@Override
 	public void updateSequnce(int num) {
 		// TODO Auto-generated method stub
@@ -54,11 +49,51 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 
 	@Override
-	public List<MemberDTO> SearchMemberList(String field, String keyword) {
-		// TODO Auto-generated method stub
-		return null;
+	public int checkUserId(String id) {
+		return this.sqlSession.selectOne("idCheck", id);
 	}
 
-
-
+	@Override
+	public int checkUserEmail(String email) {
+		return this.sqlSession.selectOne("emailCheck", email);
+	}
+	
+	
+	// 아이디 찾기
+	@Override
+	public MemberDTO findId(MemberDTO dto) {
+		return this.sqlSession.selectOne("findId", dto);
+	}
+	
+	// 비밀번호 찾기
+	@Override
+	public MemberDTO findPwd(MemberDTO dto) {
+		return this.sqlSession.selectOne("findPwd", dto);
+	}
+	
+	
+	// 회원 리스트 전체 조회하기
+	@Override
+	public List<MemberDTO> getMemberList(PageDTO dto) {
+		return this.sqlSession.selectList("list", dto);
+	}
+	
+	// DB 카운터
+	@Override
+	public int getListCount() {
+		return this.sqlSession.selectOne("count");
+	}
+	
+	// 회원 검색
+	@Override
+	public List<MemberDTO> SearchMemberList(PageDTO dto) {
+		return null;
+	}
+	
+	// 휴대폰 중복 체크
+	@Override
+	public int checkUserPhone(String phone) {
+		return this.sqlSession.selectOne("phoneCheck", phone);
+	}
+	
 }

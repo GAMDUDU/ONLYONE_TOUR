@@ -6,7 +6,12 @@ import lombok.Data;
 
 @Data
 public class PageServDTO {
-
+	
+	//세션 멤버 아이디
+	private String member_id;
+	private String service_name;
+	private int service_code;
+	
 	// 페이징 처리 관련 멤버 선언
 	private int page;                 // 현재 페이지
 	private int rowsize;              // 한 페이지당 보여질 게시물의 수
@@ -21,6 +26,14 @@ public class PageServDTO {
 	// 검색 관련 멤버 선언
 	private String field;
 	private String keyword;
+		
+	//날짜
+	private String startDate;
+	private String endDate;
+	
+	private String reply;
+	
+	
 	
 	
 	public PageServDTO() {    }      // 기본 생성자
@@ -61,6 +74,19 @@ public class PageServDTO {
 		this(page, rowsize, totalRecord);
 		this.field = field;
 		this.keyword = keyword;
+	}  // 인자 생성자
+	
+	public PageServDTO(int page, int rowsize, int totalRecord,
+			String field, String keyword, String startDate, String endDate, String reply, 
+			int service_code ) {
+		this(page, rowsize, totalRecord);
+		this.field = field;
+		this.keyword = keyword;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.reply = reply;
+		this.service_code = service_code;
+	
 	}  // 인자 생성자
 	
 }

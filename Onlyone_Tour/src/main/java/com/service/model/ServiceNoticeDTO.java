@@ -11,5 +11,5 @@ public class ServiceNoticeDTO {
 	private String n_cont;
 	private int n_view;
 	private String n_date;
-	
+	private String n_oc;
 }
