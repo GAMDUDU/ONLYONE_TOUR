@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:set var="top" value="${pageContext.request.contextPath}"/>
-<link rel="stylesheet" type="text/css" href="${top}/resources/css/top.css?after">
+<link rel="stylesheet" type="text/css" href="${top}/resources/css/top.css">
 <script src="https://kit.fontawesome.com/27a0dd965d.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script type="text/javascript">
@@ -23,19 +23,23 @@
 		});
 	});
 	
+	
 	$(function () {
-		$('.list_total_menu').hide;
-		$('.btn_menu').hover(function() {
-			$(this).parent().find('.list_total_menu').mouseDown();
+		$('#list_total_menu').hide;
+		$('#click').click(function() {
+			$(this).parent().find('#list_total_menu').slideToggle();
 			$(this).parent().hover(function() {
 				
 			},function(){
-				$(this).parent().find('.list_total_menu').mouseUp(0);
+				$(this).parent().find('#list_total_menu').slideUp(300);
 			})
 		});
-	});
+	});	
+
+	
 	
 </script>
+
 </head>
 <body>
 
@@ -64,7 +68,6 @@
 		<ul>
 			<li><a href="<%=request.getContextPath()%>/logout.do">로그아웃</a></li>
 			<li><a href="#">고객센터</a></li>
-			<li><a href="<%=request.getContextPath()%>/user_oneQuestion.do?id=${member_id}">[회원 1:1 문의]</a></li>
 		</ul>
 	   	<% } %>
 	   
@@ -83,22 +86,16 @@
 	 	<!-- 검색 -->
 	 	 <div class="search">
 	 		<form method="post"
-	 			action="<%=request.getContextPath() %>/search_product.do">
+	 			action="<%=request.getContextPath() %>/검색">
 	 		 <fieldset class="fid_search">
-	 		 	
 	 		 	<legend class="legend">통합 검색어 입력폼</legend>
-	 		 	
 	 		 	<div class="search_a deletable">
 	 		 	<input type="text" id="keyword" placeholder="검색어를 입력해 주세요."
-	 		 	 maxlength="30" class="keyword" name="search_product">
-	 		 	
+	 		 	 maxlength="30" value class="keyword">
 	 		 	<span class="s-span" style="position: absolute;
 	 		 	 cursor: pointer; default;">X</span>
-	 		 	
-	 		 	<button class="btn_search" type="submit"> 		 	
-	 		 		<span><i class="fa-solid fa-magnifying-glass"></i></span>
-	 		 	</button>
-	 		 	
+	 		 	<button class="btn_search"> 		 	
+	 		 	<span><i class="fa-solid fa-magnifying-glass"></i></span></button>
 	 		 	</div>
 	 		 </fieldset>
 	 		</form>
@@ -113,6 +110,7 @@
 	 		<ul>
 	 			<li id="my_menu_li"><a href="#"><i class="fa-solid fa-user fa-2xl"></i><br><br>
 	 				<b>마이메뉴</b></a>			
+			 		
 			 		<%
 					if(session.getAttribute("member_id") == null){ 
 					%>
@@ -137,8 +135,7 @@
 			 			  </ul>
 			 			  <ul>
 			 			  	<li><a href="<%=request.getContextPath() %>/update_info.do?memid=${member_id}">개인정보수정</a></li>
-			 			  	<li><a href="#">1:1문의 내역</a></li>
-			 			  	<li><a href="<%=request.getContextPath() %>/delete_user.do?memid=${member_id}">회원탈퇴</a></li>
+			 			  	<li><a href="<%=request.getContextPath() %>/user_oneQuestion.do?id=${member_id}">1:1문의 내역</a></li>
 			 			  </ul>
 			 			 </div>
 			 			</div>
@@ -161,13 +158,14 @@
 	 		<div class="navi">
 	 			<div class="full_menu">
 	 			<div>
-	 			 <div class="full_menu" style="display: none;">
-	 			<a href="#" class="btn_menu on">
+	 			 <div class="full_menu">
+	 		   <a href="#" class="btn_menu on" id="click">
 	 			<i class="fa-solid fa-bars"></i> 전체메뉴</a>
 	 			 
-	 		<div class="list_total_menu n_total on">
+	 		<div class="list_total_menu n_total on" id="list_total_menu"
+	 			 style="display: none;">
 	 			<div class="middle">
-	 				<a href="#" class="btn_cls">닫기
+	 				<a href="#" class="btn_cls" id="x">
 					<i class="fa-solid fa-xmark"></i></a>
 	 				<div class="ly_wrap">
 	 					<div class="middle bundle">

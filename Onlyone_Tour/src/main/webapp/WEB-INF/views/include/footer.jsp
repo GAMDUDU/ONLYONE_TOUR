@@ -16,17 +16,17 @@
 #footer ul{
 	list-style: none;
 }
-#footer h2{
-	width:1200px;
-	padding:10px;
-	background-color: #9370DB;
+#footer ul li{
+	line-height: 35px;
 }
+
 </style>
 </head>
 <body>
 
 	<div id="footer">
-	 <h2></h2>
+	<hr color="#111">
+
 		<ul>
 			<li><strong>(주)온리원 투어</strong></li>
 			<li>대표 : 4조 팀원</li>

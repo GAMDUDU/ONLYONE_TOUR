@@ -9,7 +9,6 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 	
 <title>온리원투어</title>
-<link rel="stylesheet" type="text/css" href="${path}/resources/css/style.css">
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/main.css">
 <script src="https://kit.fontawesome.com/27a0dd965d.js" crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -66,10 +65,12 @@
 			    }
 			});
 	});
-	 
+	
 </script>
 </head>
 <body>
+
+	
 
 <jsp:include page="include/top.jsp" />
 	
@@ -82,8 +83,8 @@
 			class="children-slot sys-container root-container"
 			style="width: 100%;position: relative;" data-v-4de19cca data-v-e9ab604c data-v-77a28786>
 		
-		<div data-component="theme-container" style="position: relative; display: block;">
-		  <div data-system-property-type="children" class="children-slot sys-container" style="width: 100%;">	
+		<div data-component="theme-container" data-v-77a28786 style="position: relative; display: block;">
+		  <div data-system-property-type="children" data-v-4de19cca class="children-slot sys-container" style="width: 100%;">	
 			 <div class="submain" style="position: relative;">
 				
 		<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
@@ -125,7 +126,7 @@
 				<div class="card1" style="width: 18rem;">
 				  <img src="${path }/resources/image/다낭.jpg" class="card-img-top">
 				  <div class="card-body">
-				    <h5 class="card-title"><b>다낭/호이안 4~6일 #베스트셀러 #시내호텔 #바나산<br> #호이안야경투어</b></h5>
+				    <h5 class="card-title"><b>다낭/호이안 4~6일 #베스트셀러 #시내호텔 #바나산</b></h5>
 				    
 				     <span class="badge rounded-pill bg-light text-dark">#바나산</span>
 				     <span class="badge rounded-pill bg-light text-dark">#호이안야경투어</span> 
@@ -139,7 +140,7 @@
 				<div class="card2" style="width: 18rem;">
 				  <img src="${path }/resources/image/보라카이.jpg" class="card-img-top">
 				  <div class="card-body">
-				    <h5 class="card-title"><b>보라카이 4~6일 #헤난라군</b></h5>
+				    <h5 class="card-title"><b>보라카이 4,5,6일 #헤난라군</b></h5>
 				    
 				     <span class="badge rounded-pill bg-light text-dark">#세일링보트</span>
 				     <span class="badge rounded-pill bg-light text-dark">#호핑투어</span> 
@@ -186,7 +187,7 @@
 	  </div>	
 	  </div>
 	  
-			<div data-component="theme-container" style="position: relative; display: block;">
+			<div data-component="theme-container" data-v-77a28786 style="position: relative; display: block;">
 			  <div data-v-4de19cca data-system-property-type="children" class="children-slot sys-container" style="width: 100%;">	
 				 <div class="submain" data-v-4de19cca style="position: relative;">
 					<div class="item item6">
@@ -276,32 +277,193 @@
 						</div>
 					</div>
 				</div>
-			  </div>
-	  
+			  </div> <!-- 두번째 마지막 -->
 	
+	<!-- 세번째  -->
+	<div data-component="theme-container" data-v-77a28786 style="position: relative; display: block;">
+	  <div data-v-4de19cca data-system-property-type="children" class="children-slot sys-container" style="width: 100%;">	
+	  </div>
+	</div>
+	
+	<div data-component="theme-container" data-v-77a28786 style="position: relative; display: block;">
+	  <div data-v-4de19cca data-system-property-type="children" class="children-slot sys-container" style="width: 100%;">	
+	  <div class="submain" data-v-77a28786  data-v-4de19cca style="position: relative;">
+		<div class="inr co">
+			<div>
+				<div class="text_title big">
+					<strong class="tit">온리원 투어가 추천하는 여행지</strong>
+				</div>
+				
+				<div class="prod_slide">
+				<div class="prod_list row swiper-container col4 prevNext v-swiper2 swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events">
+				<ul class="type swiper" id="slides" aria-live="polite">
+				<li class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-next"style="cursor: pointer; width: 282px; margin-right: 24px;" role="group">
+					<div class="img">
+					 <img src="${path }/resources/image/busan.jpg" class="img1" id="three">
+					</div>
+					<div class="ht1">
+						<div class="name_wrap">
+							<strong class="item_title" id="three1">[KTX-2박] 부산/거제/통영/남해로 떠나는 쪽빛바다 휴(休) 감성여행</strong>
+						</div>
+					<div class="price">
+						<strong class="price_1" id="three3"><fmt:formatNumber>319000</fmt:formatNumber>원~</strong>
+					</div>
+					</div>
+				</li>
+				
+				<li class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-next" style="cursor: pointer; width: 282px; margin-right: 24px;" role="group">
+					<div class="img">
+					 <img src="${path }/resources/image/제주여행3.jpg" class="img1" id="three">
+					</div>
+					<div class="ht1">
+						<div class="name_wrap">
+							<strong class="item_title" id="three1">[골프/제주] 2일 #36홀라운드 #동일골프장 18홀*2회</strong>
+						</div>
+					<div class="price">
+						<strong class="price_1" id="three3"><fmt:formatNumber>355000</fmt:formatNumber>원~</strong>
+					</div>
+					</div>
+				</li>
+				
+				<li class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-next" style="cursor: pointer; width: 282px; margin-right: 24px;" role="group">
+					<div class="img">
+					 <img src="${path }/resources/image/ulsan.jpg" class="img1" id="three">
+					</div>
+					<div class="ht1">
+						<div class="name_wrap">
+							<strong class="item_title" id="three1">[대구출발] 울산/밀양 당일투어</strong>
+						</div>
+					<div class="price">
+						<strong class="price_1" id="three3"><fmt:formatNumber>59000</fmt:formatNumber>원~</strong>
+					</div>
+					</div>
+				</li>
+				
+				<li class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-next" style="cursor: pointer; width: 282px; margin-right: 24px;" role="group">
+					<div class="img">
+					 <img src="${path }/resources/image/yeosu.jpg" class="img1" id="three">
+					</div>
+					<div class="ht1">
+						<div class="name_wrap">
+							<strong class="item_title" id="three1">[연합상품] 여수/남해 2일 #오동도 #향일암 #여수해상케이블카</strong>
+						</div>
+					<div class="price">
+						<strong class="price_1" id="three3"><fmt:formatNumber>147000</fmt:formatNumber>원~</strong>
+					</div>
+					</div>
+				</li>
+				
+				<li class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-next" id="swiper-slide" style="cursor: pointer; width: 282px; margin-right: 24px;" role="group">
+					<div class="img">
+					 <img src="${path }/resources/image/울릉도여행1.jpg" class="img1" id="three">
+					</div>
+					<div class="ht1">
+						<div class="name_wrap">
+							<strong class="item_title" id="three1">[강릉항개별집결] 울릉도 3일 #독도포함 #비치온관광호텔 #울릉도별미식포함 #나물세트제공</strong>
+						</div>
+					<div class="price">
+						<strong class="price_1" id="three3"><fmt:formatNumber>479000</fmt:formatNumber>원~</strong>
+					</div>
+					</div>
+				</li>
+				<li class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-next" style="cursor: pointer; width: 282px; margin-right: 24px;" role="group">
+					<div class="img">
+					 <img src="${path }/resources/image/통영여행2.jpg" class="img1" id="three">
+					</div>
+					<div class="ht1">
+						<div class="name_wrap">
+							<strong class="item_title" id="three1">거제 3일#내차로자유여행#거제삼성호텔#거제씨월드#통영루지체험포함</strong>
+						</div>
+					<div class="price">
+						<strong class="price_1" id="three3"><fmt:formatNumber>245000</fmt:formatNumber>원~</strong>
+					</div>
+					</div>
+				</li>
+				</ul>
+				<a href="#none" class="prev" tabindex="0" role="button"><span class="blind">이전</span></a>
+				<a href="#none" class="next" tabindex="0" role="button"><span class="blind">다음</span></a>
+				<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+				</div>
+				</div>
+				
+			</div>		
+		</div>
+	   </div>
+	   </div>
+	  </div>
+	
+	<div data-component="theme-container" data-v-77a28786 style="position: relative; display: block;">
+	  <div data-v-4de19cca data-system-property-type="children" class="children-slot sys-container" style="width: 100%;">	
+	  <div class="submain" data-v-77a28786  data-v-4de19cca style="position: relative;">
+	  	<div class="item p10">
+	  		<div class="inr"><ul></ul></div>
+	  	</div>
+	  	<div class="item p11">
+	  		<div class="inr">
+	  			<div class="ly_wrap">
+	  				<div class="inr a">
+	  					<div class="text_title big">
+							<strong class="tit">온리원 투어 <br>고객센터</strong>
+						</div>
+						 	<strong class="tel">0000-0000</strong>
+						 <a href="#" class="txt qu">자주 찾는 질문 <i class="fa-solid fa-angle-right"></i></a>
+	  				</div>
+	  				<div class="inr b">
+	  					<ul>
+	  						<li><strong>해외여행 문의</strong></li>
+	  						<ul>
+	  							<li>평일: 09:00~18:00</li>
+	  						</ul>
+	  					</ul>
+	  					<ul>
+	  						<li><strong>상담번호 안내</strong></li>
+	  						<ul>
+	  						<li>1번 예약상담 및 조회</li>
+	  						<li>2번 마일리지,제휴카드,상품권 및 기타문의</li>
+	  						</ul>
+	  					</ul>
+	  				</div>
+	  				<div class="inr c">
+	  					<ul>
+	  						<li><strong>국내여행/기업출장 단체문의</strong></li>
+	  						<ul>
+	  							<li>평일: 09:00~18:00</li>
+	  						</ul>
+	  					</ul>
+	  				</div>
+	  			</div>
+	  		</div>
+	  	</div>
+	  </div>
+	 </div>
+    </div>
+	  
 	  
 	  </div>
 	</div>
    </div>
  </main>
- 
- <!-- 민경님 -->
- <a href="<%=request.getContextPath()%>/reserve_travel.do?no=1">패키지예약하기</a> <!-- no> travel_num -->
- <a href="<%=request.getContextPath()%>/reseve_air.do?no=1">항공예약하기</a><!-- air_num -->
- <a href="<%=request.getContextPath()%>/reseve_hotel.do?no=1">숙소예약하기</a><!-- hotel_num -->
+	 
+	 <!-- 민경님 -->
+	 <a href="<%=request.getContextPath()%>/reserve_travel.do?no=1">패키지예약하기</a> <!-- no> travel_num -->
+	 <a href="<%=request.getContextPath()%>/reseve_air.do?no=1">항공예약하기</a><!-- air_num -->
+	 <a href="<%=request.getContextPath()%>/reseve_hotel.do?no=1">숙소예약하기</a><!-- hotel_num -->
 	
- <!-- 관리자  -->
-<a href="<%=request.getContextPath()%>/question_list.do">[자주 찾는 질문 관리]</a>
-<a href="<%=request.getContextPath()%>/oneQuestion_list.do">[1:1 문의 관리]</a>
-<a href="<%=request.getContextPath()%>/notice_list.do">[공지사항]</a>
-
-<!-- 회원 -->
-<a href="<%=request.getContextPath()%>/user_question_list.do">[회원 자주 찾는 질문]</a>
-<a href="<%=request.getContextPath()%>/user_oneQuestion.do?id=${member_id}">[회원 1:1 문의]</a>
-<a href="<%=request.getContextPath()%>/user_notice_list.do">[회원 공지사항]</a>	
-	      
+ 	<!-- 관리자  -->
+	<a href="<%=request.getContextPath()%>/question_list.do">[자주 찾는 질문 관리]</a>
+	<a href="<%=request.getContextPath()%>/oneQuestion_list.do">[1:1 문의 관리]</a>
+	<a href="<%=request.getContextPath()%>/notice_list.do">[공지사항]</a>
+	
+	<!-- 회원 -->
+	<a href="<%=request.getContextPath()%>/user_question_list.do">[회원 자주 찾는 질문]</a>
+	<a href="<%=request.getContextPath()%>/user_oneQuestion.do?id=${member_id}">[회원 1:1 문의]</a>
+	<a href="<%=request.getContextPath()%>/user_notice_list.do">[회원 공지사항]</a>	
+ 
  <jsp:include page="include/footer.jsp" />
  
+
+<script type="text/javascript" src="/resources/js/slide.js"></script> 
+
 
 </body>
 </html>
