@@ -8,54 +8,147 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">	
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+<style>
+
+.container2{
+	position: absolute;
+	left: 57%;
+	top: 45%;
+	transform:translate(-50%,-50%);
+	padding: 10px;
+	width: 900px;
+} 
+
+.foooooooter{
+	
+	position: absolute;
+	top: 80%;
+}
+
+.selectBox{
+	width: 150px; 
+	padding: .3em .3em; 
+	border: 1px solid #999;
+	font-family: inherit;  
+	background: url('./resources/image_service/source/selectArrow.png') no-repeat 95% 50%; 
+	border-radius: 2px; 
+	-webkit-appearance: none; 
+	-moz-appearance: none;
+	appearance: none;
+}
+	
+.searchBox{
+	width: 300px; 
+	padding: .3em .3em; 
+	border: 1px solid #999;
+	font-family: inherit;  
+	border-radius: 2px; 
+	-webkit-appearance: none; 
+	-moz-appearance: none;
+	appearance: none;
+}
+	
+.sButton{
+	width: 80px; 
+	padding: .3em .3em; 
+	border: 1px solid #999;
+	font-family: inherit;  
+	border-radius: 2px; 
+	-webkit-appearance: none; 
+	-moz-appearance: none;
+	appearance: none;
+}
+	
+.sButton:focus {
+	outline:0;
+
+}
+.sButton:hover{
+	background: #d5d5d5;
+	cursor: pointer;
+	
+}
+.noticeText{
+	position: absolute;
+	float:left;
+	
+	
+}
+	
+a{
+	text-decoration: none;
+	color : black; 
+	font-weight: bold;
+}	
+
+a:hover{
+	text-decoration: none;
+	color : #9046cf; 
+}
+
+.tth{
+	margin-top: 60px;
+}
+</style>
+
 <body>
-	<h2>공지사항</h2>
-	<br><br>
+	<jsp:include page="include/top.jsp" />
+	<%@include file="./include/service_oneQSidebar.jsp" %>
+
 	
 	<c:set var="list" value="${List }" />
 	<c:set var="paging" value="${Paging }" />
 	
 	
-	<div>
-		<form method="post" action="<%=request.getContextPath() %>/notice_search.do">
-			
-			<input type="hidden" name="page" value="1">
-			
-			<select name="field">
-				<option value="n_num">글번호</option>
-				<option value="n_title">제목</option>
-				<option value="n_cont">내용</option>
-			</select>
-			
-			<input name="keyword">	
-			<input type="submit" value="검색">
+	<div class="container2 table-responsive" >
 		
-		</form>
+		<h4 class="noticeText">공지사항</h4>
 		
-		<div>
-			<table>	
+		<div class="talbe float-right">
+			<form method="post" action="<%=request.getContextPath() %>/notice_search.do">
+				
+				<input type="hidden" name="page" value="1">
+				
+				<select name="field" class="selectBox">
+					<option value="n_num">글번호</option>
+					<option value="n_title">제목</option>
+					<option value="n_cont">내용</option>
+				</select>
+				
+				<input name="keyword" class="searchBox">	
+				<input type="submit" value="검색" class="sButton">
+			
+			</form>
+		</div>
+		
+		<div class="tth">
+			<table class="table table-hover" style="table-layout: fixed">	
 				<tr>
-					<th>번호</th><th>제목</th><th>작성자</th>
-					<th>조회수</th><th>날짜</th>
+					<th width="8%">번호</th><th width="40%">제목</th><th width="20%">작성자</th>
+					<th width="10%">조회수</th><th width="20%">날짜</th>
 				</tr>
 				
 				<c:if test="${!empty list }">
 					<c:forEach items="${list }" var="i">
 						<tr>
 							
-							<td>${i.n_num }</td>
+							<td width="8%">${i.n_num }</td>
 							
-							<td>
+							<td width="40%"> 
 								<a href="<%=request.getContextPath() %>/user_notice_content.do?num=${i.n_num }&page=${paging.page }">
 									${i.n_title }
 								</a>	
 							</td>
 						
-							<td>${i.n_name }</td>
+							<td width="20%">${i.n_name }</td>
 						
-							<td>${i.n_view }</td>
+							<td width="10%">${i.n_view }</td>
 						
-							<td>${i.n_date.substring(0, 10) }</td>
+							<td width="20%">${i.n_date.substring(0, 10) }</td>
 							
 						</tr>
 						
@@ -65,7 +158,7 @@
 				
 				<c:if test="${empty list }">
 					 <tr>
-		          		 <td colspan="6" align="center">
+		          		 <td colspan="5" align="center">
 		         		     <h3>공지사항 목록이 없습니다.....</h3>
 		       		    </td>
 		       		 </tr>
@@ -74,29 +167,35 @@
 			
 		</div>
 		
-		<div>
-			<%-- 페이징 처리 부분 --%>
-		    <c:if test="${paging.getPage() > paging.getBlock() }">
-		       <a href="user_notice_list.do?page=1">[처음으로]</a>
-		       <a href="user_notice_list.do?page=${paging.getStartBlock() - 1 }">◀</a>
-		    </c:if>
-		   
-		    <c:forEach begin="${paging.getStartBlock() }"
-		          				end="${paging.getEndBlock() }" var="i">
-		       <c:if test="${i == paging.getPage() }">
-		          <b> <a href="user_notice_list.do?page=${i }">[${i }]</a> </b>
-		       </c:if>
-		   
-		  	   	   <c:if test="${i != paging.getPage() }">
-		          <a href="user_notice_list.do?page=${i }">[${i }]</a>
-		       </c:if>
-		    </c:forEach>
-		
-		    <c:if test="${paging.getEndBlock() < paging.getAllPage() }">
-		       <a href="user_notice_list.do?page=${paging.getEndBlock() + 1 }">▶</a>
-		       <a href="user_notice_list.do?page=${paging.getAllPage() }">[마지막으로]</a>
-		    </c:if>
+		<div class="text-center">
+			<ul class="pagination">
+				<%-- 페이징 처리 부분 --%>
+			    <c:if test="${paging.getPage() > paging.getBlock() }">
+			       <li class="page-item"><a class="page-link" href="user_notice_list.do?page=1">처음으로</a></li>
+			       <li class="page-item"><a class="page-link" href="user_notice_list.do?page=${paging.getStartBlock() - 1 }">◀</a></li>
+			    </c:if>
+			   
+			    <c:forEach begin="${paging.getStartBlock() }"
+			          				end="${paging.getEndBlock() }" var="i">
+			       <c:if test="${i == paging.getPage() }">
+			          <li class="page-item"><a class="page-link" href="user_notice_list.do?page=${i }">${i }</a></li>
+			       </c:if>
+			   
+			  	   <c:if test="${i != paging.getPage() }">
+			          <li class="page-item"><a class="page-link" href="user_notice_list.do?page=${i }">${i }</a></li>
+			       </c:if>
+			    </c:forEach>
+			
+			    <c:if test="${paging.getEndBlock() < paging.getAllPage() }">
+			       <li class="page-item"><a class="page-link" href="user_notice_list.do?page=${paging.getEndBlock() + 1 }">▶</a></li>
+			       <li class="page-item"><a class="page-link" href="user_notice_list.do?page=${paging.getAllPage() }">마지막으로</a></li>
+			    </c:if>
+		    </ul>
 		</div>
+	</div>
+	
+	<div class="foooooooter">
+		<jsp:include page="include/footer.jsp" />
 	</div>
 	
 </body>

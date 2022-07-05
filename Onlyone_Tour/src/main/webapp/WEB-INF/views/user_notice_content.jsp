@@ -7,11 +7,69 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">	
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<style type="text/css">
+
+.container2{
+	margin-top : 100px;
+	margin-left : 300px;
+	position: relative;
+	width : 40%;
+	padding: 10px;
+	
+} 
+
+a{
+	text-decoration: none;
+	color : black; 
+	font-weight: bold;
+}	
+
+a:hover{
+	text-decoration: none;
+	color : #9046cf; 
+}
+.noticeText{
+	position: relative;
+	float:left;
+	
+}
+
+input{
+	
+	border:0px;
+}
+
+.table tr th{
+	width: 10%;
+}
+
+.table tr td{
+	width: 50%;
+}
+
+.foooooooter{
+	
+	position: relative;
+	bottom : 0;
+}
+
+</style>
+
+
+
+
 <body>
 	
-	<div>
+	<jsp:include page="include/top.jsp" />
+	<%@include file="./include/service_oneQSidebar.jsp" %>
+	
+	<div class="container2" >
+		<h4 class="noticeText"> 공지사항</h4>
 		<c:set var="dto" value="${Cont }" />
-		<table>
+		<table  class="table" >
 			<tr>
 				<th>번호</th>
 				<td><input name="n_num" value="${dto.n_num }" readonly="readonly" ></td>
@@ -44,13 +102,18 @@
 			
 			<tr>
 				<td>
-					<input type="button" value="목록으로" 
+					<a class="btn float-right "><input type="button" value="목록으로"  class="btn btn-success btn-block"
 						onclick="location.href='user_notice_list.do?page=${Page }'">
+					</a>
 				</td>
 			</tr>	
 		</table>
 		
 	</div>
 	
+	<div class="foooooooter">
+	
+		<jsp:include page="include/footer.jsp" />
+	</div>
 </body>
 </html>

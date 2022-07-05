@@ -7,15 +7,103 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">	
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+<style>
+.container{
+	position: absolute;
+	left: 55%;
+	top: 55%;
+	transform:translate(-50%,-50%);
+	padding: 10px;
+} 
+
+.text-center{
+	width: 50%; 
+	float:none; 
+	margin:0 auto
+}
+
+.selectBox{
+	width: 150px; 
+	padding: .3em .3em; 
+	border: 1px solid #999;
+	font-family: inherit;  
+	background: url('./resources/image_service/source/selectArrow.png') no-repeat 95% 50%; 
+	border-radius: 2px; 
+	-webkit-appearance: none; 
+	-moz-appearance: none;
+	appearance: none;
+}
+	
+.searchBox{
+	width: 300px; 
+	padding: .3em .3em; 
+	border: 1px solid #999;
+	font-family: inherit;  
+	border-radius: 2px; 
+	-webkit-appearance: none; 
+	-moz-appearance: none;
+	appearance: none;
+}
+	
+.sButton{
+	width: 80px; 
+	padding: .3em .3em; 
+	border: 1px solid #999;
+	font-family: inherit;  
+	border-radius: 2px; 
+	-webkit-appearance: none; 
+	-moz-appearance: none;
+	appearance: none;
+}
+	
+.sButton:focus {
+	outline:0;
+
+}
+.sButton:hover{
+	background: #d5d5d5;
+	cursor: pointer;
+	
+}
+.noticeText{
+	position: absolute;
+	float:left;
+	text-indent: 
+	
+}
+	
+a{
+	text-decoration: none;
+	color : black; 
+	font-weight: bold;
+}	
+
+a:hover{
+	text-decoration: none;
+	color : black; 
+}
+
+.tth{
+	margin-top: 60px;
+}
+</style>
+
 <body>
-	<h2>공지사항 검색리스트</h2>
-	<br>
-	<br>
+
+	<%@include file="admin/adminInclude/admin_top.jsp" %>
+
+	<%@include file="admin/adminInclude/admin_aside.jsp" %>
+	
 	
 	<c:set var="list" value="${searchNoticeList }" />
 	<c:set var="paging" value="${Paging }" />
-		
-	<div>
+<div class="container table-responsive">	
+	<h4 class="noticeText"> 공지사항</h4>	
+	<div class="talbe float-right">
 		<form method="post"
 	      action="<%=request.getContextPath() %>/notice_search.do">
 	   	  
@@ -23,39 +111,39 @@
 	   	              이렇게 안하면 3페이지에서 검색했을때 있지도 않은 3페이지로 이동되어 게시글이 없다고 나옴 -->
 	   	  <input type="hidden" name="page" value="1">
 	   	  
-	      <select name="field">
+	      <select name="field" class="selectBox">
 	         	<option value="n_num">글번호</option>
 				<option value="n_title">제목</option>
 				<option value="n_cont">내용</option>
 	      </select>
 	      
-	      <input name="keyword">
-	      <input type="submit" value="검색">
+	      <input name="keyword" class="searchBox">
+	      <input type="submit" value="검색"  class="sButton">
 	   </form>
 	</div>
 	
-	<div class="question_table">
-		<table>
+	<div class="tth">
+		<table class="table table-hover" style="table-layout: fixed">
 			<tr>	
-				<th>번호</th><th>공개여부</th><th>제목</th><th>작성자</th>
-				<th>조회수</th><th>날짜</th><th>삭제</th>
+				<th width="8%">번호</th><th>공개여부</th><th width="40%">제목</th><th>작성자</th>
+				<th width="8%">조회수</th><th>날짜</th><th width="8%">삭제</th>
 			</tr>
 			
 			<c:if test="${!empty list }">
 				<c:forEach items="${list }" var="i">
 					<tr>
-						<td>${i.n_num }</td>
+						<td width="8%">${i.n_num }</td>
 						<td>${i.n_oc }</td>
-						<td>
-							<a href="<%=request.getContextPath() %>/admin_notice_content.do?num=${i.getN_num() }&page=${paging.page }">
+						<td width="40%">
+							<a href="<%=request.getContextPath() %>/admin_notice_content.do?num=${i.n_num }&page=${paging.page }">
 								${i.n_title }
 							</a> 
 						</td>
 						<td>${i.n_name }</td>
-						<td>${i.n_view }</td>
+						<td width="8%">${i.n_view }</td>
 						<td>${i.n_date.substring(0, 10) }</td>
-						<td>
-							<input type="button" value="삭 제"
+						<td width="8%">
+							<input type="button" value="삭 제" class="btn btn-outline-danger"
 								onclick="if(confirm('삭제하시겠습니까?')){
 									location.href='admin_notice_delete.do?num=${i.n_num }&page=${paging.page }'
 							}">
@@ -66,41 +154,49 @@
 			
 			<c:if test="${empty list }">
 		        <tr>
-		           <td colspan="4" align="center">
-		              <h3>질문 목록이 없습니다.....</h3>
+		           <td colspan="7" align="center">
+		              <h4>해당하는 게시글이 없습니다</h4>
 		           </td>
 		         </tr>
 	    	</c:if>
 		</table>
 		
 		<div>
-			<input type="button" value="전체목록으로" 
+			<a class="btn float-right "><input type="button" value="글쓰기" class="btn btn-success btn-block"
+					onclick="location.href='notice_write.do'">
+			</a>
+			<a class="btn float-right "><input type="button" value="전체목록으로" class="btn btn-outline-success btn-block"
 				onclick="location.href='notice_list.do'">
+			</a>
 		</div>
 		
-		<%-- 검색 페이징 처리 부분 --%>
-	    <c:if test="${paging.getPage() > paging.getBlock() }">
-	       <a href="notice_search.do?page=1&${paging.field }&keyword=${paging.keyword }">[처음으로]</a>
-	       <a href="notice_search.do?page=${paging.getStartBlock() - 1 }&field=${paging.field }&keyword=${paging.keyword }">◀</a>
-	    </c:if>
-	   
-	    <c:forEach begin="${paging.getStartBlock() }"
-	          				end="${paging.getEndBlock() }" var="i">
-	       <c:if test="${i == paging.getPage() }">
-	          <b> <a href="notice_search.do?page=${i }&field=${paging.field }&keyword=${paging.keyword }">[${i }]</a> </b>
-	       </c:if>
-	   
-   	   	   <c:if test="${i != paging.getPage() }">
-	          <a href="notice_search.do?page=${i }&field=${paging.field }&keyword=${paging.keyword }">[${i }]</a>
-	       </c:if>
-	    </c:forEach>
-
-	    <c:if test="${paging.getEndBlock() < paging.getAllPage() }">
-	       <a href="notice_search.do?page=${paging.getEndBlock() + 1 }&field=${paging.field }&keyword=${paging.keyword }">▶</a>
-	       <a href="notice_search.do?page=${paging.getAllPage() }&field=${paging.field }&keyword=${paging.keyword }">[마지막으로]</a>
-	    </c:if>
-	</div>
+		<div class="text-center">
+			<%-- 검색 페이징 처리 부분 --%>
+			<ul class="pagination">
+		    <c:if test="${paging.getPage() > paging.getBlock() }">
+		       <li class="page-item"><a class="page-link" href="notice_search.do?page=1&$field={paging.field }&keyword=${paging.keyword }">◀◀</a></li>
+		       <li class="page-item"><a class="page-link" href="notice_search.do?page=${paging.getStartBlock() - 1 }&field=${paging.field }&keyword=${paging.keyword }">◀</a></li>
+		    </c:if>
+		   
+		    <c:forEach begin="${paging.getStartBlock() }"
+		          				end="${paging.getEndBlock() }" var="i">
+		       <c:if test="${i == paging.getPage() }">
+		          <li class="page-item"><a class="page-link" href="notice_search.do?page=${i }&field=${paging.field }&keyword=${paging.keyword }">${i }</a></li>
+		       </c:if>
+		   
+	   	   	   <c:if test="${i != paging.getPage() }">
+		          <li class="page-item"><a class="page-link" href="notice_search.do?page=${i }&field=${paging.field }&keyword=${paging.keyword }">${i }</a></li>
+		       </c:if>
+		    </c:forEach>
 	
+		    <c:if test="${paging.getEndBlock() < paging.getAllPage() }">
+		      	 <li class="page-item"><a class="page-link" href="notice_search.do?page=${paging.getEndBlock() + 1 }&field=${paging.field }&keyword=${paging.keyword }">▶</a></li>
+		       	 <li class="page-item"><a class="page-link" href="notice_search.do?page=${paging.getAllPage() }&field=${paging.field }&keyword=${paging.keyword }">▶▶</a></li>
+		    </c:if>
+		    </ul>
+	    </div>
+	</div>
+</div>	
 	
 </body>
 </html>

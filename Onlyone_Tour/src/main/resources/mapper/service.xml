@@ -353,5 +353,136 @@
 		select count(*) from service_trip where service_group in 
 			(select service_group from service_trip where member_id = #{id})
 	</select>
-
+	
+	<select id="nameadminOQ" parameterType="PageServDTO" resultType="int">
+		<![CDATA[
+		select count(*) from 
+			service_trip q join service_qcategory_trip c 
+			on q.service_code = c.c_code 
+			where service_group in
+			(select service_group from service_trip
+				where service_name like '%' || #{keyword} || '%' 
+				and service_date >= #{startDate} and service_date <= #{endDate} 
+				and service_check = #{reply} and service_code = #{service_code})
+			
+		]]>	
+	</select>
+	
+	<select id="idadminOQ" parameterType="PageServDTO" resultType="int">
+		<![CDATA[
+		select count(*) from 
+			service_trip q join service_qcategory_trip c 
+			on q.service_code = c.c_code 
+			where service_group in
+			(select service_group from service_trip
+				where member_id like '%' || #{keyword} || '%' 
+				and service_date >= #{startDate} and service_date <= #{endDate} 
+				and service_check = #{reply} and service_code = #{service_code})
+		]]>
+	</select>
+	
+	<select id="nameAllselect" parameterType="PageServDTO" resultType="int">
+		<![CDATA[
+		select count(*) from 
+			service_trip q join service_qcategory_trip c 
+			on q.service_code = c.c_code 
+			where service_group in
+			(select service_group from service_trip
+				where service_name like '%' || #{keyword} || '%' 
+				and service_date >= #{startDate} and service_date <= #{endDate}
+				and service_code = #{service_code} )
+		]]>	
+	</select>
+	
+	<select id="idAllselect" parameterType="PageServDTO" resultType="int">
+		<![CDATA[
+		select count(*) from 
+			service_trip q join service_qcategory_trip c 
+			on q.service_code = c.c_code 
+			where service_group in
+			(select service_group from service_trip
+				where member_id like '%' || #{keyword} || '%' 
+				and service_date >= #{startDate} and service_date <= #{endDate}
+				and service_code = #{service_code} )
+		]]>
+	</select>
+	
+	<select id="nameadminOQList" parameterType="PageServDTO" resultType="ServiceDTO">
+		<![CDATA[
+		select * from 
+			(select q.*, c.*, row_number() 
+			over(order by service_group desc, service_step ) rnum 
+			from service_trip q join service_qcategory_trip c 
+			on q.service_code = c.c_code 
+			where service_group in
+			(select service_group from service_trip
+				where service_name like '%' || #{keyword} || '%' 
+				and service_date >= #{startDate} and service_date <= #{endDate} 
+				and service_check = #{reply} and service_code = #{service_code}))
+				where rnum >= #{startNo} and rnum <= #{endNo}
+		]]>	
+	</select>
+	
+	<select id="idadminOQList" parameterType="PageServDTO" resultType="ServiceDTO">
+		<![CDATA[
+		select * from 
+			(select q.*, c.*, row_number() 
+			over(order by service_group desc, service_step ) rnum 
+			from service_trip q join service_qcategory_trip c 
+			on q.service_code = c.c_code 
+			where service_group in
+			(select service_group from service_trip
+				where member_id like '%' || #{keyword} || '%' 
+				and service_date >= #{startDate} and service_date <= #{endDate} 
+				and service_check = #{reply} and service_code = #{service_code}))
+				where rnum >= #{startNo} and rnum <= #{endNo}
+		]]>
+	</select>
+	
+	<select id="nameadminOQAllList" parameterType="PageServDTO" resultType="ServiceDTO">
+		<![CDATA[
+		select * from 
+			(select q.*, c.*, row_number() 
+			over(order by service_group desc, service_step ) rnum 
+			from service_trip q join service_qcategory_trip c 
+			on q.service_code = c.c_code 
+			where service_group in
+			(select service_group from service_trip
+				where service_name like '%' || #{keyword} || '%' 
+				and service_date >= #{startDate} and service_date <= #{endDate}
+				and service_code = #{service_code}))
+				where rnum >= #{startNo} and rnum <= #{endNo}
+		]]>	
+	</select>
+	
+	<select id="idadminOQAllList" parameterType="PageServDTO" resultType="ServiceDTO">
+		<![CDATA[
+		select * from 
+			(select q.*, c.*, row_number() 
+			over(order by service_group desc, service_step ) rnum 
+			from service_trip q join service_qcategory_trip c 
+			on q.service_code = c.c_code 
+			where service_group in
+			(select service_group from service_trip
+				where member_id like '%' || #{keyword} || '%' 
+				and service_date >= #{startDate} and service_date <= #{endDate}
+				and service_code = #{service_code}))
+				where rnum >= #{startNo} and rnum <= #{endNo}
+		]]>
+		
+<!-- 		<![CDATA[
+			select * from 
+				(select q.*, c.*, row_number() 
+				over(order by service_group desc, service_step ) rnum 
+				from service_trip q join service_qcategory_trip c on q.service_code = c.c_code) 
+				where rnum >= #{startNo} and rnum <= #{endNo}
+				
+			select * from service_trip where service_group in
+			(select service_group from service_trip
+				where member_id like '%' || #{keyword} || '%' 
+				and service_date >= #{startDate} and service_date <= #{endDate}
+				and service_code = #{service_code})	
+				
+		]]> -->
+	</select>
 </mapper>    

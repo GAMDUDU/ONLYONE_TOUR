@@ -7,21 +7,19 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script type="text/javascript">
+</head>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">	
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<style type="text/css">
 
-
-<style>
-.container{
-	margin-top : 525px;
-	width : 1000px;
+.container2{
+	margin-top : 100px;
+	margin-left : 300px;
 	position: relative;
-	left: 30%;
-	top: 50%;
-	transform:translate(-50%,-50%);
+	width : 80%;
 	padding: 10px;
+	
 } 
 
 .noticeText{
@@ -32,74 +30,82 @@
 
 input{
 	
-	border : none;
-	
+	border:0px;
 }
 
-.selectBox{
-	width: 150px; 
-	padding: .3em .3em; 
-	border: 1px solid #999;
-	font-family: inherit;  
-	background: url('./resources/image_service/source/selectArrow.png') no-repeat 95% 50%; 
-	border-radius: 2px; 
-	-webkit-appearance: none; 
-	-moz-appearance: none;
-	appearance: none;
+.table tr th{
+	width: 10%;
 }
-	
 
+.table tr td{
+	width: 50%;
+}
+
+textarea{
+	border: 0;
+}
+
+.foooooooter{
+	
+	position: relative;
+	margin-top: 10%;
+	bottom : 0;
+}
+a{
+	text-decoration: none;
+	color : black; 
+	font-weight: bold;
+}	
+
+a:hover{
+	text-decoration: none;
+	color : #9046cf; 
+}
 </style>
 
-
-</head>
 <body>
-	<%@include file="admin/adminInclude/admin_top.jsp" %>
-
-	<%@include file="admin/adminInclude/admin_aside.jsp" %>
+	<jsp:include page="include/top.jsp" />
+	<%@include file="./include/service_oneQSidebar.jsp" %>
+	
 	
 	<c:set value="${content }" var="c" />
 	<c:set value="${Page }" var="page" />
 	<c:set value="${fileList }" var="file"/>
-	<div class="container" >
-		<h4 class="noticeText">1:1 문의 관리</h4>
-		<table  class="table" style="table-layout: fixed">
+	<div div class="container2">
+		<h4 class="noticeText"> 내 문의 내역</h4>
+		<table class="table" >
 			<tr>
-				<th width="15%">번호</th>
+				<th>번호</th>
 				<td><input name="service_num" readonly="readonly" value="${c.service_num }"> </td>
 			</tr>
 			
 			<tr>
-				<th width="15%">답변상태</th>
+				<th>답변상태</th>
 				<td><input name="service_num" readonly="readonly" value="${c.service_check}" ></td>
 			</tr>
 			
 			<tr>
-				<th width="15%">카테고리</th>
+				<th>카테고리</th>
 				<td><input name="service_num" readonly="readonly" value="${c.c_name }"></td>
 			</tr>
 			
 			<tr>
-				<th width="15%">아이디</th>
-				<td><input name="service_num" readonly="readonly" value="${c.member_id }"></td>
-			</tr>
-			<tr>
-				<th width="15%">작성자</th>
+				<th>작성자</th>
 				<td><input name="service_num" readonly="readonly" value="${c.service_title }"></td>
 			</tr>
 			
 			<tr>
-				<th width="15%">제목</th>
+				<th>제목</th>
 				<td><input name="service_num" readonly="readonly" value="${c.service_title }"></td>
 			</tr>
 			
 			<tr>
-				<th width="15%">내용</th>
+				<th>내용</th>
 				<td><textarea rows="15" cols="100" name="service_cont" readonly="readonly">${c.service_cont }</textarea></td>
 			</tr>
 			
 			<tr>
-				<th width="15%">첨부파일</th>
+				<th>첨부파일</th>
 				<td>
 					<c:if test="${empty file }">
 						첨부파일이 없습니다.
@@ -118,27 +124,27 @@ input{
 			</tr>
 			
 			<tr>
-				<th width="15%">작성일자</th>
+				<th>작성일자</th>
 				<td><input name="service_num" readonly="readonly" value="${c.service_date }"></td>
 			</tr>
 			
 			<tr>
-				<th width="15%">조회수</th>
+				<th>조회수</th>
 				<td><input name="service_num" readonly="readonly" value="${c.service_view }"></td>
 			</tr>
 			
 		</table>
-		<div>
-			<a class="btn float-right ">
-			<input type="button" value="답변하기" class="btn btn-success btn-block"
-				onclick="location.href='admin_oneQuestion_reply.do?num=${c.service_num}&page=${Page }'">
-			</a>
-			
-			<a class="btn float-right ">
-			<input type="button" value="목록으로" class="btn btn-outline-success btn-block"
-				onclick="history.back()">
-			</a>	
-		</div>	
+	</div>
+	<div>
+		
+		<a class="btn float-right "> <input type="button" value="목록으로" class="btn btn-success btn-block"
+			onclick="history.back()">
+		</a>
+	</div>	
+		
+	<div class="foooooooter">
+	
+		<jsp:include page="include/footer.jsp" />
 	</div>
 		
 </body>

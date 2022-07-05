@@ -10,19 +10,26 @@
 
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">	
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
-<%-- <link rel="stylesheet" type="text/css" href="${path }/resources/css/userOneQuestion.css">
- --%>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 
 $(document).ready(function(e){
 	
+
+/* 	var link = document.location.href; //현재 url
+	var tab = link.split('/').pop(); //배열의 맨 마지막 요소를 삭제하고 삭제된 해당 값을 반환함 */
+	/*  $('a[herf$='+tab+']').trigger("click");*/
 	
 	
 	const tabMenu = document.querySelectorAll('.tab-menu li');
 	const tabContent = document.querySelectorAll('#tab-content > div');
 	const highlight = document.querySelector('.highlight');
+	
 	
 	tabMenu.forEach(function(item, idx){
 		item.addEventListener('click', function(e){
@@ -30,31 +37,41 @@ $(document).ready(function(e){
 			e.preventDefault(); 
 			showContent(idx);
 			moveHighLight(idx);
+			
 		});
 	
 	});
 	
-
  	function showContent(num){
-			
+		
+ 		
 		tabContent.forEach(function(item){
 			item.style.display = 'none';
+			/* window.location.replace(ui.tab.hash); */
 		});
 		tabContent[num].style.display = 'block';
 		
+		
+		
 	}
 	
- 	function moveHighLight(num){
+  	function moveHighLight(num){
 		
 		const newLeft = tabMenu[num].offsetLeft;
 		const newWidth = tabMenu[num].offsetWidth;
 		console.log(newLeft);
 		highlight.style.left = newLeft + 'px';
 		highlight.style.width = newWidth + 'px';
-	} 
+	}  
+  	
  	
-
- 	
+/* 	$(".tab-wrapper").tabs({
+		select:function(event, ui){
+			
+			window.location.replace(ui.tab.hash);
+		}
+		
+	}); */
  	
 })
 
@@ -111,38 +128,128 @@ function addDel(a){
     
 }	
 
-function userQList(page, id){
+function userQList(npage,id){
 	
-	console.log(page);
 	
 	$.ajax({
-		url : "user_oneQuestionJson.do", //c:url = getContextPath()
-		datatype : "json",			//key, value 로 넘기는게 json 방식
-		data : {
-			page : page,
-			member_id : id
-		},
-		success : function(data){
+			type:"POST",
+			url: "<%=request.getContextPath()%>/user_oneQuestionJson.do",
+			data : {"memberId" : id,
+				"page" : npage},
+			datatype: "json",
 			
-			
-			
-		},
-		error : function(){
-			alert('통신 오류 발생');
-		}
-		
-	});	
-	
+			success: function(data){
+			 	 
+				 console.log(data);
+			 	 
+				 var table='';
+				 
+				 var itgo = new Array;
+				 itgo = JSON.parse(data);  //수연스승님하사
+				 
+				 console.log(itgo.List[0]);
+				 console.log(itgo.Pdto);
+				 	
+			 	 table += '<table><tr>'; 
+				 table += '<th>번호</th>';	
+				 table += '<th>제목</th>';	
+				 table += '<th>작성자</th>';	
+				 table += '<th>답변상태</th>';	
+				 table += '<th>조회수</th>';
+				 table += '<th>작성일자</th></tr>';
+				 
+				 
+				
+				
+				for(var i=0; i<itgo.List.length; i++){
+					 
+					 table += '<tr>';
+					 table += '<td  width="10%">'+ itgo.List[i].service_num +'</td>';
+					 
+					 table += '<td  width="40%">';
+					 table += '<a href="user_oneQuestion_content.do?num=' + itgo.List[i].service_num + '&page=' + itgo.Pdto.page + '">';
+					 
+					 if(itgo.List[i].service_indent != 0){
+						 
+						 table += '<img id="replyImg" src="./resources/image_service/source/829.png">';
+						 
+					 }
+					 
+					 table += itgo.List[i].service_title + '</a></td>';
+					 
+					 
+					 table += '<td  width="10%">'+ itgo.List[i].service_name +'</td>';
+					 table += '<td  width="10%">'+ itgo.List[i].service_check +'</td>';
+					 table += '<td  width="10%">'+ itgo.List[i].service_view +'</td>';
+					 table += '<td  width="20%">'+ itgo.List[i].service_date +'</td>';
+					 table += '</tr>';
+					 
+				
+					 $("#listTable").html(table);
+				
+				}
+				
+				
+				var pDiv='';
+				
+				pDiv += '<div id="pageDiv" class="text-center">';
+				pDiv += '<ul class="pagination">';
+				
+				if(itgo.Pdto.page > itgo.Pdto.block ){
+					
+				    pDiv += '<li class="page-item"><a class="page-link" href="javascript:userQList(1,'+"'"+ itgo.Pdto.member_id +"'"+')">처음으로</a></li>';
+				    pDiv += '<li class="page-item"><a class="page-link" href="javascript:userQList('+ (itgo.Pdto.startBlock + 1) + ','+"'"+ itgo.Pdto.member_id +"'"+')">◀</a></li>';
+				
+				}
+			    
+			    for(var i=itgo.Pdto.startBlock; i<=itgo.Pdto.endBlock; i++){
+			    	
+			    	if(i==itgo.Pdto.page){
+			    		pDiv += '<li class="page-item"><a class="page-link" href="javascript:userQList('+i+','+"'"+ itgo.Pdto.member_id +"'"+')">'+i+'</a></li>';
+					}
+			    	if(i!=itgo.Pdto.page){
+					    pDiv += '<li class="page-item"><a class="page-link" href="javascript:userQList('+i+','+"'"+ itgo.Pdto.member_id +"'"+')">'+i+'</a></li>';
+			    	}
+			    	
+			    }
+			  	
+			    if(itgo.Pdto.block < itgo.Pdto.allPage){
+			    	 pDiv += '<li class="page-item"><a class="page-link" href="javascript:userQList(' + (itgo.Pdto.endBlock + 1) + ','+"'"+ itgo.Pdto.member_id +"'"+')">▶</a></li>';
+					 pDiv += '<li class="page-item"><a class="page-link" href="javascript:userQList(' + itgo.Pdto.allPage + ','+"'"+ itgo.Pdto.member_id +"'"+')">[마지막으로]</a></li>';
+			    }
+				
+			    $("#pageDiv").html(pDiv);
+				
+				pDiv += '</ul>'
+				pDiv += '</div>'
+				
+				
+			},
+			error: function(data){
+				alert("통신 오류입니다.")
+			},
+			async: false	
+		});
+	  	
+ 		
 	
 }
+
 
 </script>
 
 <style>
 .tab-wrapper {
-	width : 900px;
-	margin : auto;
+	margin-top : 100px;
+	margin-left : 300px;
+	position: relative;
+	border : 1px;
+	padding: 10px;
 }	
+
+.navi{
+	width : 100%;
+}
 
 .tab-menu {
 	padding-left : 0;
@@ -163,7 +270,7 @@ function userQList(page, id){
 }
 	
 .tab-menu li a{
-	color:#999;
+	color:#000;
 	text-transform: uppercase;
 	font-weight: bold;
 	line-height: 27px;
@@ -195,7 +302,7 @@ function userQList(page, id){
 	top: 0;
 	left: 0;
 	bottom: 0;
-	background:  #000;
+	background:  #9046cf;
 	/* 네모칸 이동 */
 	transition : 0.4s cubic-bezier(0.65, 0, 0.35, 1);
 }
@@ -203,18 +310,72 @@ function userQList(page, id){
 #replyImg{
 		width: 12px;
 		height: 12px;
-	}
+}
 	
+
+
+.foooooooter{
+	
+	position : relative;
+	margin-top: 10%;
+	bottom : 0;
+}	
+
+.text-center{
+	width: 30%; 
+	float:none; 
+	margin:0 auto
+}
+
+input{
+	
+	
+	border-bottom : 2px;
+	border-left : 0;
+	border-top : 0;
+	border-right : 0;
+	height: 34px;
+	
+}
+	
+.searchBox{
+	width: 250px; 
+	padding: .3em .3em; 
+	border: 1px solid #999;
+	font-family: inherit;  
+	border-radius: 2px; 
+	-webkit-appearance: none; 
+	-moz-appearance: none;
+	appearance: none;
+}
+
+.container2{
+	position: relative;
+	width : 100%;
+	padding: 10px;
+	
+} 
+
+a{
+	text-decoration: none;
+	color : black; 
+	font-weight: bold;
+}	
+
+a:hover{
+	text-decoration: none;
+	color : #9046cf; 
+}
 
 </style>
 
 
 </head>
 <body>
-
+	<jsp:include page="include/top.jsp" />
 	<%@include file="./include/service_oneQSidebar.jsp" %>
 	
-	<div class="tab-wrapper">
+	<div class="tab-wrapper" >
 		<div class="navi">
 			<ul class="tab-menu">
 				<li><a href="#oneAndOne">1:1문의</a></li>
@@ -230,14 +391,16 @@ function userQList(page, id){
 					action="user_oneQuestion_Write.do"
 						enctype="multipart/form-data">
 					
-					<input type="hidden" value="${member_id}" name="member_id">
+						
+					<input type="hidden" value="${member_id }" name="member_id">
+									
 					<c:set var="clist" value="${categoryList}" />
 					
-					<table>
+					<table  class="table">
 						<tr>
-							<th>문의유형</th>
+							<th width="15%">문의유형</th>
 							<td>
-								<select name="service_code">
+								<select name="service_code" class="selectBox">
 									<c:if test="${empty clist}">
 										<option>유형없음</option>
 									</c:if>
@@ -254,26 +417,26 @@ function userQList(page, id){
 						</tr>
 						
 						<tr>
-							<th>작성자</th>
+							<th width="10%">작성자</th>
 							<td><input name="service_name" value="${member_name}" readonly="readonly"></td>
 						</tr>
 						
 						<tr>
-							<th>제목</th>
+							<th width="10%">제목</th>
 							<td>
-								<input name="service_title">
+								<input name="service_title" placeholder="제목을 입력해주세요" style="width : 500px;">
 							</td>
 						</tr>
 						
 						<tr>
 							<th>내용</th>
 							<td>
-								<textarea rows="25" cols="40" name="service_cont" ></textarea>
+								<textarea rows="15" cols="80" name="service_cont" ></textarea>
 							</td>
 						</tr>
 						
 						<tr>
-							<th>첨부파일</th>
+							<th width="10%">첨부파일</th>
 							<td class="fileAddT">
 							<input type="file" name="upfile"> 
 							<input type="button" name="fileAdd" value="추가" onclick="addFile()"><br>
@@ -287,77 +450,86 @@ function userQList(page, id){
 						
 					</table>
 					
-					<input type="button" onclick="q_check()" value="작성완료">
+					<a class="btn float-right ">
+						<input type="button" onclick="q_check()" value="작성완료" class="btn btn-success btn-block">
+					</a>	
+						
 				</form>
 				
 			</div>
 			
-			<div id="oneAndOneList">
+			<div id="oneAndOneList" class="container2">
 				
+				<c:set var="paging" value="${Paging }" />
 				<c:set value="${QList }" var="list" />
-				<table>
+				<table id="listTable" class="table table2">
 					<tr>
-						<th>번호</th>
-						<th>제목</th>
-						<th>작성자</th>
-						<th>답변상태</th>
-						<th>조회수</th>
-						<th>작성일자</th>
+						<th width="10%">번호</th>
+						<th width="40%">제목</th>
+						<th width="10%">작성자</th>
+						<th width="10%">답변상태</th>
+						<th width="10%">조회수</th>
+						<th width="20%">작성일자</th>
 					</tr>
 					<c:if test="${!empty list }"> 
 						<c:forEach items="${list }" var="l">
 							<tr>
-								<td>
+								<td width="10%">
 									${l.service_num }
 								</td>
-								<td>
+								<td width="40%">
+									<a href="user_oneQuestion_content.do?num=${l.service_num }&page=${paging.page }">
 									<c:if test="${l.service_indent != 0 }">
 										<img id="replyImg" src="./resources/image_service/source/829.png">
 									</c:if>
 									${l.service_title }
+									</a>
 								</td>
-								<td>
+								<td width="10%"> 
 									${l.service_name }
 								</td>
-								<td>
+								<td width="10%">
 									${l.service_check }
 								</td>
-								<td>
+								<td width="10%">
 									${l.service_view }
 								</td>
-								<td>
-									${l.service_date }
+								<td width="25%">
+									${l.service_date.substring(0, 10) }
 								</td>
 							</tr>
 						
 						</c:forEach>
 					</c:if>
 					</table>
-				<div>
+				<div id="pageDiv" class="text-center">
 					<c:set var="paging" value="${Paging }" />
 		
 					<%-- 페이징 처리 부분 --%>
-				    <c:if test="${paging.getPage() > paging.getBlock() }">
-				       <a href="userQList(1, ${member_id})">[처음으로]</a>
-				       <a href="userQList(${paging.getStartBlock() - 1 }, ${member_id})">◀</a>
-				    </c:if>
-				   
-				    <c:forEach begin="${paging.getStartBlock() }"
-				          				end="${paging.getEndBlock() }" var="i">
-				       <c:if test="${i == paging.getPage() }">
-				          <b> <a href="userQList(i, ${member_id})">[${i }]</a> </b>
-				       </c:if>
-				   
-				  	   	   <c:if test="${i != paging.getPage() }">
-				          <a href="userQList(i, ${member_id})">[${i }]</a>
-				       </c:if>
-				    </c:forEach>
-				
-				    <c:if test="${paging.getEndBlock() < paging.getAllPage() }">
-				       <a href="userQList(${paging.getEndBlock() + 1 }, ${member_id})">▶</a>
-				       <a href="userQList(${paging.getAllPage()}, ${member_id})">[마지막으로]</a>
-				    </c:if>
+					<ul class="pagination">
+					    <c:if test="${paging.getPage() > paging.getBlock() }">
+					       <li class="page-item"><a class="page-link" href="javascript:userQList(1,'${member_id}')">[처음으로]</a>
+					       <li class="page-item"><a class="page-link" href="javascript:userQList(${paging.getStartBlock() - 1 },'${member_id}')">◀</a></li>
+					    </c:if>
+					   
+					    <c:forEach begin="${paging.getStartBlock() }"
+					          				end="${paging.getEndBlock() }" var="i">
+					       <c:if test="${i == paging.getPage() }">
+					          <li class="page-item"><a class="page-link" href="javascript:userQList(${i},'${member_id}')">${i }</a></li>
+					       </c:if>
+					   
+					  	   	   <c:if test="${i != paging.getPage() }">
+					          <li class="page-item"><a class="page-link" href="javascript:userQList(${i},'${member_id}')">${i }</a></li>
+					       </c:if>
+					    </c:forEach>
+					
+					    <c:if test="${paging.getEndBlock() < paging.getAllPage() }">
+					       <li class="page-item"><a class="page-link" href="javascript:userQList(${paging.getEndBlock() + 1 },'${member_id}')">▶</a></li>
+					       <li class="page-item"><a class="page-link" href="javascript:userQList(${paging.getAllPage()},'${member_id}')">마지막으로</a></li>
+					    </c:if>
+					</ul> 
 				</div>
+				
 			</div>
 			
 			
@@ -365,7 +537,8 @@ function userQList(page, id){
 		
 		
 	</div>
-	
-	
+	<div class="foooooooter">
+		<jsp:include page="include/footer.jsp"  />
+	</div>
 </body>
 </html>

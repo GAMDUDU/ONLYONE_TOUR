@@ -109,6 +109,14 @@ public interface ServiceDAO {
 
 	public int deleteOneQuestion(int num);
 
+	public int searchOneQuestionACount(String field, PageServDTO pDto);
+
+	public int searchOneQuestionAALLCount(String field, PageServDTO pDto);
+
+	public List<ServiceDTO> getOneQuestionSearchList(String field, PageServDTO pDto);
+
+	public List<ServiceDTO> getOneQuestionSearchAllList(String field, PageServDTO pDto);
+
 	
 
 

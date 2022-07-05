@@ -7,7 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
-
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -19,12 +19,15 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.w3c.dom.ls.LSInput;
 
-
+import com.google.gson.Gson;
 import com.service.model.PageServDTO;
 import com.service.model.ServiceCategoryDTO;
 import com.service.model.ServiceDAO;
@@ -36,7 +39,7 @@ import com.service.model.ServiceQuestionDTO;
 @Controller
 public class ServiceController {
 
-	private final int rowsize = 5; // 한 페이지당 보여질 게시물의 수
+	private final int rowsize = 10; // 한 페이지당 보여질 게시물의 수
 	private int totalRecord = 0; // DB 상의 전체 게시물의 수
 
 	@Autowired
@@ -250,11 +253,11 @@ public class ServiceController {
 
 	}
 
-	@RequestMapping("amdin_notice_content.do")
+	@RequestMapping("admin_notice_content.do")
 	public String admin_notice_content(@RequestParam("num") int num, @RequestParam("page") int nowPage, Model model) {
-
+		
 		ServiceNoticeDTO dto = this.dao.getNoticeContent(num);
-
+		System.out.println("dto");
 		model.addAttribute("Cont", dto);
 		model.addAttribute("Page", nowPage);
 
@@ -374,7 +377,8 @@ public class ServiceController {
 
 	@RequestMapping("user_notice_content.do")
 	public String user_notice_content(@RequestParam("num") int num, @RequestParam("page") int nowPage, Model model) {
-
+		
+		
 		this.dao.viewCount(num);
 
 		ServiceNoticeDTO dto = this.dao.getNoticeContent(num);
@@ -449,37 +453,49 @@ public class ServiceController {
 
 	}
 	
-	@RequestMapping("user_oneQuestionJson.do" )
-	public String user_oneQuestionListJason(HttpServletRequest request, Model model, 
-			@RequestParam("member_id") String id ) {
+	@RequestMapping(value="/user_oneQuestionJson.do" )
+	public void user_oneQuestionListJason(@RequestParam HashMap<String, Object> params,HttpServletResponse response,  Model model) throws IOException {
+		System.out.println(":::::ajax연결");
+		System.out.println(":::::params:::"+params.get("page"));
+		
+		String memid = (String)params.get("memberId");
+		System.out.println(params);
 		
 		// 카테고리 리스트
+		
 		List<ServiceCategoryDTO> cList = this.dao.getCategoryList();
-
 		model.addAttribute("categoryList", cList);
 		
-		// 회원의 질문 리스트
+		//회원의 질문 리스트
 		int page; // 현재 페이지 변수
 
-		if (request.getParameter("page") != null) {
-			page = Integer.parseInt(request.getParameter("page"));
+		if (params.get("page") != null) {
+			page = Integer.parseInt((String)params.get("page"));
 		} else {
 			page = 1; // 처음으로 게시물 전체 목록 태그를 선택한 경우
 		}
 
 		// DB 상의 전체 게시물의 수를 확인하는 메서드 호출
-		totalRecord = this.dao.getUserQuListCount(id);
+		totalRecord = this.dao.getUserQuListCount(memid);
 
 		PageServDTO dto = new PageServDTO(page, rowsize, totalRecord);
-		dto.setMember_id(id);
+		dto.setMember_id(memid);
 		
 		//session에서 가져온 id로 해당 회원의 질문글 조회 
 		List<ServiceDTO> List = this.dao.getOneQuestionList(dto); 
-		
-		model.addAttribute("Paging", dto);
+		model.addAttribute("Paging", dto); 
 		model.addAttribute("QList", List);
 		
-		return "user_OneQuestion";
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("List", List);
+		map.put("Pdto", dto);
+		
+		 response.setContentType("text/html; charset=UTF-8"); 
+		 PrintWriter out = response.getWriter();
+		 
+		// ajax에게 응답을 해준다.
+		 out.println(new Gson().toJson(map)); 
 		
 	}
 	
@@ -509,7 +525,7 @@ public class ServiceController {
 		//1. 파일업로드 경로 설정(HttpServletRequest 객체를 이용해서 경로를 가져옴)
 		//request.getSession().getServletContext().getRealPath()  ->  /webapp/폴더경로
 		String savePath 
-		= "C:\\Users\\ubg11\\git\\ONLYONE-TOUR\\ONLYONE-TOUR\\Onlyone_Tour\\src\\main\\webapp\\resources\\image_service\\upload\\";
+		= "C:\\NCS\\ONLYONE-TOUR\\Onlyone_Tour\\src\\main\\webapp\\resources\\image_service\\upload\\";
 		
 		//request.getSession().getServletContext().getRealPath("/resources/image_service/upload/");
 		//패스 경로 위에처럼 해야하는데 안돼서 직접 복사
@@ -677,7 +693,7 @@ public class ServiceController {
 		
 		//파일과 현재 서블릿 연결
 		//String root = request.getSession().getServletContext().getRealPath("/"); ///webapp
-		String root = "C:\\Users\\ubg11\\git\\ONLYONE-TOUR\\ONLYONE-TOUR\\Onlyone_Tour\\src\\main\\webapp\\resources\\image_service\\upload\\";
+		String root = "C:\\NCS\\ONLYONE-TOUR\\Onlyone_Tour\\src\\main\\webapp\\resources\\image_service\\upload\\";
 		String downLoadFile = root + fileDTO.getFile_path();
 		System.out.println(fileDTO.getFile_path());
 		
@@ -751,7 +767,7 @@ public class ServiceController {
 		//1. 파일업로드 경로 설정(HttpServletRequest 객체를 이용해서 경로를 가져옴)
 		//request.getSession().getServletContext().getRealPath()  ->  /webapp/폴더경로
 		String savePath 
-		= "C:\\Users\\ubg11\\git\\ONLYONE-TOUR\\ONLYONE-TOUR\\Onlyone_Tour\\src\\main\\webapp\\resources\\image_service\\upload\\";
+		= "C:\\NCS\\ONLYONE-TOUR\\Onlyone_Tour\\src\\main\\webapp\\resources\\image_service\\upload\\";
 		
 		//request.getSession().getServletContext().getRealPath("/resources/image_service/upload/");
 		//패스 경로 위에처럼 해야하는데 안돼서 직접 복사
@@ -867,7 +883,90 @@ public class ServiceController {
 		
 	}
 	
+	@RequestMapping("user_oneQuestion_content.do")
+	public String user_oneQuestionContent(@RequestParam("num") int num, @RequestParam("page") int nowPage,
+			Model model) {
+
+		// 조회수증가
+		this.dao.oneQviewCount(num);
+
+		// 게시글 내용
+		ServiceDTO dto = this.dao.getAdminOneQuestionContent(num);
+
+		// 첨부파일 가져오기
+		List<ServiceFileDTO> FileList = this.dao.getUserFileToAdmin(num);
+
+		model.addAttribute("content", dto);
+		model.addAttribute("Page", nowPage);
+		model.addAttribute("fileList", FileList);
+
+		return "user_oneQuestion_content";
+	} 
 	
+	@RequestMapping("oneQuestion_search.do")
+	public String oneQuestionSearch(@RequestParam("field") String field, @RequestParam("keyword") String keyword,
+			@RequestParam("startDate") String startDate, @RequestParam("page") int nowPage,
+			@RequestParam("endDate") String endDate, @RequestParam("reply") String reply , Model model ,
+			@RequestParam("service_code") int service_code) {
+		
+		//검색기간 설정
+		if(startDate == "") {
+			startDate = "2000-01-01";
+		}
+		if(endDate == "") {
+			endDate = "9999-12-12";
+		}
+		
+		//객체 초기화 - 페이지 단위로는 못가져와서 밑에서 새로 생성해줘야함
+		//토탈레코드를 가져오기 위해 사용
+		//이미 해서 생성자를 또 만들기 귀찮..
+		PageServDTO pDto = new PageServDTO();
+		pDto.setPage(nowPage);
+		pDto.setKeyword(keyword);
+		pDto.setStartDate(startDate);
+		pDto.setEndDate(endDate);
+		pDto.setReply(reply);
+		pDto.setService_code(service_code);
+		pDto.setField(field);
+		
+		List<ServiceDTO> sList = null;
+		System.out.println("keyword= " + keyword );
+		//게시글의 수를 DB에서 확인하는 작업 (검색분류, 검색어, 답변유무, 검색기간에 따라 달라야함.)
+		//넘어온 keyword에 따라 답변상태에 따라 나누어주어야함
+		if(reply.equals("all")) { 
+			//답변상태가 전체검색일 경우
+			totalRecord = this.dao.searchOneQuestionAALLCount(field, pDto);
+			
+			//page 객체에 페이지 레코드 설정
+			PageServDTO pgDto =
+					new PageServDTO(nowPage, rowsize, totalRecord, field, keyword, startDate, endDate, reply, service_code);
+			
+			sList = this.dao.getOneQuestionSearchAllList(field, pgDto);
+			System.out.println("sList = " + sList);
+			
+			model.addAttribute("servList", sList);
+			model.addAttribute("Paging", pgDto);
+		}else {	
+			//답변상태가 확인중 or 답변완료일 경우
+			totalRecord = this.dao.searchOneQuestionACount(field, pDto);
+			
+			PageServDTO pgDto =
+					new PageServDTO(nowPage, rowsize, totalRecord, field, keyword, startDate, endDate, reply, service_code);
+			
+			sList = this.dao.getOneQuestionSearchList(field, pgDto);
+			
+			model.addAttribute("servList", sList);
+			 model.addAttribute("Paging", pgDto);
+		
+		}
+		
+		System.out.println("totalRecord = " + totalRecord);
+		
+		return "admin_oneQuestionSearchList";
+	}
+	
+	
+
 	@RequestMapping("admin_test.do")
 	public String admin_test() {
 		

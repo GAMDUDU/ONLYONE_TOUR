@@ -23,4 +23,5 @@
 	
 	<context:component-scan base-package="com.*" />
 	
+	<beans:bean id="jsonView" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
 </beans:beans>

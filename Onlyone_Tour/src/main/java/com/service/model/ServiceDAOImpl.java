@@ -300,6 +300,30 @@ public class ServiceDAOImpl implements ServiceDAO{
 		// TODO Auto-generated method stub
 		return this.sqlSession.selectOne("getUserQuListCount", id);
 	}
+
+	@Override
+	public int searchOneQuestionACount(String field, PageServDTO pDto) {
+		// TODO Auto-generated method stub
+		return this.sqlSession.selectOne(field + "adminOQ", pDto);
+	}
+
+	@Override
+	public int searchOneQuestionAALLCount(String field, PageServDTO pDto) {
+		// TODO Auto-generated method stub
+		return this.sqlSession.selectOne(field + "Allselect", pDto);
+	}
+
+	@Override
+	public List<ServiceDTO> getOneQuestionSearchList(String field, PageServDTO pDto) {
+		// TODO Auto-generated method stub
+		return this.sqlSession.selectList(field + "adminOQList", pDto);
+	}
+
+	@Override
+	public List<ServiceDTO> getOneQuestionSearchAllList(String field, PageServDTO pDto) {
+		// TODO Auto-generated method stub
+		return this.sqlSession.selectList(field + "adminOQAllList", pDto);
+	}
 	
 	
 	

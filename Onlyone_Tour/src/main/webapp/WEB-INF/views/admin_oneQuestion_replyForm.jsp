@@ -6,6 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">	
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 //유효성검사
@@ -54,11 +57,61 @@ function addDel(a){
 }	
 
 </script>
+<style type="text/css">
+.container{
+	margin-top : 450px;
+	
+	position: relative;
+	left: 30%;
+	top: 50%;
+	transform:translate(-50%,-50%);
+	
+} 
+
+.noticeText{
+	position: relative;
+	float:left;
+	
+}
+
+input[type=text]{
+	
+	border-top:0px;
+	border-left: 0px;
+	border-right: 0px;
+	width: 750px;
+	
+}
+
+.selectBox{
+	width: 150px; 
+	padding: .3em .3em; 
+	border: 1px solid #999;
+	font-family: inherit;  
+	background: url('./resources/image_service/source/selectArrow.png') no-repeat 95% 50%; 
+	border-radius: 2px; 
+	-webkit-appearance: none; 
+	-moz-appearance: none;
+	appearance: none;
+}
+
+
+	
+
+</style>
+
 </head>
 <body>
+	<%@include file="admin/adminInclude/admin_top.jsp" %>
+
+	<%@include file="admin/adminInclude/admin_aside.jsp" %>
+
 	<c:set value="${content }" var="c" />
 	<c:set value="${Page }" var="page" />
-	<div>
+	<div class="container">
+	
+		<h4 class="noticeText">1:1 문의 관리</h4>
+		
 		<form method="post"  name="admin_QuestionForm"
 			enctype="multipart/form-data"
 			action="admin_oneQuestion_replyOk.do">
@@ -72,35 +125,37 @@ function addDel(a){
 			<input type="hidden" name="page" value="${page }">
 			<input type="hidden" name="member_id" value="${member_id }">
 			
-			<table>
+			<table class="table" style="table-layout: fixed">
 				<tr>
-					<th>작성자</th>
+					<th width="15%">작성자</th>
 					<td><input name="service_name" value="${member_name }" readonly="readonly"></td>
 				</tr>
 				
 				<tr>
-					<th>제목</th>
+					<th width="15%">제목</th>
 					<td><input name="service_title"></td>
 				</tr>
 				
 				<tr>
-					<th>내용</th>
-					<td><textarea rows="30" cols="40" name="service_cont"></textarea> </td>
+					<th width="15%">내용</th>
+					<td><textarea rows="15" cols="100" name="service_cont"></textarea> </td>
 				</tr>
 				
 				<tr>
-					<th>첨부파일</th>
+					<th width="15%">첨부파일</th>
 					<td class="fileAddT">
-						<input type="file" name="upfile"> 
+						<input type="file" name="upfile" > 
 						<input type="button" name="fileAdd" value="추가" onclick="addFile()"><br>
 					</td>
 				</tr>
 			</table>
-			
-			<input type="button" onclick="qForm_check()" value="작성완료">
-			<input type="button" value="뒤로가기"
+			<a class="btn float-right ">
+				<input type="button" onclick="qForm_check()" value="작성완료" class="btn btn-success btn-block">
+			</a>
+			<a class="btn float-right ">
+			<input type="button" value="뒤로가기" class="btn btn-outline-success btn-block"
 				onclick="history.back()">
-			
+			</a>
 		</form>
 	</div>
 </body>
