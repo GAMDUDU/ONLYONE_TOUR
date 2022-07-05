@@ -123,7 +123,7 @@
 	  <div class="nav_bar" id="ans-3">
 	 	 <a href="#">패키지상품</a>
 	 	 <a href="#">호텔</a>
-	 	 <a href="#">항공</a>
+	 	 <a href="<%=request.getContextPath()%>/admin_air.do">항공</a>
 	  </div>
 	
 	</div>

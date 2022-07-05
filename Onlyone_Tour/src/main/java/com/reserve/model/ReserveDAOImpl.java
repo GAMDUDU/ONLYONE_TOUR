@@ -28,7 +28,7 @@ public class ReserveDAOImpl implements ReserveDAO {
 
 	@Override
 	public MemberDTO getMemberCont(String id) {
-		return this.sqlSession.selectOne("member", id);
+		return this.sqlSession.selectOne("Login", id);
 	}
 
 
@@ -58,7 +58,7 @@ public class ReserveDAOImpl implements ReserveDAO {
 
 	@Override
 	public MemberDTO getMemberAirCont(String id) {
-		return this.sqlSession.selectOne("Airmember", id);
+		return this.sqlSession.selectOne("Login", id);
 	}
 
 

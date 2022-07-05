@@ -131,6 +131,7 @@
 			 			  </p>
 			 			  <ul>
 			 			  	<li><a href="#">예약내역</a></li>
+			 			  	<li><a href="<%=request.getContextPath()%>/airport_mypage.do?id=${member_id}">항공예약내역</a></li>
 			 			  	<li><a href="#">찜</a></li>
 			 			  </ul>
 			 			  <ul>

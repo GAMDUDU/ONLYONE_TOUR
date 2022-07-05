@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
  
 <!DOCTYPE html>
 <html>
@@ -31,6 +32,16 @@
 		border-radius: 10px;
 	}
 	
+	#people {
+		width: 95%;
+		height: 50px;
+		margin: 10px;
+		padding: 10px;
+		border: 0;
+		border-radius: 5px;
+		background-color: #eee;
+	}
+	
 	.input {
 		width: 95%;
 		height: 50px;
@@ -40,6 +51,7 @@
 		border-radius: 5px;
 		background-color: #eee;
 	}
+	
 	
 	.inputDate {
 		width: 46%;
@@ -56,15 +68,27 @@
 		border-radius: 100%;
 	}
 	
+	#air_product {
+		font-size:20px;
+		font-weight:bold;
+		margin-bottom: 5px;
+		margin-top: 5px;
+	}
+	
+	a { text-decoration:none !important }
+	a:hover { text-decoration:none !important }
+
 </style>
 
 </head>
 <body>
 
 	<jsp:include page="include/top.jsp" />
+	</div>
 	<hr width="100%" color="gray">
 	
 	<div class="container-fluid">
+	<c:set var="nlist" value="${nList }" />
 	
 		<div class="row">
 			<div id="air_image" class="col-md-12">
@@ -75,6 +99,7 @@
 						<br>
 						<input type="hidden" name="air_adult_fare">
 						<input type="hidden" name="air_child_fare">
+						<input type="hidden" name="air_baby_fare">
 						
 						<table style="width: 100%;">
 						<colgroup>
@@ -86,41 +111,35 @@
 							<tr>
 								<td>
 									<select class="input" name="air_departure">
-										<option value="">출발지</option>
-										<option value="김포">김포(GMP)</option>
-										<option value="인천">인천(ICN)</option>
-										<option value="제주">제주(CJU)</option>
-										<option value="부산">부산(PUS)</option>
-										<option value="여수">여수(RSU)</option>
-										<option value="울산">울산(USN)</option>
-										<option value="대만">대만(타이페이)(TPE)</option>
-										<option value="방콕">방콕(BKK)</option>
-										<option value="파리">파리(PAK)</option>
-										<option value="블라디보스톡">블라디보스톡(VVO)</option>
-										<option value="뉴욕">뉴욕(존 에프 케네디)(JFK)</option>
-										<option value="하와이">하와이(호놀룰루)(HNL)</option>
-										<option value="괌">괌(GUM)</option>
-										<option value="시드니">시드니(SYD)</option>
-									</select>
+					                     <c:if test="${empty nlist }">
+					                        <option value="">:::국가 목록 없음:::</option>
+					                     </c:if>
+					                     				                     
+					                     <c:if test="${!empty nlist }">
+					                     	<option value="">출발지</option>
+					                        <c:forEach items="${nlist }" var="ndto">
+					                           <option value="${ndto.getAir_nation_val() }">
+					                           		${ndto.getAir_nation() }
+					                           </option>
+					                        </c:forEach>
+					                     </c:if>
+				                  </select>
 								</td>
 								<td class="text-center" style="font-size:30px; font-weight:bold;"> ⇌ </td>
 								<td>
 									<select class="input" name="air_arrival">
-										<option value="">도착지</option>
-										<option value="김포">김포(GMP)</option>
-										<option value="인천">인천(ICN)</option>
-										<option value="제주">제주(CJU)</option>
-										<option value="부산">부산(PUS)</option>
-										<option value="여수">여수(RSU)</option>
-										<option value="울산">울산(USN)</option>
-										<option value="대만">대만(타이페이)(TPE)</option>
-										<option value="방콕">방콕(BKK)</option>
-										<option value="파리">파리(PAK)</option>
-										<option value="블라디보스톡">블라디보스톡(VVO)</option>
-										<option value="뉴욕">뉴욕(존 에프 케네디)(JFK)</option>
-										<option value="하와이">하와이(호놀룰루)(HNL)</option>
-										<option value="괌">괌(GUM)</option>
-										<option value="시드니">시드니(SYD)</option>
+										<c:if test="${empty nlist }">
+				                        	<option value="">:::국가 목록 없음:::</option>
+					                     </c:if>
+					                     				                     
+					                     <c:if test="${!empty nlist }">
+					                     	<option value="">도착지</option>
+					                        <c:forEach items="${nlist }" var="ndto">
+					                           <option value="${ndto.getAir_nation_val() }">
+					                           		${ndto.getAir_nation() }
+					                           </option>
+					                        </c:forEach>
+					                     </c:if>
 									</select>
 								</td>
 								<td rowspan="2" class="text-center">
@@ -180,8 +199,11 @@
 				        	</tr>
 				        </table>
 				        
-				      	 <div class="text-center">
-				      	 	☑️ 예약 가능 최대 인원은 9명이며, 유아는 성인 인원 내에서 선택 가능합니다.
+				      	 <div class="text-left">
+				      	 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				      	 	☑️ 예약 가능 최대 인원은 9명이며, 유아는 성인 인원 내에서 선택 가능합니다.<br>
+				      	 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				      	 	☑️ 성인 : 만 12세 이상, 소아 : 만 2세 ~ 12세 미만, 유아 : 만2 세 미만
 				      	 </div>
 				      </div>
 				      <div class="modal-footer">
@@ -196,91 +218,72 @@
 			</div>
 		</div>
 		
-		
-		<br><br><br><br>
-		<div class="row">
-			<div class="col-md-8 col-md-offset-2">
-				<h3>항공사 추천 특가 ✈️</h3>
-						
-			<table style="width: 100%;">
-				<colgroup>
-					<col width="25%">
-					<col width="25%">
-					<col width="25%">
-					<col width="25%">
-				</colgroup>
-				<tr>
-					<td style="padding-right:5px"><img width="280px;" src="resources/image/OZ.jpg" title="" data-src="" alt=""></td>
-					<td style="padding-right:5px"><img width="280px;" src="resources/image/KE.jpg" title="" data-src="" alt=""></td>
-					<td style="padding-right:5px"><img width="280px;" src="resources/image/MH.jpg" title="" data-src="" alt=""></td>
-					<td><img width="280px;" src="resources/image/AC.jpg" title="" data-src="" alt=""></td>
-				</tr>
-				<tr style="font-size:20px; font-weight:bold;">
-					<td style="padding:10px 0;">아시아나 항공</td>
-					<td>대한항공</td>
-					<td>말레이시아항공</td>
-					<td>에어캐나다</td>
-				</tr>
-				<tr>
-					<td>인천 ↔ 몽골/칭키스칸 왕복항공권</td>
-					<td>인천 ↔ 방콕 왕복 항공권</td>
-					<td>인천 ↔ 쿠알라룸푸르 왕복 항공권</td>
-					<td>인천 ↔ 밴쿠버 왕복 항공권</td>
-				</tr>
-				<tr style="font-size:20px; font-weight:bold;">
-					<td style="padding:10px 0;">923,900원~</td>
-					<td>1,448,200원~</td>
-					<td>929,700원~</td>
-					<td>1,412,600원~</td>
-				</tr>
-			</table>
-			</div>
-		</div>
-		
-		
 		<br><br><br><br>
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
 				<h3>OnlyOneTour Pick! 국내 항공 특가 👓</h3>
-						
-			<table style="width: 100%;">
-				<colgroup>
-					<col width="25%">
-					<col width="25%">
-					<col width="25%">
-					<col width="25%">
-				</colgroup>
-				<tr>
-					<td style="padding-right:5px"><img width="280px;" height="210px" src="resources/image/Jeju.jpg" title="" data-src="" alt=""></td>
-					<td style="padding-right:5px"><img width="280px;" height="210px" src="resources/image/busan.jpg" title="" data-src="" alt=""></td>
-					<td style="padding-right:5px"><img width="280px;" height="210px" src="resources/image/yeosu.jpg" title="" data-src="" alt=""></td>
-					<td style="padding-right:5px"><img width="280px;" height="210px" src="resources/image/ulsan.jpg" title="" data-src="" alt=""></td>
-				</tr>
-				<tr style="font-size:20px; font-weight:bold;">
-					<td style="padding:10px 0;">김포 → 제주</td>
-					<td>김포 → 부산</td>
-					<td>김포 → 여수</td>
-					<td>김포 → 울산</td>
-				</tr>
-				<tr>
-					<td>7월 8일 출발</td>
-					<td>7월 25일 출발</td>
-					<td>8월 12일 출발</td>
-					<td>8월 23일 출발</td>
-				</tr>
-				<tr style="font-size:20px; font-weight:bold;">
-					<td style="padding:10px 0;">45,000원~</td>
-					<td>38,400원~</td>
-					<td>36,500원~</td>
-					<td>55,500원~</td>
-				</tr>
-			</table>
+				
+				<c:set var="alist" value="${aList }" />
+				<c:if test="${!empty alist }">
+	         		<c:forEach items="${alist }" var="air">
+	         			<c:if test="${air.getAir_pnum() == 2}">
+							<div class="col-md-3">
+							 	<a href="javascript:goAir('${air.getAir_departure() }','${air.getAir_departure_date() }',
+							 								'${air.getAir_arrival() }','${air.getAir_arrival_date() }');">
+									<img width="280px;" height="210px;" style="margin-bottom:10px; margin-left:10px;"
+										src="resources/image/${air.getAir_image() }">
+									<div id="air_product">${air.getAir_departure() } ↔ ${air.getAir_arrival() }</div>
+									
+									${fn:split(air.getAir_departure_date(),'-')[1]}월 ${fn:split(air.getAir_departure_date(),'-')[2]}일
+									~
+									${fn:split(air.getAir_arrival_date(),'-')[1]}월 ${fn:split(air.getAir_arrival_date(),'-')[2]}일
+									<br>
+									
+									<div id="air_product">${air.getAir_price() }~</div>
+								</a>
+							</div>
+						</c:if>
+					</c:forEach>
+				</c:if>
+			
+				
+			</div>
+		</div>
+		
+		<br><br><br><br>
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<h3>항공사 추천 해외 항공 특가 ✈️</h3>
+								
+				<c:if test="${!empty alist }">
+	         		<c:forEach items="${alist }" var="air">
+	         			<c:if test="${air.getAir_pnum() == 1}">
+							<div class="col-md-3">
+							 	<a href="javascript:goAir('${air.getAir_departure() }','${air.getAir_departure_date() }',
+							 								'${air.getAir_arrival() }','${air.getAir_arrival_date() }');">
+									<img width="280px;" height="210px;" style="margin-bottom: 10px;"
+										src="resources/image/${air.getAir_image() }">
+									<div id="air_product">${air.getAir_departure() } ↔ ${air.getAir_arrival() }</div>
+									
+									${fn:split(air.getAir_departure_date(),'-')[1]}월 ${fn:split(air.getAir_departure_date(),'-')[2]}일
+									~
+									${fn:split(air.getAir_arrival_date(),'-')[1]}월 ${fn:split(air.getAir_arrival_date(),'-')[2]}일
+									<br>
+									
+									<div id="air_product">${air.getAir_price() }~</div>
+								</a>
+							</div>
+						</c:if>
+					</c:forEach>
+				</c:if>
+				
 			</div>
 		</div>
 	</div>
 	
 	<br><br><br>
 	<hr width="100%" color="gray">
+	<div class="container">
 	<jsp:include page="include/footer.jsp" />
 	<br><br><br>
 	
@@ -288,8 +291,24 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
  	
 	<script type="text/javascript">
+	
+	  	function goAir(go, goDate, back, backDate) {
+	  		
+	  		$('select[name=air_departure]').val(go);
+	  		$('input[name=air_departure_date]').val(goDate);
+
+	  		$('select[name=air_arrival]').val(back);
+	  		$('input[name=air_arrival_date]').val(backDate);
+	  			  		
+	  		$('input[name=air_adult_fare]').attr('value', 1);
+	  		$('input[name=air_child_fare]').attr('value', 0);
+	  		
+	  		$("#airinfo").submit();
+	  		
+	  	}
+	
 		$(document).ready(function() {
-			
+			 
 			$('#myModal').on('shown.bs.modal', function () {
 				  $('#myInput').focus()
 			});	
@@ -429,7 +448,7 @@
 				if(baNum == 0) {
 					baNum = "";
 				}else {
-					baNum = ", 유아: " + parseInt(num2);
+					baNum = ", 유아: " + parseInt(num3);
 				}
 
 				$('#people').val(adNum + chNum + baNum);
@@ -440,27 +459,78 @@
 			// [항공권 검색] 클릭 했을 때
 			$("#searchAirport").click(function() {
 				
+				if ($("select[name='air_departure']").val() == "") {
+					alert("출발지를 선택해 주세요.");
+					$("select[name='air_departure']").focus();
+					return;
+				}
+				
+				if ($("select[name='air_arrival']").val() == "") {
+					alert("도착지를 선택해 주세요.");
+					$("select[name='air_arrival']").focus();
+					return;
+				}
+				
+				if ($("select[name='air_departure']").val() == $("select[name='air_arrival']").val()) {
+					alert("출발지와 도착지를 동일하게 선택하실 수 없습니다.");
+					$("select[name='air_departure']").focus();
+					return;
+				}
+				
 				if ($("input[name='air_departure_date']").val() == "") {
-					alert("출발날짜를 선택해 주세요");
+					alert("출발날짜를 선택해 주세요.");
 					$("input[name='air_departure_date']").focus();
 					return;
 				}
 				
 				if ($("input[name='air_arrival_date']").val() == "") {
-					alert("도착날짜를 선택해 주세요");
+					alert("도착날짜를 선택해 주세요.");
 					$("input[name='air_arrival_date']").focus();
 					return;
 				}
 				
+				
+				var today = new Date();
+
+				var year = today.getFullYear();
+				var month = ('0' + (today.getMonth() + 1)).slice(-2);
+				var day = ('0' + today.getDate()).slice(-2);
+
+				var dateString = year + '-' + month  + '-' + day;
+				
+				
+				if (dateString > $("input[name='air_departure_date']").val()) {
+					alert("출발날짜는 오늘날짜 이후로 선택해주세요.");
+					$("#input[name='air_departure_date']").focus();
+					return;
+				}
+				
+				if (dateString > $("input[name='air_arrival_date']").val()) {
+					alert("도착날짜는 오늘날짜 이후로 선택해주세요.");
+					$("#input[name='air_arrival_date']").focus();
+					return;
+				}				
+
+				
+				if ($("input[name='air_departure_date']").val() >= $("input[name='air_arrival_date']").val()) {
+					alert("도착날짜는 출발날짜 이후로 선택해주세요.");
+					$("#input[name='air_arrival_date']").focus();
+					return;
+				}				
+				
+				
 				if ($("input[name='people']").val() == "") {
-					alert("인원을 선택해 주세요");
+					alert("인원을 선택해 주세요.");
 					$("input[name='people']").focus();
 					return;
 				}
 				
+				
+				
 				var people = $('#people').val();
 				var people1 = parseInt(people.substring(4,5));
 				var people2 = parseInt(people.substring(11,12));
+				var people3 = parseInt(people.substring(18,19));
 				
 				$('input[name=air_adult_fare]').attr('value', people1);
 				
@@ -468,6 +538,12 @@
 					$('input[name=air_child_fare]').attr('value', 0);
 				}else {
 					$('input[name=air_child_fare]').attr('value', people2);
+				}
+				
+				if(isNaN(people3)) {
+					$('input[name=air_baby_fare]').attr('value', 0);
+				}else {
+					$('input[name=air_baby_fare]').attr('value', people3);
 				}
 				
 				$("#airinfo").submit();

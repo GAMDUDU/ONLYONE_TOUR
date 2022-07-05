@@ -7,7 +7,11 @@
     
 <mapper namespace="airportDAO">
 
-	<select id="datePart" resultType="airportdto" parameterType="airportdto">
+	<select id="AirProductList" resultType="com.airport.model.AirProductDTO">
+		SELECT * FROM AIR_PRODUCT_TRIP
+	</select>
+
+	<select id="AirList" resultType="AirportDTO" parameterType="AirportDTO">
 		select *
 		from AIR_TRIP
 		where (AIR_DEPARTURE=#{air_departure} and AIR_ARRIVAL=#{air_arrival}
@@ -16,5 +20,186 @@
 				and AIR_DATE=#{air_arrival_date}) 
 	</select>
 
+	<select id="member" parameterType="string" resultType="memberdto">
+    	select * from member_trip where member_id= #{member_id}
+    </select>
 
+	<insert id="AirReserve" parameterType="AirReserveDTO">
+	
+    	<selectKey resultType="int" keyProperty="re_index" order="BEFORE">
+	    	select nvl(max(re_index), 0) as re_index from AIR_Reserve_TRIP
+    	</selectKey>
+
+    	insert into AIR_Reserve_TRIP 
+    	values(#{re_index}+1, #{re_num}, #{re_no},
+    		#{re_people}, #{re_info},
+    		#{re_go_air}, #{re_go_num}, #{re_go}, #{re_go_date},
+    		#{re_back_air}, #{re_back_num}, #{re_back},#{re_back_date},
+     		#{re_mem_id}, #{re_mem_name}, #{re_mem_gender}, #{re_mem_birth}, #{re_mem_phone}, #{re_mem_email},
+     		#{re_tour_name}, #{re_tour_gender}, #{re_tour_birth}, #{re_tour_phone}, 
+     		#{re_go_adult},	#{re_go_child}, #{re_back_adult}, #{re_back_child}, #{re_account},
+     		'항공 예약 완료-여행자 정보 미입력', sysdate)
+     
+    </insert>
+    
+    
+    <select id="AirNum" resultType="int">
+		select nvl(max(re_num), 0) from AIR_Reserve_TRIP
+	</select>
+	
+	
+	<select id="AirReserveList" resultType="AirReserveDTO" parameterType="int">
+		select * from AIR_Reserve_TRIP where re_num = #{re_num} order by re_index
+	</select>
+	
+	<select id="AirReserveIndex" resultType="AirReserveDTO" parameterType="int">
+		select * from AIR_Reserve_TRIP where re_index = #{re_index}
+	</select>
+	
+	
+	<update id="updateAirReserve" parameterType="AirReserveDTO">
+		update AIR_Reserve_TRIP 
+		set re_tour_name = #{re_tour_name},
+			re_tour_phone = #{re_tour_phone},
+			re_tour_gender = #{re_tour_gender},
+			re_tour_birth = #{re_tour_birth},
+			re_status = '항공 예약 완료',
+			re_date = sysdate
+		where re_index = #{re_index}
+	</update>
+	
+	<select id="AirMyReserve" resultType="AirReserveDTO" parameterType="String">
+		SELECT * FROM air_reserve_trip where re_mem_id=#{memid} and Re_no = 1 order by re_index desc
+	</select>
+	
+	<select id="AirMyReserveCont" resultType="AirReserveDTO" parameterType="int">
+		SELECT * FROM air_reserve_trip where Re_num=#{num} order by re_index
+	</select>
+	
+	<select id="AirMyReserveContOne" resultType="AirReserveDTO" parameterType="int">
+		SELECT * FROM air_reserve_trip where Re_num=#{num} and Re_no=1
+	</select>
+	
+	<delete id="AirMyReserveDelete" parameterType="int">
+		delete from air_reserve_trip where Re_num=#{num}
+	</delete>
+	
+	
+	
+	<select id="AdminAirList" parameterType="PageAirDTO" resultType="AirPortDTO">
+		<![CDATA[
+		select * from
+			(select a.*, row_number()
+				over(order by air_num desc) rnum from air_trip a)
+			where  rnum >= #{startNo} and rnum <= #{endNo}
+		]]>	
+	</select>
+	
+	<select id="AirListCount" resultType="int">
+		SELECT count(*) FROM air_trip
+	</select>
+	
+	
+	<insert id="AirAdd" parameterType="AirportDTO">
+		<selectKey resultType="int" keyProperty="air_num" order="BEFORE">
+			select max(air_num) from air_trip
+		</selectKey>
+		insert into air_trip
+		values(#{air_num} + 1, #{air_name}, 
+			   #{air_airline}, #{air_date}, 
+			   #{air_departure}, #{air_departure_date},
+			   #{air_arrival}, #{air_arrival_date},
+			   #{air_adult_fare}, #{air_child_fare})
+	</insert>
+	
+	
+	<select id="AirContent" parameterType="int" resultType="AirportDTO">
+		SELECT * FROM air_trip where air_num = #{no}
+	</select>
+		
+	<select id="NationList" resultType="com.airport.model.NationDTO">
+		SELECT * FROM air_nation_trip order by air_num
+	</select>
+	
+	<select id="AirlineList" resultType="com.airport.model.AirlineDTO">
+		SELECT * FROM air_airline_trip order by air_num
+	</select>
+	
+	
+	<update id="AirModify" parameterType="AirportDTO">
+		update air_trip
+		set air_name = #{air_name},
+			air_airline = #{air_airline},
+			air_date = #{air_date},
+			air_departure = #{air_departure},
+			air_departure_date = #{air_departure_date},
+			air_arrival = #{air_arrival},
+			air_arrival_date = #{air_arrival_date},
+			air_adult_fare = #{air_adult_fare},
+			air_child_fare = #{air_child_fare}
+		where air_num = #{air_num}
+	</update>
+	
+	
+	<delete id="AirDelete" parameterType="int">
+		delete from air_trip where air_num = #{no}
+	</delete>
+	
+	
+	<update id="AirIndex" parameterType="int">
+		<![CDATA[
+			update air_trip
+			set air_num = air_num - 1
+			where air_num > #{no}
+		]]>	
+	</update>
+	
+	<select id="airline" resultType="int">
+		select count(*) from air_trip
+			where air_airline like '%' || #{keyword} || '%'
+	</select>
+	
+	
+	<select id="air_name" resultType="int">
+		select count(*) from air_trip
+			where air_name like '%' || #{keyword} || '%'
+	</select>
+	
+	
+	<select id="air_date" resultType="int">
+		select count(*) from air_trip
+			where air_date like '%' || #{keyword} || '%'
+	</select>
+
+
+
+	<select id="airline1" parameterType="pageAirDto" resultType="AirportDTO">
+		<![CDATA[
+			select * from
+				(select b.*, row_number() 
+					over(order by air_num desc) rnum from air_trip b
+					where air_airline like '%' || #{keyword} || '%')
+					where rnum >= #{startNo} and rnum <= #{endNo}
+	    ]]>
+	</select>
+	
+	<select id="air_name1" parameterType="pageAirDto" resultType="AirportDTO">
+		<![CDATA[
+			select * from
+				(select b.*, row_number() 
+					over(order by air_num desc) rnum from air_trip b
+					where air_name like '%' || #{keyword} || '%')
+					where rnum >= #{startNo} and rnum <= #{endNo}
+	    ]]>
+	</select>
+	
+	<select id="air_date1" parameterType="pageAirDto" resultType="AirportDTO">
+		<![CDATA[
+			select * from
+				(select b.*, row_number() 
+					over(order by air_num desc) rnum from air_trip b
+					where air_date like '%' || #{keyword} || '%')
+					where rnum >= #{startNo} and rnum <= #{endNo}
+	    ]]>
+	</select>
 </mapper>
