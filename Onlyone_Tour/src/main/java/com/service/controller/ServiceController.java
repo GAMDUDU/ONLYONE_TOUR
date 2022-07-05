@@ -39,7 +39,7 @@ import com.service.model.ServiceQuestionDTO;
 @Controller
 public class ServiceController {
 
-	private final int rowsize = 10; // 한 페이지당 보여질 게시물의 수
+	private final int rowsize = 6; // 한 페이지당 보여질 게시물의 수
 	private int totalRecord = 0; // DB 상의 전체 게시물의 수
 
 	@Autowired
@@ -289,7 +289,7 @@ public class ServiceController {
 		if (check > 0) {
 			out.println("<script>");
 			out.println("alert('수정 성공')");
-			out.println("location.href='amdin_notice_content.do?num=" + dto.getN_num() + "&page=" + nowPage + "'");
+			out.println("location.href='admin_notice_content.do?num=" + dto.getN_num() + "&page=" + nowPage + "'");
 			out.println("</script>");
 		} else {
 			out.println("<script>");

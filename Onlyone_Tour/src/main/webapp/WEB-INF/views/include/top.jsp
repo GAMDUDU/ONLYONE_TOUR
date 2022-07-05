@@ -67,7 +67,7 @@
 		<%}else{%>
 		<ul>
 			<li><a href="<%=request.getContextPath()%>/logout.do">로그아웃</a></li>
-			<li><a href="#">고객센터</a></li>
+			<li><a href="<%=request.getContextPath()%>/user_notice_list.do">고객센터</a></li>
 		</ul>
 	   	<% } %>
 	   

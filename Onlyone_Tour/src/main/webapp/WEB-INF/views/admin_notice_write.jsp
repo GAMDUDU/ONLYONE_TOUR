@@ -38,6 +38,7 @@ function noticeSubmit(){
 		return false;
 	}
 	
+	document.writeForm.submit();
 }
 
 
@@ -93,7 +94,7 @@ function noticeSubmit(){
 		<h4 class="noticeText"> 공지사항</h4>
 		
 		<form method="post"
-			action="<%=request.getContextPath() %>/admin_notice_writeOk.do">
+			action="<%=request.getContextPath() %>/admin_notice_writeOk.do" name="writeForm">
 			
 			<table class="table" style="table-layout: fixed">
 				<tr>
@@ -127,6 +128,7 @@ function noticeSubmit(){
 						<input type="button" value="작성완료"  class="btn btn-success btn-block"
 							onclick="noticeSubmit()">
 						</a>
+						
 						<a class="btn float-right ">
 						<input type="button" value="뒤로가기"  class="btn btn-outline-success btn-block"
 							onclick="history.back()">

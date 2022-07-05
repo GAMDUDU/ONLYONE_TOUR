@@ -467,7 +467,7 @@ a:hover{
 						<th width="10%">번호</th>
 						<th width="40%">제목</th>
 						<th width="10%">작성자</th>
-						<th width="10%">답변상태</th>
+						<th width="15%">답변상태</th>
 						<th width="10%">조회수</th>
 						<th width="20%">작성일자</th>
 					</tr>
@@ -488,7 +488,7 @@ a:hover{
 								<td width="10%"> 
 									${l.service_name }
 								</td>
-								<td width="10%">
+								<td width="15%">
 									${l.service_check }
 								</td>
 								<td width="10%">

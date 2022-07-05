@@ -10,7 +10,7 @@
 	<c:set var="path" value="${pageContext.request.contextPath}"/>
 	<meta charset="UTF-8">
 	<title>온리원투어 패키지</title>
-	<link rel="stylesheet" type="text/css" href="${path}/resources/css/travel_list.css">
+	<link rel="stylesheet" type="text/css" href="${path}/resources/css/travel_list.css?after">
 	<meta
       name="viewport"
       content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     
 	<style type="text/css">
+	
    	  html, body {
         position: relative;
         height: 80%;
