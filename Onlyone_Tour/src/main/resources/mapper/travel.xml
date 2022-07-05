@@ -56,6 +56,36 @@
 		]]>	
 	</select>
 	
+	
+	<!-- 리뷰 -->
+	
+	<select id="reviewList" parameterType="int" resultType="travelreviewdto">
+		<![CDATA[
+			select * from travel_review_trip where travel_num_fk = #{num} order by treview_num desc
+		]]>	
+	</select>
+	
+	<select id="reviewScore" parameterType="int" resultType="String">
+		<![CDATA[
+			select round(avg(treview_score),2) from travel_review_trip where travel_num_fk = #{num}
+		]]>
+	</select>
+	
+	<select id="reviewCount" parameterType="int" resultType="int">
+		<![CDATA[
+			select count(*) from travel_review_trip where travel_num_fk = #{num}
+		]]>
+	</select>
+	
+	<insert id="addReview" parameterType="travelreviewdto">
+		<selectKey resultType="int" keyProperty="treview_num" order="BEFORE">
+			select max(treview_num) from travel_review_trip
+		</selectKey>
+		insert into travel_review_trip values(#{treview_num} + 1,
+			#{travel_num_fk}, #{treview_score}, #{treview_comm}, 
+			sysdate)
+	</insert>
+	
 	<!-- 병권 Search 구현 -->
 	<select id="searchTravel" parameterType="String" resultType="traveldto">
 		<![CDATA[

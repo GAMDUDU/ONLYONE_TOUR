@@ -68,6 +68,31 @@ public class TravelDAOImpl implements TravelDAO {
 		return this.sqlSession.selectOne("travelCont", num);
 	}
 	
+	// 리뷰
+	@Override
+	public List<TravelReviewDTO> getReviewList(int num) {
+		
+		return this.sqlSession.selectList("reviewList", num);
+	}
+
+	@Override
+	public String getReviewScore(int num) {
+		
+		return this.sqlSession.selectOne("reviewScore", num);
+	}
+
+	@Override
+	public int getReviewCount(int num) {
+		
+		return this.sqlSession.selectOne("reviewCount", num);
+	}
+
+	@Override
+	public int insertReview(TravelReviewDTO dto) {
+		
+		return this.sqlSession.insert("addReview", dto);
+	}
+	
 	// 병권님 검색작업
 	// 패키지상품을 검색하는경우
 	@Override

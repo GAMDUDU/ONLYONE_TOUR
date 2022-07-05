@@ -42,4 +42,35 @@ public class HotelDAOImpl implements HotelDAO {
 		return this.sqlSession.selectList("justPensionList");
 	}
 
+	@Override
+	public HotelDTO getHotelCont(int num) {
+		
+		return this.sqlSession.selectOne("hotelCont", num);
+	}
+
+	// 리뷰
+	@Override
+	public List<HotelReviewDTO> getReviewList(int num) {
+		
+		return this.sqlSession.selectList("hotelreviewList", num);
+	}
+
+	@Override
+	public String getReviewScore(int num) {
+		
+		return this.sqlSession.selectOne("hotelreviewScore", num);
+	}
+
+	@Override
+	public int getReviewCount(int num) {
+		
+		return this.sqlSession.selectOne("hotelreviewCount", num);
+	}
+
+	@Override
+	public int insertReview(HotelReviewDTO dto) {
+		
+		return this.sqlSession.insert("addHotelReview", dto);
+	}
+
 }

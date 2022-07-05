@@ -8,6 +8,7 @@ public class HotelDTO {
 	private int hotel_num;
 	private String hotel_hname;
 	private String hotel_ename;
+	private String hotel_country;
 	private String hotel_room1;
 	private String hotel_room2;
 	private String hotel_room3;

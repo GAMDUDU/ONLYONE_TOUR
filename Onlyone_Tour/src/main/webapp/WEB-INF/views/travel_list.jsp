@@ -65,7 +65,7 @@
       .swiper-slide img {
         display: block;
         width: 100%;
-        height: 60%;
+        height: 600px;
         object-fit: cover;
       }
 
@@ -76,9 +76,9 @@
       
      #search_package {
 	    position: absolute;
-	    left: 20%;
-	    width: 40%;
-	    bottom: 10px;
+	    left: 25%;
+	    width: 600px;
+	    bottom: 80px;
 	    background: #fff;
 	    padding: 10px 20px;
 	    z-index: 2;

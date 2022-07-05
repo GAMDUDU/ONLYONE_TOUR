@@ -21,6 +21,11 @@ public interface TravelDAO {
 	public List<TravelDTO> getNewList();
 	public TravelDTO getTravelCont(int num);
 	
+	// 리뷰
+	public List<TravelReviewDTO> getReviewList(int num);
+	public String getReviewScore(int num);
+	public int getReviewCount(int num);
+	public int insertReview(TravelReviewDTO dto);
 	
 	// 병권님
 	public List<TravelDTO> SearchTravel(String search);

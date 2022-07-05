@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+.row-0 {
+  .make-row();
+  .col-0-0 {
+    .make-md-column(6);
+  }
+  .col-0-1 {
+    .make-md-column(6);
+  }
+}

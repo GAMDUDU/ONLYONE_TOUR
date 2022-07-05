@@ -50,4 +50,39 @@
 		]]>	
 	</select>
 	
+	<select id="hotelCont" parameterType="int" resultType="hoteldto">
+		<![CDATA[
+			select * from hotel_trip where hotel_num = #{num}
+		]]>	
+	</select>
+	
+	<!-- 리뷰 -->
+	
+	<select id="hotelreviewList" parameterType="int" resultType="hotelreviewdto">
+		<![CDATA[
+			select * from hotel_review_trip where hotel_num_fk = #{num} order by hreview_num desc
+		]]>	
+	</select>
+	
+	<select id="hotelreviewScore" parameterType="int" resultType="String">
+		<![CDATA[
+			select round(avg(hreview_score),2) from hotel_review_trip where hotel_num_fk = #{num}
+		]]>
+	</select>
+	
+	<select id="hotelreviewCount" parameterType="int" resultType="int">
+		<![CDATA[
+			select count(*) from hotel_review_trip where hotel_num_fk = #{num}
+		]]>
+	</select>
+	
+	<insert id="addHotelReview" parameterType="hotelreviewdto">
+		<selectKey resultType="int" keyProperty="hreview_num" order="BEFORE">
+			select max(hreview_num) from hotel_review_trip
+		</selectKey>
+		insert into hotel_review_trip values(#{hreview_num} + 1,
+			#{hotel_num_fk}, #{hreview_score}, #{hreview_comm}, 
+			sysdate)
+	</insert>
+	
 </mapper>
