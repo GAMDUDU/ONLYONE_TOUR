@@ -97,7 +97,7 @@
 								<td style="vertical-align:middle; font-size:16px; font-weight:bold;" id="go_child">${rdto.getRe_go_child() }</td>
 								<td>총운임<br>(유류할증료/<br>제세공과금 포함)</td>
 								<td style="vertical-align:middle; font-size:16px; font-weight:bold;" id="back_adult">${rdto.getRe_back_adult() }</td>
-								<td style="vertical-align:middle; font-size:16px; font-weight:bold;" id="back_child">${rdto.getRe_back_adult() }</td>
+								<td style="vertical-align:middle; font-size:16px; font-weight:bold;" id="back_child">${rdto.getRe_back_child() }</td>
 							</tr>	
 							<tr class="active">
 								<td colspan="4" style="font-weight:bold;">총 요금 </td>
