@@ -10,8 +10,8 @@
     select * from travel_trip where travel_num=1
     </select>
     
-    <select id="member" parameterType="string" resultType="memberdto">
-    select*from member_trip where member_id=#{member_id}
+    <select id="member" parameterType="String" resultType="memberdto">
+    	select * from member_trip where member_id = #{member_id}
     </select>
     
     <insert id="add" parameterType="ReserveDTO" >

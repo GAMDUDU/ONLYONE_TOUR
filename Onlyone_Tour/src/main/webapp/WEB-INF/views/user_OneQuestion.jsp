@@ -230,9 +230,7 @@ function userQList(page, id){
 					action="user_oneQuestion_Write.do"
 						enctype="multipart/form-data">
 					
-						
-					<input type="hidden" value="${member_id }" name="member_id">
-									
+					<input type="hidden" value="${member_id}" name="member_id">
 					<c:set var="clist" value="${categoryList}" />
 					
 					<table>

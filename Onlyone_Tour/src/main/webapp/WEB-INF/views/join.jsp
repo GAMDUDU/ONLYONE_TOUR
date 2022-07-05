@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,6 +22,8 @@ $(function(){
 	let input_memberEmail = $("#member_email");
 	let input_memberPwd1 = $("#member_pwd1");
 	let input_memberPwd2 = $("#member_pwd2");
+	let input_memberPhone = $("#member_phone");
+	
 	
 	// 텍스트 DOM 가져오기
 	let textId1 = $(".text_id1");
@@ -31,13 +35,17 @@ $(function(){
 	// 버튼 DOM 가져오기
 	let btn_memberId = $("#btn_userId");
 	let btn_memberEmail = $("#btn_userEmail");
+	let btn_memberPhont = $("#btn_userPhone");
+	
 	
 	// 변수값에 이벤트 적용하기
 	btn_memberId.click(userIdCheck);
+	btn_memberEmail.click(userEmailCheck);
+	btn_memberPhont.click(userPhoneCheck);
+	
 	input_memberId.keyup(userIdInput);
 	input_memberPwd1.keyup(userPwdInput);
 	input_memberPwd2.keyup(userPwdCheck);
-	btn_memberEmail.click(userEmailCheck);
 	
 
 	
@@ -145,14 +153,53 @@ $(function(){
 		});
 	}
 	
+	// ajax 휴대폰 중복 체크하기
+	function userPhoneCheck(){
+		const phoneCheck = input_memberPhone.val();
+		
+		// 휴대폰 정규식
+		let phoneRule = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+		
+		$.ajax({
+			type: "POST",
+			url: "<%=request.getContextPath()%>/phoneCheck.do",
+			data: {phoneCheck : phoneCheck},
+			datatype: "text",
+			success: function(data){
+				if(data == 1){
+					swal("알림메시지", "중복된 휴대폰번호 입니다.")
+					$("#member_phone").val('').focus();
+					$("#user_phone_check").val(0);
+				}
+				else if(!phoneRule.test(phoneCheck)){
+					swal("알림메시지", "휴대폰 번호를 정확하게 입력해주세요.")
+					$("#member_phone").val('').focus();
+				}
+				else{
+					swal("알림메시지", "사용가능한 휴대폰번호 입니다.")
+					$("#user_phone_check").val(1);
+				}
+			},
+			error: function(data){
+				alert("통신오류입니다.")
+			}
+		});
+	}
+	
 	$('input[type="text"]').keydown(function() {
 		  if (event.keyCode === 13) {
 		    event.preventDefault();
 		  };
 	});
-	
-	
 });
+
+
+const autoHyphen2 = (target) => {
+	 target.value = target.value
+	   .replace(/[^0-9]/g, '')
+	  .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
+}
+
 
 </script>
 
@@ -168,6 +215,7 @@ $(function(){
 	</div>
 		
 	<form method="post" action="<%=request.getContextPath()%>/joinOk.do" onsubmit="return submitCheck();">
+		
 		<!-- 아이디  -->
 		<div class="form-group">
 			<span class="main-text"><i class="fa-solid fa-user"></i>&nbsp;아이디</span>
@@ -232,14 +280,17 @@ $(function(){
 		<!-- 휴대전화 -->
 		<div class="form-group">
 			<span class="main-text"><i class="fa-solid fa-phone"></i>&nbsp;전화번호</span>
-			<input type="text" class="form-control" id="member_phone" name="member_phone" placeholder="('-'제외하고 입력해주세요.)">
+			<input type="text" class="form-control" id="member_phone" name="member_phone" placeholder="휴대전화를 입력해주세요."
+				oninput="autoHyphen2(this)" maxlength="13">
+			<button type="button" id="btn_userPhone" class="btn btn-outline-secondary">중복확인</button>	
 			<div class="check_font" id="phone_check"></div>
+			<input type="hidden" id="user_phone_check" value="0">
 		</div>
 		
 		<!-- 생년월일 -->
 		<div class="form-group">
 			<span class="main-text"><i class="fa-solid fa-cake-candles"></i>&nbsp;생년월일</span>
-			<input type="text" name="member_birth" id="member_birth" placeholder="ex)19990101">
+			<input type="text" name="member_birth" id="member_birth" placeholder="ex)19990101" maxlength="8">
 			<div class="check_font" id="birth_check"></div>
 		</div>
 		

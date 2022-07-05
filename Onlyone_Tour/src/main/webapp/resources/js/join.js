@@ -64,9 +64,6 @@ function sample6_execDaumPostcode() {
 
 
 //정규식 정리하기
-	
-
-
 
 function submitCheck(){
 
@@ -84,6 +81,12 @@ function submitCheck(){
 	
 	// 비밀번호 정규식 (최소 8자, 하나 이상의 문자, 하나의 숫자 및 하나의 특수 문자 정규식을 적용)
 	let passwordRule = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/;
+	
+	// 생년월일 정규식(8자로만 입력가능 형식 ex) 19991122 )
+	let birthRule = /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
+	
+	// 휴대폰번호 정규식(13자리 입력값을 입력해야하며 (-)값을 포함하고 있어야한다.)
+	let phoneRule = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
 	
 	// 중복확인 처리하기
 	let user_id_check = $("#user_id_check").val();
@@ -144,18 +147,30 @@ function submitCheck(){
 		return false;
 	}
 	
-	
+	if(!phoneRule.test(userPhone)){
+		swal("옳바른 전화번호를 입력해주세요");
+		$("#memeber_phone").focus();
+		return false;
+	}
+		
 	if(userBirth == null || userBirth == ""){
 		swal("생년월일을 입력해주세요.");
 		$("#member_birth").focus();
 		return false;
 	}
-	if(userJibunAddress == null | userJibunAddress == ""){
+	
+	if(!birthRule.test(userBirth)){
+		swal("생년월일을 옳바른 형식으로 입력해주세요");
+		$("#member_birth").focus();
+		return false;
+	}
+	
+	if(userJibunAddress == null || userJibunAddress == ""){
 		swal("주소를 입력해주세요");
 		$("#sample6_address").focus();
 		return false;
 	}
-	if(userDetailAddress == null | userDetailAddress == ""){
+	if(userDetailAddress == null || userDetailAddress == ""){
 		swal("상세주소를 입력해주세요");
 		$("#sample6_detailAddress").focus();
 		return false;

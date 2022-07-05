@@ -4,6 +4,7 @@ import java.util.List;
 
 public interface MemberDAO {
 	
+	
 	// DB개수를 가져오는 카운트
 	public int getListCount();
 	
@@ -19,6 +20,9 @@ public interface MemberDAO {
 	// 이메일 중복 체크 
 	int checkUserEmail(String email);
 	
+	// 휴대폰 중복 체크
+	int checkUserPhone(String phone);
+	
 	// 회원정보 가져오기
 	int insertMember(MemberDTO dto);
 	
@@ -32,7 +36,7 @@ public interface MemberDAO {
 	
 	int updateMember(MemberDTO dto);
 	
-	// 삭제
+	// 회원 삭제
 	int deleteMember(String id);
 	
 	void updateSequnce(int num);

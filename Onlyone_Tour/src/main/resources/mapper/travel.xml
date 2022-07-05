@@ -56,6 +56,28 @@
 		]]>	
 	</select>
 	
+	<!-- 병권 Search 구현 -->
+	<select id="searchTravel" parameterType="String" resultType="traveldto">
+		<![CDATA[
+			select * from travel_trip where travel_name like '%' || #{search} || '%' 
+			or travel_cont like '%' || #{search} || '%' or travel_air like '%' || #{search} || '%'
+			
+			order by travel_price desc
+		]]>
+	</select>
 	
-
+	<select id="searchHotel" parameterType="String" resultType="hoteldto">
+		<![CDATA[
+			select * from hotel_trip where hotel_hname like '%' || #{search} || '%' 
+			order by hotel_price1 desc
+		]]>
+	</select>
+	
+	
+	<select id="searchAir" parameterType="String" resultType="AirportDTO">
+		<![CDATA[
+			select * from air_trip where air_airline like '%' || #{search} || '%' 
+		]]>
+	</select>
+	
 </mapper>

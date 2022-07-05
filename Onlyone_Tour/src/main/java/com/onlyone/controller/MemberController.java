@@ -18,6 +18,8 @@ import com.onlyone.model.MemberDAO;
 import com.onlyone.model.MemberDTO;
 import com.onlyone.model.PageDTO;
 
+import lombok.RequiredArgsConstructor;
+
 @Controller
 public class MemberController {
 	
@@ -117,15 +119,23 @@ public class MemberController {
 	@RequestMapping("join.do")
 	public String join(Model model) {
 		
+		MemberDTO dto = new MemberDTO();
+		
+		model.addAttribute("phone", dto);
+		
 		return "join";
 	}
 	
-	// 로그인이 성공한 경우
+	// 회원가입이 성공할경우
 	@RequestMapping("joinOk.do")
-	public String joinOk(MemberDTO dto, HttpServletResponse response, HttpServletRequest request, Model model) throws IOException {
+	public String joinOk(@RequestParam("member_phone") String phone,
+			MemberDTO dto, HttpServletResponse response, HttpServletRequest request, Model model) throws IOException {
 		
 		int check = this.dao.insertMember(dto);
+		
 		String name = dto.getMember_name();
+		String dbphone = dto.getMember_phone();
+		
 		String ok = "";
 		
 		response.setContentType("text/html; charset=UTF-8");
@@ -186,6 +196,24 @@ public class MemberController {
 	} // emailCheck() end 부분
 	
 	
+	// 휴대폰 번호 중복체크 
+	@RequestMapping("phoneCheck.do")
+	public String phoneCheck(@RequestParam("phoneCheck") String phone, HttpServletResponse response) throws IOException {
+		
+		int res = this.dao.checkUserPhone(phone);
+		
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		if(res == 1) {
+			out.println(res);
+		}
+		
+		return null;
+	}
+	
+	
 	// 아이디 찾기
 	@RequestMapping("findId.do")
 	public String idsearch(MemberDTO dto,
@@ -194,7 +222,6 @@ public class MemberController {
 		MemberDTO findId = this.dao.findId(dto);
 		
 		response.setContentType("text/html; charset=UTF-8");
-		
 		
 		if(findId != null) {
 			model.addAttribute("check", 0);
@@ -277,6 +304,6 @@ public class MemberController {
 			out.println("history.back()");
 			out.println("</script>");
 		}
-		
 	}
+	
 }

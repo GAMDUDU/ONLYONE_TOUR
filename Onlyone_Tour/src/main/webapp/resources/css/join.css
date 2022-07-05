@@ -31,6 +31,22 @@ input{
 	margin-top: -20px;
 }
 
+/* 패스워드 및 이메일만 따로 조정하기 */
+#member_pwd1{
+	width: 514px;
+	border: 1px solid #cdcdcd;
+}
+
+#member_pwd2{
+	width:514px;
+	border: 1px solid #cdcdcd;
+}
+
+#member_email{
+	width:514px;
+	border: 1px solid #cdcdcd;
+}
+
 .main-text{
 	display:flex;
 	flex-direction:row;
@@ -43,10 +59,10 @@ input{
 }
 
 
-.form-group > input{
+.form-group input{
 	width: 500px;
 	height: 40px;
-	border-radius: 5px;
+	border-radius: 3px;
 	padding-left: 10px;
 }
 
@@ -195,6 +211,25 @@ input{
 	color: blue;	
 	font-weight: bold;
 }
+
+#btn_userPhone{
+	position: relative; 
+	bottom: 45px;
+	left: 340px;
+	width: 120px;
+	height: 44px;
+	font-size: 14px;
+	border-radius: 3px;
+	outline: none;
+	text-align: center;
+	margin-right: 10px;
+	cursor: pointer;
+	border: 1px solid blue;
+	background: white;
+	color: blue;	
+	font-weight: bold;
+}
+
 
 .text_box1{
 	width: 500px;

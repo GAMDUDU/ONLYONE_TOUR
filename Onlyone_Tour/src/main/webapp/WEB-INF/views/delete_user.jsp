@@ -15,38 +15,42 @@
 		<c:set var="mem" value="${mem}" />
 			<div class="form_info">
 				<form method="post" 
-					action="<%=request.getContextPath() %>/update_info_ok.do">
+				action="<%=request.getContextPath() %>/delete_user_ok.do" onsubmit="return pwdCheck();">
 					
-				<input type="hidden" name="dbpwd" value="${mem.member_pwd }">	
+				<input type="hidden" name="dbpwd" value="${mem.member_pwd}" class="old_pwd">	
 				
 					<div class="text_big_fix">
-						<strong>개인정보</strong>
+						<strong>회원 탈퇴</strong>
 					</div>
+					
 					<div class="text_1">
 						<div class="text_1s_selected">
 							<strong>
 								<em></em>
-								${mem.member_name }님의 정보를 안전하게 보호하기 위하여<br>
-								비밀번호를 다시 한번 확인합니다.
+								그동안 보내주신 성원에 감사드립니다.
 							</strong>
+							<p>-개인정보 취급방침에 의거하여 모든 개인정보가 삭제됩니다.</p>
+							<p>-단, 고객게시판, 후기 등의 게시물은 후에도 유지됩니다.</p>
+							<p>-회원탈퇴 이후 게시물 삭제는 고객센터로 별도 문의가 필요합니다.</p>
 						</div>
+						
 						<div class="form_table">
 							<table class="form_table_main">
 								<tr>
 									<th>아이디</th>
 									<td>
-										<input name="user_id" value="${mem.member_id }" readonly>
+										<input name="user_id" value="${member_id}" readonly>
 									</td>
 								</tr>
 								<tr>
 									<th>비밀번호</th>
 									<td>
-										<input type="password" name="user_pwd">
+										<input type="password" name="user_pwd" class="input_pwd">
 									</td>
 								</tr>
 							</table>
 							<div class="form_submit">
-								<input type="submit" value="확인">
+								<input type="submit" value="회원 탈퇴">
 								<input type="reset" value="취소">
 							</div>
 						</div>
@@ -54,6 +58,5 @@
 				</form>	
 			</div>
 		</div>
-	
 </body>
 </html>

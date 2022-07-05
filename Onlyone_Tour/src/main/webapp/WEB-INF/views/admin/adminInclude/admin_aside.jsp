@@ -14,8 +14,8 @@
 		width: 200px;
 		padding:0;
 		margin:0;
-		position: fixed;
-		height: 80%;
+		position: fixed; 
+		height: 60%;
 		overflow: auto;
 		z-index: 5;
 		border: 1px solid black;

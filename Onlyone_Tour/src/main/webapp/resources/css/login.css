@@ -15,7 +15,8 @@
 }
 
 .black-bg1, .black-bg2{
-    width : 100%;
+    width : 1300px;
+    height: 500px;
     position : fixed;
     background : rgba(0,0,0,0.5);
     z-index : 5;
@@ -34,7 +35,8 @@
 	background: white;
     border-radius: 5px;
     padding: 30px;
-   	margin-left: 500px;
+   	margin-left: 350px;
+   	margin-top: 50px;
 }
 
 

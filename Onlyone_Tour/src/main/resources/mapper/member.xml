@@ -5,8 +5,6 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
-    
-
 
 <mapper namespace="memberdao">
 
@@ -38,6 +36,15 @@
 			where member_email = #{member_email}
 			
 	</select>
+	
+	
+	<select id="phoneCheck" parameterType="String" resultType="int">
+		
+		select count(*) from member_trip
+			where member_phone = #{member_phone}
+		
+	</select>
+	
 	
 	<select id="findId" parameterType="memberdto" resultType="memberdto">
 		
@@ -72,22 +79,20 @@
 	</select>
 	
 	
+	<!-- 회원삭제 -->
 	<delete id="del" parameterType="String">
-		delete from member_trip where member_id = #{id}
+		delete from member_trip where member_id = #{id} 
 	</delete>
-	
-	
-	
-	
-	
-	
 	
 	
 	<!-- 회원정보 수정 -->
 	<update id="update" parameterType="memberdto">
-		update member_trip set member_email = #{member_email},
+		<![CDATA[
+		update member_trip set member_email = #{member_email}, member_pwd = #{member_pwd},
+			member_phone = #{member_phone},
 			member_addr = #{member_addr}, member_detailaddr = #{member_detailaddr}
 			where member_id = #{member_id}
+		]]>
 	</update>
 	
 </mapper>

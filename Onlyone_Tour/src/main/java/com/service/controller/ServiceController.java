@@ -509,7 +509,7 @@ public class ServiceController {
 		//1. 파일업로드 경로 설정(HttpServletRequest 객체를 이용해서 경로를 가져옴)
 		//request.getSession().getServletContext().getRealPath()  ->  /webapp/폴더경로
 		String savePath 
-		= "C:\\NCS\\ONLYONE-TOUR\\Onlyone_Tour\\src\\main\\webapp\\resources\\image_service\\upload\\";
+		= "C:\\Users\\ubg11\\git\\ONLYONE-TOUR\\ONLYONE-TOUR\\Onlyone_Tour\\src\\main\\webapp\\resources\\image_service\\upload\\";
 		
 		//request.getSession().getServletContext().getRealPath("/resources/image_service/upload/");
 		//패스 경로 위에처럼 해야하는데 안돼서 직접 복사
@@ -677,7 +677,7 @@ public class ServiceController {
 		
 		//파일과 현재 서블릿 연결
 		//String root = request.getSession().getServletContext().getRealPath("/"); ///webapp
-		String root = "C:\\NCS\\ONLYONE-TOUR\\Onlyone_Tour\\src\\main\\webapp\\resources\\image_service\\upload\\";
+		String root = "C:\\Users\\ubg11\\git\\ONLYONE-TOUR\\ONLYONE-TOUR\\Onlyone_Tour\\src\\main\\webapp\\resources\\image_service\\upload\\";
 		String downLoadFile = root + fileDTO.getFile_path();
 		System.out.println(fileDTO.getFile_path());
 		
@@ -751,7 +751,7 @@ public class ServiceController {
 		//1. 파일업로드 경로 설정(HttpServletRequest 객체를 이용해서 경로를 가져옴)
 		//request.getSession().getServletContext().getRealPath()  ->  /webapp/폴더경로
 		String savePath 
-		= "C:\\NCS\\ONLYONE-TOUR\\Onlyone_Tour\\src\\main\\webapp\\resources\\image_service\\upload\\";
+		= "C:\\Users\\ubg11\\git\\ONLYONE-TOUR\\ONLYONE-TOUR\\Onlyone_Tour\\src\\main\\webapp\\resources\\image_service\\upload\\";
 		
 		//request.getSession().getServletContext().getRealPath("/resources/image_service/upload/");
 		//패스 경로 위에처럼 해야하는데 안돼서 직접 복사

@@ -16,11 +16,12 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
+
 	<jsp:include page="include/top.jsp" />
 	
 	<hr width="100%" color="gray">
 	
-		<!-- 아이디 찾기  -->
+	<!-- 아이디 찾기  -->
 	 <div class="black-bg1">
         <div class="white-bg1">
           <h4>아이디 찾기</h4>
@@ -30,7 +31,7 @@
                 </div>
                 
                 <div class="my-3">
-                    <input type="text" class="form-control" id="phone1" name="member_phone" placeholder="휴대폰 번호를 입력해주세요." required="required">
+                    <input type="text" class="form-control" id="phone1" name="member_phone" placeholder="('-'포함)휴대폰 번호를 입력해주세요." required="required">
                 </div>
                 
                 <button id ="submit1" type="submit" class="btn btn-primary">찾기</button>

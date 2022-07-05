@@ -35,13 +35,13 @@ public class MemberDAOImpl implements MemberDAO{
 		return this.sqlSession.update("update", dto);
 	}
 	
-	
 	// 회원삭제
 	@Override
 	public int deleteMember(String id) {
 		return this.sqlSession.delete("del",id);
 	}
-
+	
+	
 	@Override
 	public void updateSequnce(int num) {
 		// TODO Auto-generated method stub
@@ -88,6 +88,12 @@ public class MemberDAOImpl implements MemberDAO{
 	@Override
 	public List<MemberDTO> SearchMemberList(PageDTO dto) {
 		return null;
+	}
+	
+	// 휴대폰 중복 체크
+	@Override
+	public int checkUserPhone(String phone) {
+		return this.sqlSession.selectOne("phoneCheck", phone);
 	}
 	
 }

@@ -27,7 +27,7 @@ public class UploadService {
 		boolean isUpload = false;
 		
 		//저장경로
-		String file_path = "C:\\NCS\\ONLYONE-TOUR\\Onlyone_Tour\\src\\main\\webapp\\resources\\image_service\\";
+		String file_path = "C:\\Users\\ubg11\\git\\ONLYONE-TOUR\\ONLYONE-TOUR\\Onlyone_Tour\\src\\main\\webapp\\resources\\image_service\\upload\\";
 		
 		Calendar cal = Calendar.getInstance();
 		

@@ -2,6 +2,9 @@ package com.travel.model;
 
 import java.util.List;
 
+import com.airport.model.AirportDTO;
+import com.hotel.model.HotelDTO;
+
 public interface TravelDAO {
 	
 	// 민경님
@@ -17,5 +20,11 @@ public interface TravelDAO {
 	public List<TravelDTO> getRecommendList();
 	public List<TravelDTO> getNewList();
 	public TravelDTO getTravelCont(int num);
-
+	
+	
+	// 병권님
+	public List<TravelDTO> SearchTravel(String search);
+	public List<HotelDTO> SearchHotel(String search);
+	public List<AirportDTO> SearchAir(String search);
+	
 }

@@ -33,7 +33,7 @@
 	 -->
 	<insert id="insertQuestion" parameterType="ServiceQuestionDTO">
 		<selectKey resultType="int" keyProperty="q_num" order="BEFORE">
-			select max(q_num) from service_question_trip
+			select nvl(max(q_num),0) from service_question_trip
 		</selectKey>
 		
 		insert into service_question_trip values(#{q_num} + 1, 
@@ -111,7 +111,7 @@
 	
 	<insert id="insertNotice" parameterType="ServiceNoticeDTO">
 		<selectKey resultType="int" keyProperty="n_num" order="BEFORE">
-			select max(n_num) from service_notice_trip
+			select nvl(max(n_num),0) from service_notice_trip
 		</selectKey>
 		
 		insert into service_notice_trip values(#{n_num} + 1, 
