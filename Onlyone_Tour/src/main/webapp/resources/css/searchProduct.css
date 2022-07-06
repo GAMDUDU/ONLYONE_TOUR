@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+body{
+	margin: 0;
+	padding: 0;
+}
+
 /* 검색바 디자인 */
 #search_main{
 	margin: 100px 0px;

@@ -6,55 +6,77 @@
     <mapper namespace="com.reserve.model.ReserveDAO">
   
     <!-- 패키지 -->
+    
+    <!-- 패키지조회 -->
     <select id="content" parameterType="int" resultType="traveldto">
-    select * from travel_trip where travel_num=1
+    select * from travel_trip where travel_num=#{no}
     </select>
     
-    <select id="member" parameterType="String" resultType="memberdto">
-    	select * from member_trip where member_id = #{member_id}
+    <!-- 회원조회 -->
+    <select id="reserve_member" parameterType="String" resultType="memberdto">
+    select*from member_trip where member_id=#{id}
     </select>
     
+    <!-- 예약 -->
     <insert id="add" parameterType="ReserveDTO" >
     <selectKey resultType="int" keyProperty="reserve_num" order="BEFORE">
     	select nvl(max(reserve_num), 0) from reserve_travel
     </selectKey>  
-    insert into reserve_travel values(#{reserve_num}+1, 1, #{reserve_count},
+    insert into reserve_travel values(#{reserve_num}+1, 1,#{member_id}, #{reserve_count},
     #{reserve_name_1}, #{reserve_date_1}, #{reserve_email_1}, #{reserve_phone_1},#{reserve_gender_1},
      #{reserve_name_2}, #{reserve_date_2}, #{reserve_email_2}, #{reserve_phone_2},#{reserve_gender_2},
      #{reserve_name_3}, #{reserve_date_3}, #{reserve_email_3}, #{reserve_phone_3},#{reserve_gender_3},
       #{price_account})
     </insert>
     
+    <!-- 예약조회 -->
     <select id="reserveOk" parameterType="int" resultType="ReserveDTO">
     select*from reserve_travel where reserve_num=#{reserve_num}
     </select>
     
     
-    <!-- 항공 -->
     
-    <select id="contentAir" parameterType="int" resultType="AirportDTO">
-    select * from air_trip where air_num=1
+  
+    
+    
+    
+    <!-- 호텔  -->
+    
+    <!-- 호텔조회 -->
+    <select id="reservehotelCont" parameterType="int" resultType="hoteldto"> 
+   	 select * from hotel_trip where hotel_num=#{no}
     </select>
-
-    <insert id="Airadd" parameterType="ReserveAirDTO" >
-    <selectKey resultType="int" keyProperty="reserve_num" order="BEFORE">
-    	select nvl(max(reserve_num), 0) from reserve_air
-    </selectKey>
-    insert into reserve_air values(#{reserve_num}+1, 1, #{reserve_count},
-    #{reserve_name_1}, #{reserve_date_1}, #{reserve_email_1}, #{reserve_phone_1},#{reserve_gender_1},
-     #{reserve_name_2}, #{reserve_date_2}, #{reserve_email_2}, #{reserve_phone_2},#{reserve_gender_2},
-     #{reserve_name_3}, #{reserve_date_3}, #{reserve_email_3}, #{reserve_phone_3},#{reserve_gender_3},
+    
+    <!-- 예약 -->
+   	<insert id="hotelAdd" parameterType="ReserveHotelDTO">
+   	 <selectKey resultType="int" keyProperty="reserve_num" order="BEFORE">
+    	select nvl(max(reserve_num), 0) from reserve_hotel
+    </selectKey>  
+    insert into reserve_hotel values(#{reserve_num}+1, 1,'hong',#{reserve_count},
+    #{reserve_name}, #{reserve_date}, #{reserve_email}, #{reserve_phone},#{reserve_gender},
       #{price_account})
-    </insert>
+   	</insert>
     
-    <select id="Aircontent" parameterType="int" resultType="AirportDTO">
-    select * from air_trip where travel_num=1
-    </select>
     
-    <select id="AirreserveOk" parameterType="int" resultType="ReserveAirDTO">
-    select*from reserve_air where reserve_num=#{reserve_num}
-    </select>
     
-   
+    
+    
+    <!-- 회원 예약내역 -->
+    	<select id="memeberreserve" parameterType="String" resultType="ReserveDTO">
+    	SELECT RESERVE_TRAVEL.*
+		FROM MEMBER_TRIP INNER JOIN RESERVE_TRAVEL
+		ON MEMBER_TRIP.MEMBER_ID = RESERVE_TRAVEL.MEMBER_ID
+		WHERE MEMBER_TRIP.MEMBER_ID = #{id} order by reserve_num desc
+    	</select>
+    	
+    	<select id="hotelreserve" parameterType="String" resultType="ReserveHotelDTO">
+    	SELECT RESERVE_HOTEL.*
+		FROM MEMBER_TRIP INNER JOIN RESERVE_HOTEL
+		ON MEMBER_TRIP.MEMBER_ID = RESERVE_HOTEL.MEMBER_ID
+		WHERE MEMBER_TRIP.MEMBER_ID = #{id} order by reserve_num desc
+    	</select>
+    
+    
+    
     
  </mapper>

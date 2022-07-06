@@ -33,6 +33,10 @@ input{
 	border:0px;
 }
 
+textarea {
+	border : 0;
+}
+
 </style>
 
 </head>

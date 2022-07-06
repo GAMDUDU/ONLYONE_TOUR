@@ -12,16 +12,14 @@
 <script src="https://kit.fontawesome.com/27a0dd965d.js" crossorigin="anonymous"></script>
 </head>
 <body>
+	<jsp:include page="include/top.jsp" />
+	
 	<c:set var="find" value="${Find}"/>
 	<c:set var="search" value="${search}"/>
 	<c:set var="hotel" value="${hotelFind}"/>
 	
-	<jsp:include page="include/top.jsp" />
-	
-	<hr width="100%" color="gray">
 	
 	<div id="search_main">
-		
 		<c:if test="${!empty find || !empty hotel}">
 			<div class="search_top_bar">
 				<span class="search_data">${search}</span>
@@ -118,8 +116,6 @@
 	    </div>
 	</div>
 	
-	<hr width="100%" color="gray">
-	<jsp:include page="include/footer.jsp" />
 	
 </body>
 </html>

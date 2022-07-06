@@ -4,15 +4,10 @@ import java.util.List;
 
 import com.airport.model.AirportDTO;
 import com.hotel.model.HotelDTO;
+import com.onlyone.model.PageDTO;
 
 public interface TravelDAO {
-	
-	// 민경님
-	public TravelDTO travelCont(int no);
 
-	public TravelDTO getReserveCont(int no);
-	
-	
 	// 종엽님 
 	public List<TravelDTO> getTravelList();
 	public List<TravelDTO> getNormalList();
@@ -20,6 +15,7 @@ public interface TravelDAO {
 	public List<TravelDTO> getRecommendList();
 	public List<TravelDTO> getNewList();
 	public TravelDTO getTravelCont(int num);
+	public List<TravelDTO> getSearchList(String keyword);
 	
 	// 리뷰
 	public List<TravelReviewDTO> getReviewList(int num);
@@ -31,5 +27,16 @@ public interface TravelDAO {
 	public List<TravelDTO> SearchTravel(String search);
 	public List<HotelDTO> SearchHotel(String search);
 	public List<AirportDTO> SearchAir(String search);
+	
+	// 민경님
+	public int getTravelListCount();//전체게시물수
+	List<TravelDTO> getTravelList(PageDTO dto);//리스트
+	public int admininsertTravel(TravelDTO dto);//등록
+	public TravelDTO adminTravelcont(int num);//상세
+	public int adminupdateTravel(TravelDTO dto);//수정
+	public int admindeleteTravel(int num);//삭제
+	public void adminupdateSequence(int num);//번호수정
+	public List<TravelDTO> adminsearchTravel(String fidle, String keyword);//검색
+	
 	
 }

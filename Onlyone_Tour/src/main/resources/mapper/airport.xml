@@ -18,6 +18,7 @@
 				and AIR_DATE=#{air_departure_date})
 		or (AIR_DEPARTURE=#{air_arrival} and AIR_ARRIVAL=#{air_departure} 
 				and AIR_DATE=#{air_arrival_date}) 
+		order by air_num
 	</select>
 
 	<select id="member" parameterType="string" resultType="memberdto">

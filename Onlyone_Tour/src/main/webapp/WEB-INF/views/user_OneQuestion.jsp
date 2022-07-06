@@ -154,7 +154,7 @@ function userQList(npage,id){
 				 table += '<th>번호</th>';	
 				 table += '<th>제목</th>';	
 				 table += '<th>작성자</th>';	
-				 table += '<th>답변상태</th>';	
+				 table += '<th width="15%">답변상태</th>';	
 				 table += '<th>조회수</th>';
 				 table += '<th>작성일자</th></tr>';
 				 
@@ -179,7 +179,7 @@ function userQList(npage,id){
 					 
 					 
 					 table += '<td  width="10%">'+ itgo.List[i].service_name +'</td>';
-					 table += '<td  width="10%">'+ itgo.List[i].service_check +'</td>';
+					 table += '<td  width="15%">'+ itgo.List[i].service_check +'</td>';
 					 table += '<td  width="10%">'+ itgo.List[i].service_view +'</td>';
 					 table += '<td  width="20%">'+ itgo.List[i].service_date +'</td>';
 					 table += '</tr>';

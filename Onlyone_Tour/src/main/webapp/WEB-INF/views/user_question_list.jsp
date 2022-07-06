@@ -169,6 +169,13 @@ a:hover{
 	color : #9046cf; 
 }	
 
+.text-center{
+	width: 50%; 
+	float:none; 
+	
+}
+
+
 </style>
 </head>
 <body>

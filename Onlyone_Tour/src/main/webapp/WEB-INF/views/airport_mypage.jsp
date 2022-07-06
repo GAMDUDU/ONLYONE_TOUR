@@ -21,7 +21,7 @@
 		
 		<div class="col-md-8 col-md-offset-2">
 		
-			<div class="alert alert-warning" role="alert" style="color:#000;font-size:24px;">
+			<div class="alert alert-warning" role="alert" style="color:#000;font-size:20px;">
 				☑️ ${member_name}님의 항공 예약 목록입니다.
 			</div>
 			
@@ -63,9 +63,9 @@
 			</c:if>
 			
 			<c:if test="${empty list }"> 
-				<div class="alert alert-danger" role="alert" style="font-size:24px;text-align:center;">
+				<div class="alert alert-danger" role="alert" style="font-size:20px;text-align:center;">
 					<br>
-					 *** ${member_name}님의 항공 예약 내역이 존재하지 않습니다. ***<br><br>
+					 *** 항공 예약 내역이 존재하지 않습니다. ***<br><br>
 					<a class="btn btn-danger btn-lg"
 		   				href="<%=request.getContextPath()%>/airport.do">
 		   				항공편 예약 하러 가기
@@ -85,11 +85,19 @@
 	
 	<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
- 	
+ 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script type="text/javascript">
 	
 	  $(document).ready(function() {
 		  
+			<%
+			if(session.getAttribute("member_id") == null){ 
+			%>
+				alert("로그인이 필요한 서비스 입니다.\n로그인을 먼저 진행해 주세요.");
+				location.href="<%=request.getContextPath()%>/login.do";
+			<%
+				}
+			%>
 
 	  }); 
 	  

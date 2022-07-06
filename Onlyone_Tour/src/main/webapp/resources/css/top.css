@@ -4,10 +4,10 @@ div{
 	margin: 0;
 	padding: 0;
 }
-
 .container{
 	min-width: 1200px;
-}
+} 
+
 #total{
 	height: 170px;
 }
@@ -88,6 +88,7 @@ h1.logo a{
 }
 fieldset{
 	border: 0;
+	
 }
 .legend{
 	overflow: hidden;
@@ -105,15 +106,17 @@ fieldset{
 	height: 40px;
 }
 .img_menu .search .keyword{
-	height: 40px;
+	height: 35px;
     margin: 0;
     padding: 0;
     border: 0;
-    width: 334px;
+    width: 334px; 
     float: left;
     line-height: 40px;
     font-size: 15px;
     color: #111;
+    background: transparent;
+    clear: both;
 }
 input[type=text]{
 	height: 42px;
@@ -139,11 +142,11 @@ input[type=text]{
     height: 40px;
     margin: 0;
     padding: 0;
-    border: 0;
+    border: none;
     position: relative;
  	/*font-size:0;*/
     line-height: 0;
-    background-color: #fff;
+    background-color: transparent;
 }
 .img_menu .search .btn_search:before{
 	width: 18px;

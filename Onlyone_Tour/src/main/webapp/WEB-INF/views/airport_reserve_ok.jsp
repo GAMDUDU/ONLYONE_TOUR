@@ -60,7 +60,7 @@
 		<div class="col-md-8 col-md-offset-2" style="text-algin:center;">
 		
 		 <div class="row">
-		  <div class="col-md-9 col-md-offset-2 alert alert-info" role="alert" style="color:#000;font-size:24px;">
+		  <div class="col-md-9 col-md-offset-2 alert alert-info" role="alert" style="color:#000;font-size:20px;">
 		  	☑️ ${member_name}님 예약이 완료되었습니다.
 		  </div>
 		 </div>	
@@ -117,8 +117,6 @@
 						href="<%=request.getContextPath()%>/airport_mypage.do?id=${member_id}">
 							예약내역 상세보기
 					</a>
-					&nbsp;&nbsp;&nbsp;
-					<a type="button" class="btn btn-primary btn-lg">결제하기</a>
 				</p>
 			</div>
 		  </div>

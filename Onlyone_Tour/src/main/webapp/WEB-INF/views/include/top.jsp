@@ -35,7 +35,7 @@
 			})
 		});
 	});	
-
+	
 	
 	
 </script>
@@ -57,7 +57,7 @@
 		<ul>
 			<li><a href="<%=request.getContextPath()%>/login.do">로그인</a></li>
 			<li><a href="<%=request.getContextPath()%>/join.do">회원가입</a></li>
-			<li><a href="#">고객센터</a></li>
+			<li><a href="<%=request.getContextPath()%>/user_notice_list.do">고객센터</a></li>
 		</ul>
 		<%}else if(session.getAttribute("member_id") != null && (int)session.getAttribute("verify") == 9){%>
 		<ul>
@@ -86,16 +86,22 @@
 	 	<!-- 검색 -->
 	 	 <div class="search">
 	 		<form method="post"
-	 			action="<%=request.getContextPath() %>/검색">
+	 			action="<%=request.getContextPath() %>/search_product.do">
 	 		 <fieldset class="fid_search">
+	 		 	
 	 		 	<legend class="legend">통합 검색어 입력폼</legend>
+	 		 	
 	 		 	<div class="search_a deletable">
 	 		 	<input type="text" id="keyword" placeholder="검색어를 입력해 주세요."
-	 		 	 maxlength="30" value class="keyword">
+	 		 	 maxlength="30" class="keyword" name="search_product">
+	 		 	
 	 		 	<span class="s-span" style="position: absolute;
 	 		 	 cursor: pointer; default;">X</span>
-	 		 	<button class="btn_search"> 		 	
-	 		 	<span><i class="fa-solid fa-magnifying-glass"></i></span></button>
+	 		 	
+	 		 	<button class="btn_search" type="submit"> 		 	
+	 		 		<span><i class="fa-solid fa-magnifying-glass"></i></span>
+	 		 	</button>
+	 		 	
 	 		 	</div>
 	 		 </fieldset>
 	 		</form>
@@ -108,7 +114,7 @@
 	 	 <c:set var="mem" value="member_id"/>
 	
 	 		<ul>
-	 			<li id="my_menu_li"><a href="#"><i class="fa-solid fa-user fa-2xl"></i><br><br>
+	 			<li style="text-align: center" id="my_menu_li"><a href="#"><i class="fa-solid fa-user fa-2xl"></i><br><br>
 	 				<b>마이메뉴</b></a>			
 			 		
 			 		<%
@@ -130,13 +136,13 @@
 			 			  ${member_name} 님 반갑습니다.
 			 			  </p>
 			 			  <ul>
-			 			  	<li><a href="#">예약내역</a></li>
+			 			  	<li><a href="<%=request.getContextPath()%>/reserve_list.do?memid=${member_id}">여행/숙박예약</a></li>
 			 			  	<li><a href="<%=request.getContextPath()%>/airport_mypage.do?id=${member_id}">항공예약내역</a></li>
-			 			  	<li><a href="#">찜</a></li>
 			 			  </ul>
 			 			  <ul>
 			 			  	<li><a href="<%=request.getContextPath() %>/update_info.do?memid=${member_id}">개인정보수정</a></li>
 			 			  	<li><a href="<%=request.getContextPath() %>/user_oneQuestion.do?id=${member_id}">1:1문의 내역</a></li>
+			 			  	<li><a href="<%=request.getContextPath() %>/delete_user.do?memid=${member_id}">회원탈퇴</a></li>
 			 			  </ul>
 			 			 </div>
 			 			</div>
@@ -144,10 +150,14 @@
 	 			</li>
 
 	 			
-	 			<li><a href="#"><i class="fa-solid fa-clipboard-check fa-2xl"></i><br><br>
-	 			<b>예약내역</b></a></li>
-	 			<li><a href="#"><i class="fa-solid fa-plane fa-2xl"></i><br><br>
-	 			<b>찜</b></a></li>
+	 			<li style="text-align: center"><a href="<%=request.getContextPath()%>/reserve_list.do?memid=${member_id}"><i class="fa-solid fa-clipboard-check fa-2xl"></i>
+	 			<br><br>
+	 				<b>여행/숙박예약내역</b></a></li>
+	 			
+	 			<li style="text-align: center"><a href="<%=request.getContextPath()%>/airport_mypage.do?id=${member_id}"><i class="fa-solid fa-plane fa-2xl"></i><br><br>
+	 				<b>항공예약내역</b></a>
+	 			</li>
+	 		
 	 		</ul>
 
 	 	</div>
@@ -172,34 +182,34 @@
 	 					<div class="middle bundle">
 	 					 <div class="group_list">
 	 					 	<dl>
-	 					 		<dt><a href="#">여행</a></dt>
+	 					 		<dt><a href="<%=request.getContextPath() %>/travel_list.do">여행</a></dt>
 	 					 		<dd>
-	 					 			<ul>
+<!-- 	 					 			<ul>
 	 					 				<li>해외 여행</li>
 	 					 				<li>국내 여행</li>
-	 					 			</ul>
+	 					 			</ul> -->
 	 					 		</dd>
 	 					 	</dl>
 	 					 </div>
 	 					 <div class="group_list">
 	 					    <dl>
-	 					 		<dt><a href="#">호텔/숙박</a></dt>
+	 					 		<dt><a href="<%=request.getContextPath() %>/hotel_list.do">호텔/숙박</a></dt>
 	 					 		<dd>
-	 					 			<ul>
+<!-- 	 					 			<ul>
 	 					 				<li>호텔</li>
 	 					 				<li>펜션</li>
 	 					 				<li>풀빌라</li>
-	 					 			</ul>
+	 					 			</ul> -->
 	 					 		</dd>
 	 					 	</dl>
 	 					 </div>
 	 					 <div class="group_list">
 	 					    <dl>
-	 					 		<dt><a href="#">항공</a></dt>
+	 					 		<dt><a href="<%=request.getContextPath()%>/airport.do">항공</a></dt>
 	 					 		<dd>
-	 					 			<ul>
+<!-- 	 					 			<ul>
 	 					 				<li>항공예약</li>
-	 					 			</ul>
+	 					 			</ul> -->
 	 					 		</dd>
 	 					 	</dl>
 	 					 </div>

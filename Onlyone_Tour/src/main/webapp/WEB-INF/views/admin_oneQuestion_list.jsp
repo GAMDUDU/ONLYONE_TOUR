@@ -53,7 +53,7 @@ function dateCheckSubmit(){
 .text-center{
 	width: 50%; 
 	float:none; 
-	margin:0 auto
+	margin:0 auto;
 }
 
 .selectBox{

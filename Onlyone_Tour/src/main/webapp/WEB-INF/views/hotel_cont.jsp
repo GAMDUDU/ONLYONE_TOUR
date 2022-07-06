@@ -232,7 +232,7 @@
 				</td>
 				
 				<td align="right" width="20%">
-					<input type="button" id="hotel_reservation" value="예약하기" onclick="location.href='reseve_hotel.do?no=${cont.getHotel_num() }'"> 
+					<input type="button" id="hotel_reservation" value="예약하기" onclick="location.href='reseve_hotel.do?no=${cont.getHotel_num() }&id=${member_id}'"> 
 				</td>
 			</tr>
 			
@@ -255,7 +255,7 @@
 					</td>
 					
 					<td align="right" width="20%">
-						<input type="button" id="hotel_reservation" value="예약하기" onclick="location.href='hotel_reserve.do?num=${cont.getHotel_num() }'"> 
+						<input type="button" id="hotel_reservation" value="예약하기" onclick="location.href='reseve_hotel.do?num=${cont.getHotel_num() }&id=${member_id}'"> 
 					</td>
 				</tr>
 				
@@ -279,7 +279,7 @@
 					</td>
 					
 					<td align="right" width="20%">
-						<input type="button" id="hotel_reservation" value="예약하기" onclick="location.href='hotel_reserve.do?num=${cont.getHotel_num() }'"> 
+						<input type="button" id="hotel_reservation" value="예약하기" onclick="location.href='reseve_hotel.do?num=${cont.getHotel_num() }&id=${member_id}'"> 
 					</td>
 				</tr>
 				
@@ -511,8 +511,7 @@
 			<c:if test="${empty reviewList }">
 				<tr>
 					<td colspan="2" align="center">
-						<h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						리뷰가 없습니다.</h4>
+						<h4>리뷰가 없습니다.</h4>
 					</td>	
 				</tr>
 			</c:if>

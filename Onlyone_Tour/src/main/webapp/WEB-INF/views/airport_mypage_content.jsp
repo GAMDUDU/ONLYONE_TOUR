@@ -60,7 +60,7 @@
 		
 		<div class="col-md-8 col-md-offset-2">
 		
-			<div class="alert alert-warning" role="alert" style="color:#000;font-size:24px;">
+			<div class="alert alert-warning" role="alert" style="color:#000;font-size:20px;">
 				☑️ ${member_name}님의 항공예약 상세내역 입니다.
 			</div>
 			
@@ -206,7 +206,7 @@
 			
 			
 			<c:if test="${empty list }"> 
-				<div class="alert alert-danger" role="alert" style="font-size:24px;text-align:center;">
+				<div class="alert alert-danger" role="alert" style="font-size:20px;text-align:center;">
 					<br>
 					 *** ${member_name}님의 항공 예약 내역이 존재하지 않습니다. ***<br><br>
 					<a class="btn btn-danger btn-lg"

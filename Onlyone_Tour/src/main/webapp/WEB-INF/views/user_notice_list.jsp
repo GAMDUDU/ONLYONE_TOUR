@@ -78,6 +78,12 @@
 	
 	
 }
+
+.text-center{
+	width: 50%; 
+	float:none; 
+	margin : 50px auto;
+}
 	
 a{
 	text-decoration: none;

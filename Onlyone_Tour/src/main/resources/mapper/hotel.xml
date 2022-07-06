@@ -85,4 +85,62 @@
 			sysdate)
 	</insert>
 	
+	<select id="searchHotelList" parameterType="String" resultType="hoteldto">
+		<![CDATA[
+			select * from hotel_trip 
+			where hotel_hname like '%' || #{keyword} || '%' 
+			or hotel_ename like '%' || #{keyword} || '%' 
+			or hotel_country like '%' || #{keyword} || '%' 
+			or hotel_loc like '%' || #{keyword} || '%'
+			or hotel_exp like '%' || #{keyword} || '%'
+			or hotel_add like '%' || #{keyword} || '%'
+			order by hotel_num desc
+		]]>
+	</select>
+	
+	<!-- 민경  -->
+	
+	
+	<select id="adminhotelCount" resultType="int">
+		select count(*) from hotel_trip
+	</select>
+	
+		
+	<select id="adminhotellist" parameterType="pageDto" resultType="hoteldto">
+		<![CDATA[
+		select * from
+			(select m.*, row_number()
+				over(order by hotel_num desc) rnum from hotel_trip m)
+			where  rnum >= #{startNo} and rnum <= #{endNo}
+		]]>	
+	</select>
+	
+	<select id="adminHotelCont" parameterType="int" resultType="hoteldto">
+		select * from hotel_trip where hotel_num=#{num}
+	</select>
+	
+	
+	<insert id="adminHotelAdd" parameterType="hoteldto">
+  	 <selectKey resultType="int" keyProperty="hotel_num" order="BEFORE">
+    	select max(hotel_num) from hotel_trip
+    </selectKey>  
+  		insert into hotel_trip values(#{hotel_num}+1,
+  		#{hotel_hname},#{hotel_ename},#{hotel_country},
+  		#{hotel_room1},#{hotel_room2},#{hotel_room3},
+  		#{hotel_price1},#{hotel_price2},#{hotel_price3},
+  		#{hotel_loc},#{hotel_chkin},#{hotel_chkout},
+  		#{hotel_phone},#{hotel_image},#{hotel_exp},#{hotel_add})  	
+  	</insert>
+  	
+  	<delete id="hotelDel" parameterType="int">
+  		delete from hotel_trip where hotel_num = #{num}
+  	</delete>
+  	
+  	<update id="seq" parameterType="int">
+  		<![CDATA[
+			update hotel_trip set hotel_num = hotel_num - 1
+			where hotel_num > #{num}
+		]]>	
+  	</update>
+	
 </mapper>

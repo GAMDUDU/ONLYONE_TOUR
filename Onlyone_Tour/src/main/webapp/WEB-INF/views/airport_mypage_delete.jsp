@@ -27,7 +27,7 @@
       <c:set var="num" value="${num }" />
       <c:set var="pwd" value="${pwd }" />
        <div class="row">
-       		<div class="alert alert-warning" role="alert" style="color:#000;font-size:22px;">
+       		<div class="alert alert-warning text-center" role="alert" style="color:#000;font-size:20px;">
 				☑️ 항공권 예약 취소 전, 본인 확인을 위해 비밀번호를 다시 한번 입력 부탁드립니다.
 			</div>
 			

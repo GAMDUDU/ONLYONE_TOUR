@@ -1,6 +1,10 @@
 @charset "UTF-8";
 
-	
+
+body{
+	margin:0;
+	padding:0;
+}
 
 input{
 	border: 1px solid gray;	
@@ -13,7 +17,6 @@ input{
 }
 
 .join_main img{
-	width: 500px;
 	height: 300px;
 	margin-bottom: -60px;
 }

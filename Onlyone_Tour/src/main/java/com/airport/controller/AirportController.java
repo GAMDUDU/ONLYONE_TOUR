@@ -50,9 +50,6 @@ public class AirportController {
 	public String airList(HttpServletRequest httpServletRequest, 
 			@RequestParam("air_baby_fare") String baby, AirportDTO dto, Model model) {
 			
-		System.out.println("==========================================");
-		System.out.println(dto);
-		System.out.println("==========================================");
 		
 		List<AirportDTO> airlist = this.dao.getAirList(dto);
 				
@@ -63,9 +60,6 @@ public class AirportController {
 		model.addAttribute("air_baby", baby);
 		model.addAttribute("airlist", airlist);
 		
-		System.out.println("==========================================");
-		System.out.println(airlist);
-		System.out.println("==========================================");
 		
 		return "airport_list";
 	}
@@ -75,10 +69,7 @@ public class AirportController {
 				HttpServletResponse response, AirReserveDTO rdto, Model model) throws IOException {
 		
 		int airNum = this.dao.getAirNum()+1;
-		
-		System.out.println("==========================================");
-		System.out.println("airNum=========" + airNum);
-		System.out.println("==========================================");
+	
 		
 		rdto.setRe_num(airNum);
 		
@@ -102,9 +93,6 @@ public class AirportController {
 		model.addAttribute("AirReserve", airReserve);
 		model.addAttribute("AirReserveDTO", rdto);
 		
-		System.out.println("==========================================");
-		System.out.println(airReserve);
-		System.out.println("==========================================");
 
 		if(check == 0) {
 			out.println("<script>");
@@ -121,13 +109,7 @@ public class AirportController {
 	public String airReserveList(HttpServletRequest httpServletRequest, 
 			HttpServletResponse response, AirReserveDTO rdto, Model model) throws IOException {
 		
-		
-		System.out.println("==========================================");
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-		System.out.println("test >>>>>>> " + rdto);
-		System.out.println("==========================================");
-		
-		
+
 		String[] info = rdto.getRe_info().split(",");
 		String[] name = rdto.getRe_tour_name().split(",");
 		String[] gender = rdto.getRe_tour_gender().split(",");
@@ -161,9 +143,6 @@ public class AirportController {
 			out.println("</script>");
 		}
 		
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-		System.out.println("check >>>>>>> " + check);
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 		
 		AirReserveDTO arrdto = this.dao.getAirReserveIndex(Integer.parseInt(info[0]));
 		model.addAttribute("AirReserve", arrdto);

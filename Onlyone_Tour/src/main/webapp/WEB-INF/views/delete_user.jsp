@@ -9,7 +9,6 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/updateInfo.css">
 </head>
 <body>
-	<jsp:include page="include/top.jsp" />
 	
 	<div id="container">
 		<c:set var="mem" value="${mem}" />
@@ -51,7 +50,7 @@
 							</table>
 							<div class="form_submit">
 								<input type="submit" value="회원 탈퇴">
-								<input type="reset" value="취소">
+								<input type="button" value="취소" onclick="location.href='/'">
 							</div>
 						</div>
 					</div>

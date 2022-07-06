@@ -86,6 +86,17 @@
 			sysdate)
 	</insert>
 	
+	<select id="searchTravelList" parameterType="String" resultType="traveldto">
+		<![CDATA[
+			select * from travel_trip 
+			where travel_name like '%' || #{keyword} || '%' 
+			or travel_cont like '%' || #{keyword} || '%' 
+			or travel_room like '%' || #{keyword} || '%' 
+			or travel_air like '%' || #{keyword} || '%'
+			order by travel_num desc
+		]]>
+	</select>
+	
 	<!-- 병권 Search 구현 -->
 	<select id="searchTravel" parameterType="String" resultType="traveldto">
 		<![CDATA[
@@ -109,5 +120,49 @@
 			select * from air_trip where air_airline like '%' || #{search} || '%' 
 		]]>
 	</select>
+	
+	
+	<!-- 민경 -->
+	
+	
+	<select id="admintravelcount" resultType="int">
+		select count(*) from travel_trip
+	</select>
+	
+	
+	<select id="admintravellist" parameterType="pageDto" resultType="traveldto">
+		<![CDATA[
+		select * from
+			(select m.*, row_number()
+				over(order by travel_num desc) rnum from travel_trip m)
+			where  rnum >= #{startNo} and rnum <= #{endNo}
+		]]>	
+	</select>
+	
+	<select id="adminCont" parameterType="int" resultType="traveldto">
+  		select * from travel_trip where travel_num=#{num}
+  	</select>
+  	
+  	<insert id="adminTravelAdd" parameterType="traveldto">
+  	 <selectKey resultType="int" keyProperty="travel_num" order="BEFORE">
+    	select max(travel_num) from travel_trip
+    </selectKey>  
+  		insert into travel_trip values(#{travel_num}+1,
+  		#{travel_name},#{travel_price},#{travel_calender},
+  		#{travel_cont},#{travel_spec},#{travel_air},#{travel_room},
+  		#{travel_image},#{travel_departure_airport},#{travel_arrival_airport},#{travel_departure_date},
+  		#{travel_return_date},#{travel_meeting_time},#{travel_meeting_loc},#{travel_reserve_count})  	
+  	</insert>
+  	
+  	<delete id="travelDel" parameterType="int">
+  		delete from travel_trip where travel_num = #{num}
+  	</delete>
+  	
+  	<update id="HotelSeq" parameterType="int">
+  		 <![CDATA[
+			update travel_trip set travel_num = travel_num - 1
+			where travel_num > #{num}
+		]]>	
+  	</update>
 	
 </mapper>
