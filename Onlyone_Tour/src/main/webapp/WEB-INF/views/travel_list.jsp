@@ -10,7 +10,7 @@
 	<c:set var="path" value="${pageContext.request.contextPath}"/>
 	<meta charset="UTF-8">
 	<title>온리원투어 패키지</title>
-	<link rel="stylesheet" type="text/css" href="${path}/resources/css/travel_list.css?after">
+	<link rel="stylesheet" type="text/css" href="${path}/resources/css/travel_list.css">
 	<meta
       name="viewport"
       content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
@@ -124,18 +124,16 @@
 	<!-- Swiper -->
     <div class="swiper mySwiper">
     	<form method="post" id="search_package" action="<%=request.getContextPath() %>/travel_search.do">
-    		<input name="search_package_input" class="input" placeholder="어디로 여행가세요?">
+    		<input name="keyword" class="input" placeholder="어디로 여행가세요?">
     		<input type="submit" value="검색" class="redbtn">    	
     	</form>
       <div class="swiper-wrapper">
-      	
-       <div class="swiper-slide">
-        	<img src="<%=request.getContextPath() %>/resources/image_package/괌 5일 두짓타니.jpg">
-        </div>
-        <div class="swiper-slide"><img src="<%=request.getContextPath() %>/resources/image_package/제주 신화관.jpg"></div>
-        <div class="swiper-slide"><img src="<%=request.getContextPath() %>/resources/image_package/스위스 일주 8일.jpg"></div>
-        <div class="swiper-slide"><img src="<%=request.getContextPath() %>/resources/image_package/울릉도 4일.jpg"></div>
-        <div class="swiper-slide"><img src="<%=request.getContextPath() %>/resources/image_package/홋카이도 후라노 비에이.jpg"></div>
+        <div class="swiper-slide"><img src="<%=request.getContextPath() %>/resources/image_package/europe.jpg"></div>
+        <div class="swiper-slide"><img src="<%=request.getContextPath() %>/resources/image_package/europe2.jpg"></div>
+        <div class="swiper-slide"><img src="<%=request.getContextPath() %>/resources/image_package/dongnama.jpg"></div>
+        <div class="swiper-slide"><img src="<%=request.getContextPath() %>/resources/image_package/hawaii.jpg"></div>
+        <div class="swiper-slide"><img src="<%=request.getContextPath() %>/resources/image_package/monggol.jpg"></div>
+        <div class="swiper-slide"><img src="<%=request.getContextPath() %>/resources/image_package/vietnam.jpg"></div>
       </div>
       <div class="swiper-button-next"></div>
       <div class="swiper-button-prev"></div>
@@ -172,7 +170,7 @@
 	    </div>
 	    <br><br><br><br>
 	    
-	    <div class="row">
+	    <div class="row" >
 	    	<h5><b>따끈따끈 신규 상품</b></h5><br><br>
 	    	<c:if test="${!empty newList }">
 				<c:forEach items="${newList }" var="dto" begin="0" end="3">
@@ -194,11 +192,11 @@
 	    </div>
 	    <br><hr><br>
 	    
-	    <div class="row">
+	    <div class="row" style="width: 100%">
 	    	<h5><b>베스트 상품</b></h5><br><br>
 	    	<c:if test="${!empty hitList }">
 				<c:forEach items="${hitList }" var="dto" begin="0" end="3">
-			        <div class="col-md-3">
+			        <div class="col-md-3" style="float: left; padding: 20px; width: 25%;">
 			        	<a href="<%=request.getContextPath() %>/travel_cont.do?num=${dto.getTravel_num()}">
 			        		<img src="<%=request.getContextPath() %>/resources/image_package/${dto.getTravel_image() }"
 										width="300" height="200" style="margin-bottom: 10px;">

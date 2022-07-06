@@ -169,7 +169,7 @@
 		line-height: 1.5;
 		font-size: 15px;
 		line-height: 30px;
-		margin-left: 50px;
+		margin-left: -23px;
 	}
 	
 	.content > div h4 {
@@ -183,13 +183,23 @@
 	
 	.content #tabimg2 {
 		float: right;
-		margin: -210px 100px 0 0;
+		margin: -200px -30px 0 0;
 	}
 	
 	.content #tabimg3 {
 		float: right;
-		margin: -220px 40px 0 0;
+		margin: -200px -30px 0 0;
 	}
+	
+	.hashbox {
+		height: 24px;
+	    padding: 2px 8px;
+	    border: 1px solid #666;
+	    background: #fff;
+	    line-height: 22px;
+	    font-size: 12px;
+	}
+	
 	</style>
 	
 	<!-- bootstrap css -->
@@ -208,15 +218,14 @@
 	<!-- Swiper -->
     <div class="swiper mySwiper">
     	<form method="post" id="search_package" action="<%=request.getContextPath() %>/hotel_search.do">
-    		<input name="search_package_input" class="input" placeholder="어디로 여행가세요?">
+    		<input name="keyword" class="input" placeholder="어디로 여행가세요?">
     		<input type="submit" value="검색" class="redbtn">    	
     	</form>
       <div class="swiper-wrapper">
-        <div class="swiper-slide"><img src="<%=request.getContextPath() %>/resources/image_hotel/경주 서남산한옥스테이 펜션.jpg"></div>
-        <div class="swiper-slide"><img src="<%=request.getContextPath() %>/resources/image_hotel/그랜드 조선 제주.jpg"></div>
-        <div class="swiper-slide"><img src="<%=request.getContextPath() %>/resources/image_hotel/신라 모노그램 꽝남 다낭.jpg"></div>
-        <div class="swiper-slide"><img src="<%=request.getContextPath() %>/resources/image_hotel/여수 밤바다 힐링파크.jpg"></div>
-        <div class="swiper-slide"><img src="<%=request.getContextPath() %>/resources/image_hotel/하와이 하얏트 플레이스.jpg"></div>
+        <div class="swiper-slide"><img src="<%=request.getContextPath() %>/resources/image_hotel/hotel_europe.jpg"></div>
+        <div class="swiper-slide"><img src="<%=request.getContextPath() %>/resources/image_hotel/hotel_one.jpg"></div>
+        <div class="swiper-slide"><img src="<%=request.getContextPath() %>/resources/image_hotel/moldive.jpg"></div>
+        <div class="swiper-slide"><img src="<%=request.getContextPath() %>/resources/image_hotel/gwam.jpg"></div>
       </div>
       <div class="swiper-button-next"></div>
       <div class="swiper-button-prev"></div>
@@ -271,36 +280,186 @@
 					</div>
 					<div class="content">
 						<div class="content-dis">
-							<h4>Example</h4>
-							explanation<br>
-							explanation<br>
-							<br>
-							something : something<br>
-							something : something
-							<img id="tabimg1" src="<%=request.getContextPath() %>/resources/image/AC.jpg" title="Data Flow Diagram 일부" 
-									width="380px" height="290px">
+						    <div class="row">
+						        <div class="col-md-3" style="float: left; width: 25%; padding:20px;">
+						        	<a href="<%=request.getContextPath() %>/hotel_cont.do?num=7">
+						        		<img src="<%=request.getContextPath() %>/resources/image_hotel/제주 해비치 호텔.jpg"
+													width="250" height="170" style="margin-bottom: 10px;">
+										<br>
+										<span style="font-size: 13px; color: gray">서귀포</span>
+										<br>
+										<span style="font-size: 16px;"><b>해비치 호텔 & 리조트 제주</b></span>
+										<br>
+										<span style="font-size: 20px; line-height: 1.7em;"><b><fmt:formatNumber value="580800" /></b></span>
+										<span style="font-size: 16px;">원~</span><br>
+										<span class="hashbox">서울시내중심</span>
+									</a>	
+						        </div>
+						        <div class="col-md-3" style="float: left; width: 25%; padding:20px;">
+						        	<a href="<%=request.getContextPath() %>/hotel_cont.do?num=8">
+						        		<img src="<%=request.getContextPath() %>/resources/image_hotel/그랜드 하얏트 제주.jpg"
+													width="250" height="170" style="margin-bottom: 10px;">
+										<br>
+										<span style="font-size: 13px; color: gray">제주</span>
+										<br>
+										<span style="font-size: 16px;"><b>그랜드 하얏트 제주</b></span>
+										<br>
+										<span style="font-size: 20px; line-height: 1.7em;"><b><fmt:formatNumber value="558800" /></b></span>
+										<span style="font-size: 16px;">원~</span><br>
+										<span class="hashbox">올인원호캉스</span>
+									</a>	
+						        </div>
+						        <div class="col-md-3" style="float: left; width: 25%; padding:20px;">
+						        	<a href="<%=request.getContextPath() %>/hotel_cont.do?num=9">
+						        		<img src="<%=request.getContextPath() %>/resources/image_hotel/롯데 호텔 제주.jpg"
+													width="250" height="170" style="margin-bottom: 10px;">
+										<br>
+										<span style="font-size: 13px; color: gray">서귀포</span>
+										<br>
+										<span style="font-size: 16px;"><b>롯데호텔 제주</b></span>
+										<br>
+										<span style="font-size: 20px; line-height: 1.7em;"><b><fmt:formatNumber value="601200" /></b></span>
+										<span style="font-size: 16px;">원~</span><br>
+										<span class="hashbox">낭만휴양지</span>
+									</a>	
+						        </div>
+						        <div class="col-md-3" style="float: left; width: 25%; padding:20px;">
+						        	<a href="<%=request.getContextPath() %>/hotel_cont.do?num=10">
+						        		<img src="<%=request.getContextPath() %>/resources/image_hotel/라마다 플라자 제주.jpg"
+													width="250" height="170" style="margin-bottom: 10px;">
+										<br>
+										<span style="font-size: 13px; color: gray">제주</span>
+										<br>
+										<span style="font-size: 16px;"><b>라마다 플라자 제주 오션 프론트</b></span>
+										<br>
+										<span style="font-size: 20px; line-height: 1.7em;"><b><fmt:formatNumber value="300000" /></b></span>
+										<span style="font-size: 16px;">원~</span><br>
+										<span class="hashbox">갓성비호캉스</span>
+									</a>	
+						        </div>
+						    </div>
 						</div>
 						
 						<div class="content-dis">
-							<h4>Example</h4>
-							explanation<br>
-							explanation<br>
-							<br>
-							something : something<br>
-							something : something
-							<img id="tabimg1" src="<%=request.getContextPath() %>/resources/image/AC.jpg" title="Data Flow Diagram 일부" 
-									width="380px" height="290px">
+							<div class="row">
+						        <div class="col-md-3" style="float: left; width: 25%; padding:20px;">
+						        	<a href="<%=request.getContextPath() %>/hotel_cont.do?num=11">
+						        		<img src="<%=request.getContextPath() %>/resources/image_hotel/서울 신라호텔.jpg"
+													width="250" height="170" style="margin-bottom: 10px;">
+										<br>
+										<span style="font-size: 13px; color: gray">서울</span>
+										<br>
+										<span style="font-size: 16px;"><b>신라 호텔 서울</b></span>
+										<br>
+										<span style="font-size: 20px; line-height: 1.7em;"><b><fmt:formatNumber value="470400" /></b></span>
+										<span style="font-size: 16px;">원~</span><br>
+										<span class="hashbox">럭셔리호캉스</span>
+									</a>	
+						        </div>
+						        <div class="col-md-3" style="float: left; width: 25%; padding:20px;">
+						        	<a href="<%=request.getContextPath() %>/hotel_cont.do?num=12">
+						        		<img src="<%=request.getContextPath() %>/resources/image_hotel/신라스테이 광화문.jpg"
+													width="250" height="170" style="margin-bottom: 10px;">
+										<br>
+										<span style="font-size: 13px; color: gray">서울</span>
+										<br>
+										<span style="font-size: 16px;"><b>신라스테이 광화문</b></span>
+										<br>
+										<span style="font-size: 20px; line-height: 1.7em;"><b><fmt:formatNumber value="138000" /></b></span>
+										<span style="font-size: 16px;">원~</span><br>
+										<span class="hashbox">서울중심위치</span>
+									</a>	
+						        </div>
+						        <div class="col-md-3" style="float: left; width: 25%; padding:20px;">
+						        	<a href="<%=request.getContextPath() %>/hotel_cont.do?num=13">
+						        		<img src="<%=request.getContextPath() %>/resources/image_hotel/라마다 앙코르 해운대.jpg"
+													width="250" height="170" style="margin-bottom: 10px;">
+										<br>
+										<span style="font-size: 13px; color: gray">부산</span>
+										<br>
+										<span style="font-size: 16px;"><b>라마다 앙코르 해운대</b></span>
+										<br>
+										<span style="font-size: 20px; line-height: 1.7em;"><b><fmt:formatNumber value="161000" /></b></span>
+										<span style="font-size: 16px;">원~</span><br>
+										<span class="hashbox">갓성비호캉스</span>
+									</a>	
+						        </div>
+						        <div class="col-md-3" style="float: left; width: 25%; padding:20px;">
+						        	<a href="<%=request.getContextPath() %>/hotel_cont.do?num=14">
+						        		<img src="<%=request.getContextPath() %>/resources/image_hotel/파라다이스 시티 인천.jpg"
+													width="250" height="170" style="margin-bottom: 10px;">
+										<br>
+										<span style="font-size: 13px; color: gray">인천</span>
+										<br>
+										<span style="font-size: 16px;"><b>파라다이스 시티 인천</b></span>
+										<br>
+										<span style="font-size: 20px; line-height: 1.7em;"><b><fmt:formatNumber value="755440" /></b></span>
+										<span style="font-size: 16px;">원~</span><br>
+										<span class="hashbox">꿈의 휴양지</span>
+									</a>	
+						        </div>
+						    </div>
 						</div>
 						
 						<div class="content-dis">
-							<h4>Example</h4>
-							explanation<br>
-							explanation<br>
-							<br>
-							something : something<br>
-							something : something
-							<img id="tabimg1" src="<%=request.getContextPath() %>/resources/image/AC.jpg" title="Data Flow Diagram 일부" 
-									width="380px" height="290px">						
+							<div class="row">
+						        <div class="col-md-3" style="float: left; width: 25%; padding:20px;">
+						        	<a href="<%=request.getContextPath() %>/hotel_cont.do?num=15">
+						        		<img src="<%=request.getContextPath() %>/resources/image_hotel/호텔 토스카나.jpg"
+													width="250" height="170" style="margin-bottom: 10px;">
+										<br>
+										<span style="font-size: 13px; color: gray">서귀포</span>
+										<br>
+										<span style="font-size: 16px;"><b>토스카나호텔</b></span>
+										<br>
+										<span style="font-size: 20px; line-height: 1.7em;"><b><fmt:formatNumber value="460880" /></b></span>
+										<span style="font-size: 16px;">원~</span><br>
+										<span class="hashbox">이탈리아무드</span>
+									</a>	
+						        </div>
+						        <div class="col-md-3" style="float: left; width: 25%; padding:20px;">
+						        	<a href="<%=request.getContextPath() %>/hotel_cont.do?num=16">
+						        		<img src="<%=request.getContextPath() %>/resources/image_hotel/쏠비치 삼척.jpg"
+													width="250" height="170" style="margin-bottom: 10px;">
+										<br>
+										<span style="font-size: 13px; color: gray">삼척</span>
+										<br>
+										<span style="font-size: 16px;"><b>쏠비치 삼척</b></span>
+										<br>
+										<span style="font-size: 20px; line-height: 1.7em;"><b><fmt:formatNumber value="171500" /></b></span>
+										<span style="font-size: 16px;">원~</span><br>
+										<span class="hashbox">한국의산토리니</span>
+									</a>	
+						        </div>
+						        <div class="col-md-3" style="float: left; width: 25%; padding:20px;">
+						        	<a href="<%=request.getContextPath() %>/hotel_cont.do?num=17">
+						        		<img src="<%=request.getContextPath() %>/resources/image_hotel/동강시스타 리조트.jpg"
+													width="250" height="170" style="margin-bottom: 10px;">
+										<br>
+										<span style="font-size: 13px; color: gray">영월</span>
+										<br>
+										<span style="font-size: 16px;"><b>동강시스타 리조트</b></span>
+										<br>
+										<span style="font-size: 20px; line-height: 1.7em;"><b><fmt:formatNumber value="219450" /></b></span>
+										<span style="font-size: 16px;">원~</span><br>
+										<span class="hashbox">유러피안리조트</span>
+									</a>	
+						        </div>
+						        <div class="col-md-3" style="float: left; width: 25%; padding:20px;">
+						        	<a href="<%=request.getContextPath() %>/hotel_cont.do?num=18">
+						        		<img src="<%=request.getContextPath() %>/resources/image_hotel/한신마리나호텔.jpg"
+													width="250" height="170" style="margin-bottom: 10px;">
+										<br>
+										<span style="font-size: 13px; color: gray">통영</span>
+										<br>
+										<span style="font-size: 16px;"><b>한신마리나호텔&리조트</b></span>
+										<br>
+										<span style="font-size: 20px; line-height: 1.7em;"><b><fmt:formatNumber value="244320" /></b></span>
+										<span style="font-size: 16px;">원~</span><br>
+										<span class="hashbox">한국의발리</span>
+									</a>	
+						        </div>
+						    </div>					
 						</div>
 					</div>
 				</div>

@@ -105,6 +105,16 @@ public class HotelController {
 		}
 	}
 	
+	@RequestMapping("hotel_search.do")
+	public String onlyTravelSearch(@RequestParam("keyword") String keyword, Model model) {
+		
+		List<HotelDTO> list = this.dao.getSearchList(keyword);
+		
+		model.addAttribute("List", list);
+		model.addAttribute("Keyword", keyword);
+		
+		return "hotel_searchlist";
+	}
 	
 	//민경
 

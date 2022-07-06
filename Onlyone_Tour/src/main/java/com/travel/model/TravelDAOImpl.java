@@ -15,22 +15,7 @@ public class TravelDAOImpl implements TravelDAO {
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-	
-	
-	
-	
-	
-	
-		
-		
-	
 
-	
-	
-	
-		
-	
-	
 	// 종엽님
 	
 	@Override
@@ -67,6 +52,12 @@ public class TravelDAOImpl implements TravelDAO {
 	public TravelDTO getTravelCont(int num) {
 		
 		return this.sqlSession.selectOne("travelCont", num);
+	}
+	
+	@Override
+	public List<TravelDTO> getSearchList(String keyword) {
+		
+		return this.sqlSession.selectList("searchTravelList", keyword);
 	}
 	
 	// 리뷰

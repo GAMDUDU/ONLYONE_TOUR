@@ -86,6 +86,17 @@
 			sysdate)
 	</insert>
 	
+	<select id="searchTravelList" parameterType="String" resultType="traveldto">
+		<![CDATA[
+			select * from travel_trip 
+			where travel_name like '%' || #{keyword} || '%' 
+			or travel_cont like '%' || #{keyword} || '%' 
+			or travel_room like '%' || #{keyword} || '%' 
+			or travel_air like '%' || #{keyword} || '%'
+			order by travel_num desc
+		]]>
+	</select>
+	
 	<!-- 병권 Search 구현 -->
 	<select id="searchTravel" parameterType="String" resultType="traveldto">
 		<![CDATA[

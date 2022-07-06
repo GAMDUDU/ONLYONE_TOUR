@@ -85,6 +85,18 @@
 			sysdate)
 	</insert>
 	
+	<select id="searchHotelList" parameterType="String" resultType="hoteldto">
+		<![CDATA[
+			select * from hotel_trip 
+			where hotel_hname like '%' || #{keyword} || '%' 
+			or hotel_ename like '%' || #{keyword} || '%' 
+			or hotel_country like '%' || #{keyword} || '%' 
+			or hotel_loc like '%' || #{keyword} || '%'
+			or hotel_exp like '%' || #{keyword} || '%'
+			or hotel_add like '%' || #{keyword} || '%'
+			order by hotel_num desc
+		]]>
+	</select>
 	
 	<!-- 민경  -->
 	

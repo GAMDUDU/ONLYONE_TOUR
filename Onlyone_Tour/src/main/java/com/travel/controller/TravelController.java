@@ -116,6 +116,17 @@ public class TravelController {
 		return "travel_list_all";
 	}
 	
+	@RequestMapping("travel_search.do")
+	public String onlyTravelSearch(@RequestParam("keyword") String keyword, Model model) {
+		
+		List<TravelDTO> list = this.dao.getSearchList(keyword);
+		
+		model.addAttribute("List", list);
+		model.addAttribute("Keyword", keyword);
+		
+		return "travel_searchlist";
+	}
+	
 	// 병권 Search 작업라인
 	@RequestMapping("search_product.do")
 	public String travelSearch(@RequestParam("search_product") String search, Model model, 

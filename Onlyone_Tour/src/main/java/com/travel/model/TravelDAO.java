@@ -7,13 +7,7 @@ import com.hotel.model.HotelDTO;
 import com.onlyone.model.PageDTO;
 
 public interface TravelDAO {
-	
-	
-	
 
-	
-	
-	
 	// 종엽님 
 	public List<TravelDTO> getTravelList();
 	public List<TravelDTO> getNormalList();
@@ -21,6 +15,7 @@ public interface TravelDAO {
 	public List<TravelDTO> getRecommendList();
 	public List<TravelDTO> getNewList();
 	public TravelDTO getTravelCont(int num);
+	public List<TravelDTO> getSearchList(String keyword);
 	
 	// 리뷰
 	public List<TravelReviewDTO> getReviewList(int num);

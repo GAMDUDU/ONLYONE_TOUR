@@ -13,6 +13,7 @@ public interface HotelDAO {
 	public List<HotelDTO> getPensionList();
 	
 	public HotelDTO getHotelCont(int num);
+	public List<HotelDTO> getSearchList(String keyword);
 	
 	// 리뷰
 	public List<HotelReviewDTO> getReviewList(int num);

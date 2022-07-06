@@ -75,6 +75,11 @@ public class HotelDAOImpl implements HotelDAO {
 		return this.sqlSession.insert("addHotelReview", dto);
 	}
 	
+	@Override
+	public List<HotelDTO> getSearchList(String keyword) {
+		
+		return this.sqlSession.selectList("searchHotelList", keyword);
+	}
 
 	//민경
 	
