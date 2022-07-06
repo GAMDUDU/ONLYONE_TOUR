@@ -117,8 +117,6 @@
 						href="<%=request.getContextPath()%>/airport_mypage.do?id=${member_id}">
 							예약내역 상세보기
 					</a>
-					&nbsp;&nbsp;&nbsp;
-					<a type="button" class="btn btn-primary btn-lg">결제하기</a>
 				</p>
 			</div>
 		  </div>
