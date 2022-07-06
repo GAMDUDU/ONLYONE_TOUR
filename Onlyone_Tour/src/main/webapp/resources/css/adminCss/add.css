@@ -1,0 +1,48 @@
+@charset "UTF-8";
+/* 기존 소스 */
+.member_list button{
+	background: none;
+	border: 1px solid gray;
+	padding: 5px;
+	border-radius: 3px;
+	cursor: pointer;
+}
+.first_tr{background: #839ACC;}
+.table_main td{border: 1px solid #839ACC;}
+.total_member{
+	margin-bottom: 40px;
+	padding: 20px;
+	background: #EBE9F3;
+	border-radius: 5px;
+	color: #807C7C;
+	font-weight: bold;
+	font-size: 25px;
+}
+
+/* 추가 소스 */
+#content_box{position:relative; padding: 0 50px 0 250px}/* 필수 */
+
+.tbl-st1{border-top:1px solid #000; position:relative; text-align:center; border-collspace:collapse; border-spacing:0; width:100%}
+.tbl-st1:before{position:absolute; left:0; top:0; width:1px; background:#fff; content:''}
+.tbl-st1 th,.tbl-st1 td{text-align:center; padding:15px; 5px;}
+.tbl-st1 th{border-bottom:1px solid #777}
+.tbl-st1 td{border-bottom:1px solid #ccc}
+.tbl-st1 .tit{text-align:left}
+.tbl-st1 a{color:inherit; text-decoration:none}
+.tbl-st1 tr:hover{background:#f1f1f1}
+.tbl-st1 a:hover{text-decoration: underline}
+
+.no_data{padding:150px 0}
+
+.travel_paging{text-align: center; margin-top:40px}
+.travel_paging a{
+	margin: 0 5px;
+	text-decoration: none;
+	color: #333;
+	border-radius: 3px;
+	padding: 5px 10px;
+	display: inline-block
+}
+.travel_paging .page-link{background: #1895A3; color: #fff}
+
+.bbs-btn_w{margin-top:30px; text-align:right}

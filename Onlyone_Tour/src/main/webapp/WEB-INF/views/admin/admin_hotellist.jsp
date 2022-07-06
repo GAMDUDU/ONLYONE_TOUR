@@ -12,67 +12,60 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<style type="text/css">
+<style>
+.member_list button{
+	background: none;
+	border: 1px solid gray;
+	padding: 5px;
+	border-radius: 3px;
+	cursor: pointer;
+}
+.first_tr{background: #839ACC;}
+.table_main td{border: 1px solid #839ACC;}
+.total_member{
+	margin-bottom: 40px;
+	padding: 20px;
+	background: #EBE9F3;
+	border-radius: 5px;
+	color: #807C7C;
+	font-weight: bold;
+	font-size: 25px;
+}
 
-	.member_list{
-	/* 	position: absolute;
-		left: 58%;
-		top: 40%;
-		transform:translate(-50%,-50%);
-		text-align: center;
-		padding: 10px;
-		margin-top: 100px; */
-		margin-left: 430px;
-	}
-	
-	.travel_paging{
-		display:flex;
-		justify-content: center;
-		align-items: center;
-		position: absolute;
-		left: 55%;
-		top: 90%;
-		transform:translate(-50%,-50%);
-	}
-	
-	.travel_paging a{
-		margin-left: 10px;
-		text-decoration: none;
-		color: white;
-		background: #1895A3;
-		border-radius: 3px;
-		padding: 9px;
-		
-	}
-	
-	.member_list button{
-		background: none;
-		border: 1px solid gray;
-		padding: 5px;
-		border-radius: 3px;
-		cursor: pointer;
-		
-	}
-	
-	.first_tr{
-		background: #839ACC;
-	}
-	
-	.table_main td{
-		border-bottom: 1px solid black;
-	}
-	
-	.total_member{
-		margin-bottom: 40px;
-		padding: 20px;
-		background: #EBE9F3;
-		border-radius: 5px;
-		color: #807C7C;
-		font-weight: bold;
-		font-size: 25px;
-	}
-	
+/* 추가 소스 */
+#content_box{position:relative; padding: 0 50px 0 250px}/* 필수 */
+
+.tbl-st1{border-top:1px solid #000; position:relative; text-align:center; border-collspace:collapse; border-spacing:0; width:100%}
+.tbl-st1:before{position:absolute; left:0; top:0; width:1px; background:#fff; content:''}
+.tbl-st1 th,.tbl-st1 td{text-align:center; padding:15px; 5px;}
+.tbl-st1 th{border-bottom:1px solid #777}
+.tbl-st1 td{border-bottom:1px solid #ccc}
+.tbl-st1 .tit{text-align:left}
+.tbl-st1 a{color:inherit; text-decoration:none}
+.tbl-st1 tr:hover{background:#f1f1f1}
+.tbl-st1 a:hover{text-decoration: underline}
+
+.no_data{padding:150px 0}
+
+.travel_paging{text-align: center; margin-top:40px}
+.travel_paging a{
+	margin: 0 5px;
+	text-decoration: none;
+	color: #333;
+	border-radius: 3px;
+	padding: 5px 10px;
+	display: inline-block
+}
+.travel_paging .page-link{background: #1895A3; color: #fff}
+
+.bbs-btn_w{margin-top:30px; text-align:right}
+.tbl-view{table-layout:fixed; position:relative; text-align:center; border-collspace:collapse; border-spacing:0; width:100%}
+.tbl-view th,.tbl-view td{padding: 15px 10px; border-bottom:1px solid #ccc;}
+.tbl-view .img{display: block; margin:0 auto; width:100%; height:auto !important}
 </style>
+<link rel="stylesheet" type="text/css" href="/resources/css/adminCss/add.css">
+
+
 </head>
 <body>
 	<%@include file="adminInclude/admin_top.jsp" %>
@@ -81,22 +74,20 @@
 		
 	<div id="content_box">
 			
-		<div class="member_list">
+		<div>
 				<c:set var="list" value="${List}"/>
 				<c:set var="paging" value="${Paging}"/>
 				<c:set var="total" value="${total}"/>
 				
-<%-- 				<div class="total_member">
-					<span>온리원투어 전체 가입자수는 ${total}명 입니다</span>
-				</div> --%>
-				
-				<table cellspacing="0" cellpadding="15" width="1000" class="table_main">
-				<tr class="first_tr">
+				<table class="tbl-st1">
+				<thead>
+				<tr>
 					<th>숙소 번호</th> <th>숙소이름</th>
 					<th>지역</th> <th>지역</th> <th>삭제</th>
 				</tr>
+				</thead>
 				
-				
+				<tbody>
 				<c:if test="${!empty list}">
 					<c:forEach items="${list }" var="u">
 						<tr class="second_tr">
@@ -125,7 +116,7 @@
 						</td>
 					</tr>
 				</c:if>			
-				
+				</tbody>
 			</table>
 		
 			
@@ -133,7 +124,7 @@
 			
 			
 			<!-- 페이징 처리 부분 -->
-			<div class="travel_paging" style="margin-top: -60px">
+			<div class="travel_paging">
 				<c:if test="${paging.getPage() > paging.getBlock()}">
 					<a href="admin_hotel_list.do?page=1">처음으로</a>
 					<a href="admin_hotel_list.do?page=${paging.getStartBlock() - 1}">◀</a>
@@ -156,13 +147,10 @@
 					<a href="admin_hotel_list.do?page=${paging.getAllPage()}">마지막으로</a>
 				</c:if>
 			</div>
-			
-					<tr>
-			<td colspan="4" align="right">
+			<div  class="bbs-btn_w">
 				<input type="button" value="호텔/숙소 등록" class="btn btn-outline-secondary"
-				 onclick="location.href='hotel_insert.do'" style="display: block;" >
-			</td>
-		</tr>
+				 onclick="location.href='hotel_insert.do'"  >
+			</div>
 		</div>
 	</div>
 
