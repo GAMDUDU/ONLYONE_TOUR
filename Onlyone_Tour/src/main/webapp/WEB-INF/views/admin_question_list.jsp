@@ -23,7 +23,7 @@
 .text-center{
 	width: 50%; 
 	float:none; 
-	margin:0 auto
+	margin:0 auto;
 }
 
 .selectBox{
@@ -166,7 +166,7 @@ a:hover{
 			<div class="text-center">
 				<ul class="pagination">
 			    <c:if test="${paging.getPage() > paging.getBlock() }">
-			        <li class="page-item"><a class="page-link" href="question_list.do?page=1">[처음으로]</a></li>
+			        <li class="page-item"><a class="page-link" href="question_list.do?page=1">처음으로</a></li>
 			        <li class="page-item"><a class="page-link" href="question_list.do?page=${paging.getStartBlock() - 1 }">◀</a></li>
 			    </c:if>
 			   
@@ -183,7 +183,7 @@ a:hover{
 		
 			    <c:if test="${paging.getEndBlock() < paging.getAllPage() }">
 			       <li class="page-item"><a class="page-link" href="question_list.do?page=${paging.getEndBlock() + 1 }">▶</a></li>
-			        <li class="page-item"><a class="page-link" href="question_list.do?page=${paging.getAllPage() }">[마지막으로]</a></li>
+			        <li class="page-item"><a class="page-link" href="question_list.do?page=${paging.getAllPage() }">마지막으로</a></li>
 			    </c:if>
 			    </ul>
 			 </div>

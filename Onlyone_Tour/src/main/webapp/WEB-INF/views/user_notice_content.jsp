@@ -21,6 +21,10 @@
 	
 } 
 
+textarea {
+	border : 0;
+}
+
 a{
 	text-decoration: none;
 	color : black; 
