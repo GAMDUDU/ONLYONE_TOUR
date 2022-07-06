@@ -196,7 +196,7 @@
 	    	<h5><b>베스트 상품</b></h5><br><br>
 	    	<c:if test="${!empty hitList }">
 				<c:forEach items="${hitList }" var="dto" begin="0" end="3">
-			        <div class="col-md-3" style="float: left; padding: 20px; width: 25%;">
+			        <div class="col-md-3">
 			        	<a href="<%=request.getContextPath() %>/travel_cont.do?num=${dto.getTravel_num()}">
 			        		<img src="<%=request.getContextPath() %>/resources/image_package/${dto.getTravel_image() }"
 										width="300" height="200" style="margin-bottom: 10px;">

@@ -182,34 +182,34 @@
 	 					<div class="middle bundle">
 	 					 <div class="group_list">
 	 					 	<dl>
-	 					 		<dt><a href="#">여행</a></dt>
+	 					 		<dt><a href="<%=request.getContextPath() %>/travel_list.do">여행</a></dt>
 	 					 		<dd>
-	 					 			<ul>
+<!-- 	 					 			<ul>
 	 					 				<li>해외 여행</li>
 	 					 				<li>국내 여행</li>
-	 					 			</ul>
+	 					 			</ul> -->
 	 					 		</dd>
 	 					 	</dl>
 	 					 </div>
 	 					 <div class="group_list">
 	 					    <dl>
-	 					 		<dt><a href="#">호텔/숙박</a></dt>
+	 					 		<dt><a href="<%=request.getContextPath() %>/hotel_list.do">호텔/숙박</a></dt>
 	 					 		<dd>
-	 					 			<ul>
+<!-- 	 					 			<ul>
 	 					 				<li>호텔</li>
 	 					 				<li>펜션</li>
 	 					 				<li>풀빌라</li>
-	 					 			</ul>
+	 					 			</ul> -->
 	 					 		</dd>
 	 					 	</dl>
 	 					 </div>
 	 					 <div class="group_list">
 	 					    <dl>
-	 					 		<dt><a href="#">항공</a></dt>
+	 					 		<dt><a href="<%=request.getContextPath()%>/airport.do">항공</a></dt>
 	 					 		<dd>
-	 					 			<ul>
+<!-- 	 					 			<ul>
 	 					 				<li>항공예약</li>
-	 					 			</ul>
+	 					 			</ul> -->
 	 					 		</dd>
 	 					 	</dl>
 	 					 </div>
