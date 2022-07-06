@@ -32,7 +32,7 @@ public class TravelController {
 	private TravelDAO dao;
 	private final int rowsize = 5; // 한 페이지당 보여질 게시물의 수
 	private int totalRecord = 0; // DB 상의 전체 게시물의 수
-	private static final String saveDirectory = "C:\\Users\\GAMDU\\git\\ONLYONE-TOUR\\Onlyone_Tour\\src\\main\\webapp\\resources\\image_package";
+	private static final String saveDirectory = "C:\\Users\\ubg11\\git\\ONLYONE-TOUR\\ONLYONE-TOUR\\Onlyone_Tour\\src\\main\\webapp\\resources\\image_package";
 	
 	@RequestMapping("travel_list.do")
 	public String travelList(Model model) {

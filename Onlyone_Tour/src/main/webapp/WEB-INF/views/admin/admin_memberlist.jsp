@@ -11,13 +11,12 @@
 <style type="text/css">
 
 	.member_list{
-	/* 	position: absolute;
+		position: absolute;
 		left: 55%;
 		top: 60%;
 		transform:translate(-50%,-50%);
 		text-align: center;
-		padding: 10px; */
-		margin-left: 430px;
+		padding: 10px;
 	}
 	
 	.member_paging{

@@ -141,7 +141,7 @@
 			<ul class="card_main">
 				<li class="card_main_content">
 					<div class="card-box1">
-						<img alt="보안" src="../resources/image/보안.jpg">
+						<a href="admin_notice_content.do?num=1&page=1"><img alt="보안" src="../resources/image/보안.jpg"></a>
 						<div class="event_text1">공지사항</div>
 						<div class="event_text2">오늘은 보안 점검이 있는 날입니다.</div>
 						<div id="time_text1" class="event_text3"></div>
@@ -150,7 +150,7 @@
 			
 				<li class="card_main_content">
 					<div class="card-box1">
-						<img alt="유럽마을" src="../resources/image/유럽의 마을.jpg">
+						<a href="admin_notice_content.do?num=2&page=1"><img alt="유럽마을" src="../resources/image/유럽의 마을.jpg"></a>
 						<div class="event_text1">이벤트</div>
 						<div class="event_text2">좋아하는 여행지 고르시고 후기 남겨주세요.</div>
 						<div id="time_text2" class="event_text3"></div>
@@ -159,7 +159,7 @@
 			
 				<li class="card_main_content">
 					<div class="card-box1">
-						<img alt="마일리지" src="../resources/image/마일리지.jpg">
+						<a href="admin_notice_content.do?num=3&page=1"><img alt="마일리지" src="../resources/image/마일리지.jpg"></a>
 						<div class="event_text1">이벤트</div>
 						<div class="event_text2">마일리지 상품을 쓰시면 10% 더 적립해드립니다.</div>
 						<div id="time_text3" class="event_text3"></div>
