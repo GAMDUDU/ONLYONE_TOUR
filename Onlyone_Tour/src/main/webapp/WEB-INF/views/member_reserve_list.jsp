@@ -178,5 +178,21 @@
 
 <input type="button" value="홈으로" onclick="location.href='main.do'" class="btn btn-outline-secondary" style="margin: auto;display: block;"><br>
 
+<script type="text/javascript">
+	
+	  $(document).ready(function() {
+		  
+			<%
+			if(session.getAttribute("member_id") == null){ 
+			%>
+				alert("로그인이 필요한 서비스 입니다.\n로그인을 먼저 진행해 주세요.");
+				location.href="<%=request.getContextPath()%>/login.do";
+			<%
+				}
+			%>
+
+	  }); 
+	  
+</script>
 </body>
 </html>

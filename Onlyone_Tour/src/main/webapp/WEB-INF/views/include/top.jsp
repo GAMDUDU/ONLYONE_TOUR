@@ -152,7 +152,7 @@
 	 			
 	 			<li style="text-align: center"><a href="<%=request.getContextPath()%>/reserve_list.do?memid=${member_id}"><i class="fa-solid fa-clipboard-check fa-2xl"></i>
 	 			<br><br>
-	 				<b>여행/숙박 예약내역</b></a></li>
+	 				<b>여행/숙박예약내역</b></a></li>
 	 			
 	 			<li style="text-align: center"><a href="<%=request.getContextPath()%>/airport_mypage.do?id=${member_id}"><i class="fa-solid fa-plane fa-2xl"></i><br><br>
 	 				<b>항공예약내역</b></a>
