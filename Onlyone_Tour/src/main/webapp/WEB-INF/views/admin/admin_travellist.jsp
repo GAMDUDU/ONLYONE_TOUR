@@ -22,7 +22,7 @@
 		text-align: center;
 		padding: 10px;
 		margin-top: 100px; */
-		margin-left: 430px;
+		margin-left: 730px;
 	}
 	
 	.travel_paging{

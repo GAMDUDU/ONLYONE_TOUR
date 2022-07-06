@@ -12,6 +12,7 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/join.css">
 <script type="text/javascript">
+
 $(function(){
 	// 인풋 DOM 가져오기
 	let input_memberId = $("#member_id");
@@ -148,12 +149,15 @@ const autoHyphen2 = (target) => {
 </head>
 <body>
 
-	<jsp:include page="include/top.jsp" />
 	<c:set var="mem" value="${update }"/>
 	
 	<div align="center">
 		<form method="post" 
 			action="<%=request.getContextPath() %>/update_ok.do" onsubmit="return submitCheck();">
+		
+		<div class="join_main">
+			<a href="/"><img alt="로고" src="/resources/image/로고.jpg"></a>
+		</div>
 		
 		<div class="title"><h3>개인 정보 수정</h3></div>
 		
