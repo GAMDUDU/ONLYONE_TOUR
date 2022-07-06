@@ -232,7 +232,7 @@
 				</td>
 				
 				<td align="right" width="20%">
-					<input type="button" id="hotel_reservation" value="예약하기" onclick="location.href='reseve_hotel.do?no=${cont.getHotel_num() }'"> 
+					<input type="button" id="hotel_reservation" value="예약하기" onclick="location.href='reseve_hotel.do?no=${cont.getHotel_num() }&id=${member_id}'"> 
 				</td>
 			</tr>
 			
@@ -255,7 +255,7 @@
 					</td>
 					
 					<td align="right" width="20%">
-						<input type="button" id="hotel_reservation" value="예약하기" onclick="location.href='hotel_reserve.do?num=${cont.getHotel_num() }'"> 
+						<input type="button" id="hotel_reservation" value="예약하기" onclick="location.href='reseve_hotel.do?num=${cont.getHotel_num() }&id=${member_id}'"> 
 					</td>
 				</tr>
 				
@@ -279,7 +279,7 @@
 					</td>
 					
 					<td align="right" width="20%">
-						<input type="button" id="hotel_reservation" value="예약하기" onclick="location.href='hotel_reserve.do?num=${cont.getHotel_num() }'"> 
+						<input type="button" id="hotel_reservation" value="예약하기" onclick="location.href='reseve_hotel.do?num=${cont.getHotel_num() }&id=${member_id}'"> 
 					</td>
 				</tr>
 				

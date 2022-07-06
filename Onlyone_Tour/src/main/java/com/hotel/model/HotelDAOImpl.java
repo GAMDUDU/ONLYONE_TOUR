@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.onlyone.model.PageDTO;
+
 @Repository
 public class HotelDAOImpl implements HotelDAO {
 	
@@ -71,6 +73,50 @@ public class HotelDAOImpl implements HotelDAO {
 	public int insertReview(HotelReviewDTO dto) {
 		
 		return this.sqlSession.insert("addHotelReview", dto);
+	}
+	
+
+	//민경
+	
+	@Override
+	public int getHotelListCount() {
+		return this.sqlSession.selectOne("adminhotelCount");
+		
+	}
+
+	@Override
+	public List<HotelDTO> getHoteladminList(PageDTO dto) {
+		return this.sqlSession.selectList("adminhotellist", dto);
+		
+	}
+
+	@Override
+	public int admininsertHotel(HotelDTO dto) {
+		return this.sqlSession.insert("adminHotelAdd", dto);
+		
+	}
+
+	@Override
+	public HotelDTO adminHotelcont(int num) {
+		return this.sqlSession.selectOne("adminHotelCont", num);
+		
+	}
+
+	@Override
+	public int adminupdateHotel(HotelDTO dto) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int admindeleteHotel(int num) {
+		return this.sqlSession.delete("hotelDel", num);
+	}
+
+	@Override
+	public void adminupdateHotelSequence(int num) {
+		this.sqlSession.update("seq", num);
+		
 	}
 
 }

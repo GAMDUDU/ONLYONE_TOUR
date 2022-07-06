@@ -63,5 +63,93 @@ public class PageAirDTO {
 		this.field = field;
 		this.keyword = keyword;
 	}
+
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
+	}
+
+	public int getRowsize() {
+		return rowsize;
+	}
+
+	public void setRowsize(int rowsize) {
+		this.rowsize = rowsize;
+	}
+
+	public int getTotalRecord() {
+		return totalRecord;
+	}
+
+	public void setTotalRecord(int totalRecord) {
+		this.totalRecord = totalRecord;
+	}
+
+	public int getStartNo() {
+		return startNo;
+	}
+
+	public void setStartNo(int startNo) {
+		this.startNo = startNo;
+	}
+
+	public int getEndNo() {
+		return endNo;
+	}
+
+	public void setEndNo(int endNo) {
+		this.endNo = endNo;
+	}
+
+	public int getStartBlock() {
+		return startBlock;
+	}
+
+	public void setStartBlock(int startBlock) {
+		this.startBlock = startBlock;
+	}
+
+	public int getEndBlock() {
+		return endBlock;
+	}
+
+	public void setEndBlock(int endBlock) {
+		this.endBlock = endBlock;
+	}
+
+	public int getAllPage() {
+		return allPage;
+	}
+
+	public void setAllPage(int allPage) {
+		this.allPage = allPage;
+	}
+
+	public int getBlock() {
+		return block;
+	}
+
+	public void setBlock(int block) {
+		this.block = block;
+	}
+
+	public String getField() {
+		return field;
+	}
+
+	public void setField(String field) {
+		this.field = field;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
 	
 }

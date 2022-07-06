@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.airport.model.AirportDTO;
+import com.hotel.model.HotelDTO;
 import com.onlyone.model.MemberDTO;
 import com.travel.model.TravelDTO;
 
@@ -28,7 +29,7 @@ public class ReserveDAOImpl implements ReserveDAO {
 
 	@Override
 	public MemberDTO getMemberCont(String id) {
-		return this.sqlSession.selectOne("Login", id);
+		return this.sqlSession.selectOne("reserve_member", id);
 	}
 
 
@@ -49,31 +50,68 @@ public class ReserveDAOImpl implements ReserveDAO {
 
 
 
+
+
+
 	@Override
-	public AirportDTO getReserveAirCont(int no) {
-		return this.sqlSession.selectOne("contentAir", no);
+	public HotelDTO getReserveHotelCont(int no) {
+		return this.sqlSession.selectOne("reservehotelCont", no);
+		
 	}
 
 
 
 	@Override
-	public MemberDTO getMemberAirCont(String id) {
-		return this.sqlSession.selectOne("Login", id);
+	public ReserveHotelDTO getReserveHotelOk(int num) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
 
 	@Override
-	public ReserveAirDTO getReserveAirOk(int num) {
-		return this.sqlSession.selectOne("AirreserveOk", num);
+	public int reserveHotelInsert(ReserveHotelDTO hdto) {
+		return this.sqlSession.insert("hotelAdd", hdto);
+		
+	}
+
+
+
+	
+	//관리자 결제내역
+	@Override
+	public List<ReserveDTO> adminTravelAccount() {
+		return this.sqlSession.selectList("travelac");
+		
 	}
 
 
 
 	@Override
-	public int reserveAirInsert(ReserveAirDTO rdto) {
-		return this.sqlSession.insert("Airadd", rdto);
+	public List<ReserveHotelDTO> adminHotelAccount() {
+		return this.sqlSession.selectList("hotelac");
 	}
+
+
+
+
+
+	@Override
+	public List<ReserveDTO> memberReserveList(String id) {
+		return this.sqlSession.selectList("memeberreserve", id);
+	}
+
+
+
+	@Override
+	public List<ReserveHotelDTO> hotelReserveList(String id) {
+		
+		return this.sqlSession.selectList("hotelreserve", id);
+	}
+
+
+
+
 
 
 

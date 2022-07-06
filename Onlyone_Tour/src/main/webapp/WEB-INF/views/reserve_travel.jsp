@@ -31,8 +31,7 @@
 	bottom: 0;}
 	
 	.reserve-travel ul {
-	display: flex;
-	margin-left: 500px;
+	margin-left: 620px;
 }
 
 .reserve-travel ul li {
@@ -43,6 +42,9 @@
 .reserve-travel-main{
 	 padding: 3% 8%;
 }
+
+table th{width: 200px;}
+
 	</style>
 	
 	<script type="text/javascript">
@@ -58,14 +60,14 @@
 			if(current_cnt == 1 ){ // reserv_count가 2일때
 				/* $("#price_account").val((Number(price)*Number(current_cnt))*2);//199*1*2 */
 				$("#price_account").val((Number(price)*Number(current_cnt))+Number(price));
-				var content = '<table border="1" cellspacing="0" width="650" style="margin-top:20px; class="table table-striped"">';
+				var content = '<table border="1" cellspacing="0" width="650" class="table table-striped" style="margin-top:20px;">';
 				 	content	+= '<tr>';
 				 	content	+= '<th>성명(한글)</th>';
-				 	content	+= '<td colspan="3"><input name="reserve_name_2"></td>';
+				 	content	+= '<td colspan="3"><input name="reserve_name_2" placeholder="홍길동"></td>';
 				 	content	+= '</tr>';
 				 	content	+= '<tr>';
 				 	content	+= '<th>생년월일</th>';
-			 		content	+= '<td><input name="reserve_date_2"></td>';
+			 		content	+= '<td><input name="reserve_date_2" placeholder="ex)20220705"></td>';
 			 		content	+= '<th>성별</th>';
 			 		content	+= '<td>';
 			 		content	+= '<input type="radio" name="reserve_gender_2" value="male">';
@@ -75,8 +77,8 @@
 			 		content	+= '</td>';
 			 		content	+= '</tr>';
 			 		content	+= '<tr>';
-			 		content	+= '<th>휴대폰번호</th> <td><input name="reserve_phone_2"></td>';
-			 		content	+= '<th>이메일</th> <td><input name="reserve_email_2"></td>';
+			 		content	+= '<th>휴대폰번호</th> <td><input name="reserve_phone_2" placeholder="ex)01012345555"></td>';
+			 		content	+= '<th>이메일</th> <td><input name="reserve_email_2" placeholder="onlyone@onlyone.com"></td>';
 			 		content	+= '</tr>';
 			 		content	+= '</table>';
 				$('#travel-member-info').append(content);
@@ -86,14 +88,14 @@
 				/* var count = Number(current_cnt)+1; */
 				/* $("#price_account").val(Number(current_cnt)*(Number(price)*1.5)); */
 				$("#price_account").val((Number(price)*Number(current_cnt))+Number(price));
-				var content = '<table border="1" cellspacing="0" width="650" style="margin-top:20px;">';
+				var content = '<table border="1" cellspacing="0" width="650" class="table table-striped" style="margin-top:20px;">';
 				 	content	+= '<tr>';
 				 	content	+= '<th>성명(한글)</th>';
-				 	content	+= '<td colspan="3"><input name="reserve_name_3"></td>';
+				 	content	+= '<td colspan="3"><input name="reserve_name_3" placeholder="홍길동"></td>';
 				 	content	+= '</tr>';
 				 	content	+= '<tr>';
 				 	content	+= '<th>생년월일</th>';
-			 		content	+= '<td><input name="reserve_date_3"></td>';
+			 		content	+= '<td><input name="reserve_date_3" placeholder="ex)20220705"></td>';
 			 		content	+= '<th>성별</th>';
 			 		content	+= '<td>';
 			 		content	+= '<input type="radio" name="reserve_gender_3" value="male">';
@@ -103,22 +105,24 @@
 			 		content	+= '</td>';
 			 		content	+= '</tr>';
 			 		content	+= '<tr>';
-			 		content	+= '<th>휴대폰번호</th> <td><input name="reserve_phone_3"></td>';
-			 		content	+= '<th>이메일</th> <td><input name="reserve_email_3"></td>';
+			 		content	+= '<th>휴대폰번호</th> <td><input name="reserve_phone_3" placeholder="ex)01012345555"></td>';
+			 		content	+= '<th>이메일</th> <td><input name="reserve_email_3" placeholder="onlyone@onlyone.com"></td>';
 			 		content	+= '</tr>';
 			 		content	+= '</table>';
 				$('#travel-member-info').append(content);
 				event.preventDefault();
+				
 			
 			}else if(current_cnt == 3){
 				//3이상 클릭하면 안됩니다..ㅎ...
 				alert("최대 3명의 인원을 선택해주세요.");
-				
+				location.reload();
 			}
 			
 		}else{
 			if(current_cnt == 1){
 				alert("최소 1명의 인원을 선택해주세요.");
+				location.reload()
 		
 			
 			}
@@ -132,14 +136,15 @@
 		//var formData = $("#reserve_form").serialize();
 		var formData = $("#reserve_form").serializeArray();
 		console.log('formData', formData);
-		var reserveNum=$("#reserve_num").val(Number());
-		
+	/* 	var reserveNum=$("#reserve_num").val(Number()); */
+	
 		$.ajax({
 			type:"POST",
 			url:"reserve_submit.do", //reserve_travel_ok.do
 			dataType : "text",
 			contentType: 'application/x-www-form-urlencoded; charset=UTF-8', 
-			data: formData, //보낼데이터
+			data: formData, 
+			  
 			success: function(e){
 				if(e == 'T'){
 					/* alert('예약이 완료 되었습니다.'); */
@@ -147,8 +152,9 @@
 					/* window.location.href="reserve_travel_ok.do?no=${dto.travel_num}"; */
 					/* window.location.href="reserve_travel_terms.do"; //약관페이지로이동... */
 					
-					alert('reserveNum')
-					window.location.href="reserve_travel_ok.do?no=1";  //reserve_num을 넣어야하는데 모르겠습니다...
+					console.log('${Res}');
+					window.location.href="reserve_travel_ok.do?no=1&id=hong"; 
+/* 					window.location.href="reserve_travel_ok.do?no="+${res.reserve_num}; */
 					
 				}else{
 					alert('예약에 실패하였습니다.2');
@@ -171,7 +177,7 @@
 <c:set var="dto" value="${Cont }" />
 <c:set var="mem" value="${Member }" />
 <c:set var="res" value="${Res }" />
-
+<%-- <c:set var="res" value="${request.getParameter('Res')}" /> --%>
 
 
 
@@ -182,22 +188,25 @@
 
 <div class="reserve-travel-main">
 	<div class="reserve-travel">
-		<h3>예약하기</h3>
-		<ul>
-			<li><a class="infor-items" style="font-weight: bold; color: blue" ><i class="fa-solid fa-clipboard-check">예약정보확인</i></a></li>
+		
+		<h3 style="display: inline;">예약하기</h3>
+		<ul style="display: inline-flex;">
+			<li><a class="infor-items" style="font-weight: bold; color: blue;"  ><i class="fa-solid fa-clipboard-check">예약정보확인</i></a></li>
 			<!-- <li><a class="infor-items">￦옵션정보/약관/결제</a></li> -->
 			<li><a class="infor-items">☑예약완료</a></li>
 		</ul>
 	</div>
+	<hr>
 	
 	<input type="hidden" name="no" value="${dto.travel_num }">
 	 <input type="hidden" id="reserve_num" name="num" value="${res.reserve_num }">
+	 <input type="hidden" id="reserve_num" name="member_id" value="${mem.member_id }">
 	
 	
 	
 	
 	<div class="reserve-travel-cont">
-		<h3>${dto.travel_name }</h2>
+		<h5>${dto.travel_name }</h5>
 		<table border="1" cellspacing="0" width="650" class="table table-striped">
 			<tr>
 				<th>여행기간</th>
@@ -222,14 +231,14 @@
 	
 
 	<div class="reserve-travel-member">
-		<h2>예약자정보</h2>
+		<h5>예약자정보</h5>
 		<table border="1" cellspacing="0" width="650" class="table table-striped">
 			<tr>
 				<th>이름</th>
 				<td>${mem.member_name }</td>
 				
 				<th>생년월일</th>
-				<td>${mem.member_birth.substring(0,10) }</td>
+				<td>${mem.member_birth }</td>
 			</tr>
 			
 			<tr>
@@ -245,46 +254,48 @@
 	
 	<div class="reserve-travel-count">
 		<div>
-		<h2>인원정보</h2>
+		<h5>인원정보</h5>
 
 		
 		<ul>
-			<li><p class="tit">인원</p>
-			<input type="button" value="◀ " onclick="btn_count('minus')" id="btn_member_down">
-			<input id="reserve_count" value="1" readonly="readonly" name="reserve_count">
-			<input type="button" value="▶ " onclick="btn_count('plus')" id="btn_member_up">
+			<li><p class="tit"></p>
+			<input type="button" value="◀ " onclick="btn_count('minus')" id="btn_member_down" class="btn btn-outline-secondary">
+			<input id="reserve_count" value="1" readonly="readonly" name="reserve_count" style="border: none; width: 20px; font-size: 30px;">
+			<input type="button" value="▶ " onclick="btn_count('plus')" id="btn_member_up" class="btn btn-outline-secondary">
 
 
 
-			<div class="price_group">
+			<div class="price_group" style="display: inline-flex;">
 
 	<%-- 		<span name="price" id="price"><fmt:formatNumber>${dto.travel_price }</fmt:formatNumber>원</span><br> --%>
-			<input name="price" id="price" value="${dto.travel_price }"><br>
-			<span class="txt">유류할증료/제세공과금 포함</span>
-			<input name="price_account" id="price_account" value="${dto.travel_price }">
+			<input name="price" id="price" value="${dto.travel_price }" style="border: none;" ><br>
+			<span class="txt"></span>
+			<input name="price_account" id="price_account" value="${dto.travel_price }" style="border: none; font-size: 25px; color: blue;">
 			</div>
 			</li>
 		
 		
 		</ul>
 		</div>
-		<p class="txt">※[+],[-]버튼으로 인원을 선택하세요.<br>
-		※싱글 차지 금액은 예약 이후 추가 될 수 있사오니, 예약 내역 확인 시 상품 결제 정보를 꼭!확인 하시기 바랍니다.</p>
+		<p class="txt">
+		※유류할증료/제세공과금 포함. <br>
+		※[+],[-]버튼으로 인원을 선택하세요.<br>
+		 ※싱글 차지 금액은 예약 이후 추가 될 수 있사오니, 예약 내역 확인 시 상품 결제 정보를 꼭!확인 하시기 바랍니다.</p>
 	</div>
 	
 	<div class="reserve-travel-member-cont">
-		<h2>여행자 정보</h2>
+		<h5>여행자 정보</h5>
 
 			<div id="travel-member-info">
 				<table border="1" cellspacing="0" width="650" class="table table-striped">
 					<tr>
 					<th>성명(한글)</th>
-					<td colspan="3"><input name="reserve_name_1"></td>
+					<td colspan="3"><input name="reserve_name_1" placeholder="홍길동"></td>
 					</tr>
 					
 					<tr>
 					<th>생년월일</th>
-					<td><input name="reserve_date_1"></td>
+					<td><input name="reserve_date_1" placeholder="ex)20220705"></td>
 			 		<th>성별</th>
 					<td>
 						<input type="radio" name="reserve_gender_1" value="male">
@@ -295,9 +306,9 @@
 					</tr>
 										
 					<tr>
-					<th>휴대폰번호</th> <td><input name="reserve_phone_1"></td>
+					<th>휴대폰번호</th> <td><input name="reserve_phone_1" placeholder="ex)01012345555"></td>
 					
-					<th>이메일</th> <td><input name="reserve_email_1"></td>
+					<th>이메일</th> <td><input name="reserve_email_1" placeholder="onlyone@onlyone.com"></td>
 					</tr>
 				</table>
 			</div>
@@ -329,7 +340,7 @@
 	
 		
 <!--    <input type="submit" value="예약완료"> -->
-   <input type="button" value="예약완료" onClick="form_submit()">
+   <input type="button" value="예약완료" onClick="form_submit()" class="btn btn-outline-secondary" style="margin: auto;display: block;" >
    	
 </form>
 

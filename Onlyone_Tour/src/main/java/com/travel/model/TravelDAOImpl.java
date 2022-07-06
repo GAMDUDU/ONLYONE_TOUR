@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.airport.model.AirportDTO;
 import com.hotel.model.HotelDTO;
+import com.onlyone.model.PageDTO;
 
 @Repository
 public class TravelDAOImpl implements TravelDAO {
@@ -16,19 +17,19 @@ public class TravelDAOImpl implements TravelDAO {
 	private SqlSessionTemplate sqlSession;
 	
 	
-	// 민경님
-	@Override
-	public TravelDTO travelCont(int no) {
-		/* this.sqlSession.selectOne("content", no); */
-		
-		return null;
-	}
-
-	@Override
-	public TravelDTO getReserveCont(int no) {
 	
-		return null;
-	}
+	
+	
+	
+		
+		
+	
+
+	
+	
+	
+		
+	
 	
 	// 종엽님
 	
@@ -112,6 +113,54 @@ public class TravelDAOImpl implements TravelDAO {
 	public List<AirportDTO> SearchAir(String search) {
 		return this.sqlSession.selectList("searchAir", search);
 	}
+	
+	//관리자페이지 여행게시물 수 확인	
+		@Override
+		public int getTravelListCount() {
+			return this.sqlSession.selectOne("admintravelcount");
+		}
+
+		//관리자페이지 여행 전체 리스트 조회	
+		@Override
+		public List<TravelDTO> getTravelList(PageDTO dto) {
+			return this.sqlSession.selectList("admintravellist", dto);
+		}
+
+
+		@Override
+		public int admininsertTravel(TravelDTO dto) {
+			return this.sqlSession.insert("adminTravelAdd", dto);
+		}
+
+		@Override
+		public TravelDTO adminTravelcont(int num) {
+			return this.sqlSession.selectOne("adminCont", num);
+			
+		}
+
+		@Override
+		public int adminupdateTravel(TravelDTO dto) {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+
+		@Override
+		public int admindeleteTravel(int num) {
+			return this.sqlSession.delete("travelDel", num);
+			
+		}
+
+		@Override
+		public void adminupdateSequence(int num) {
+			this.sqlSession.delete("HotelSeq", num);
+			
+		}
+
+		@Override
+		public List<TravelDTO> adminsearchTravel(String fidle, String keyword) {
+			// TODO Auto-generated method stub
+			return null;
+		}
 	
 
 }

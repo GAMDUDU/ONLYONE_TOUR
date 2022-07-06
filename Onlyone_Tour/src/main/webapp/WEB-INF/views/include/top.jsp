@@ -130,9 +130,8 @@
 			 			  ${member_name} 님 반갑습니다.
 			 			  </p>
 			 			  <ul>
-			 			  	<li><a href="#">예약내역</a></li>
+			 			  	<li><a href="<%=request.getContextPath()%>/reserve_list.do?memid=${member_id}">여행/숙박예약</a></li>
 			 			  	<li><a href="<%=request.getContextPath()%>/airport_mypage.do?id=${member_id}">항공예약내역</a></li>
-			 			  	<li><a href="#">찜</a></li>
 			 			  </ul>
 			 			  <ul>
 			 			  	<li><a href="<%=request.getContextPath() %>/update_info.do?memid=${member_id}">개인정보수정</a></li>

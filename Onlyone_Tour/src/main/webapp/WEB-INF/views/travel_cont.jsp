@@ -883,7 +883,7 @@
 				<br>
 	        	<hr size="1" width="95%" color="lightgray">
 	        	<br>
-	        	<input type="button" id="package_reservation" value="예약하기" onclick="location.href='reserve_travel.do?no=${cont.getTravel_num() }'"> 
+	        	<input type="button" id="package_reservation" value="예약하기" onclick="location.href='reserve_travel.do?no=${cont.getTravel_num() }&id=${member_id}'"> 
 	        	<%-- <input type="button" id="package_jjim" value="♡" onclick="location.href='jjim.do?num=${cont.getTravel_num()}'">  --%>
 	   
 	        </div>

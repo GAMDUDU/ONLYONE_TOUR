@@ -11,12 +11,13 @@
 <style type="text/css">
 
 	.member_list{
-		position: absolute;
+	/* 	position: absolute;
 		left: 55%;
 		top: 60%;
 		transform:translate(-50%,-50%);
 		text-align: center;
-		padding: 10px;
+		padding: 10px; */
+		margin-left: 430px;
 	}
 	
 	.member_paging{
@@ -82,7 +83,7 @@
 					<span>온리원투어 전체 가입자수는 ${total}명 입니다</span>
 				</div>
 				
-				<table cellspacing="0" cellpadding="15" width="900" class="table_main">
+				<table cellspacing="0" cellpadding="15" width="1000" class="table_main">
 				<tr class="first_tr">
 					<th>아이디</th> <th>이름</th>
 					<th>성별</th> <th>이메일</th> <th>가입일</th>
