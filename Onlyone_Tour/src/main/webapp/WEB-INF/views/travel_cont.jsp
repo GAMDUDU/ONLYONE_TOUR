@@ -583,8 +583,6 @@
 							
 							<td align="right" style="vertical-align: top; padding-right: 20px;">
 								<input type="button" id="review_write_btn" value="상품평쓰기" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
-					
-								
 							</td>
 						</tr>
 					</table>
@@ -599,7 +597,7 @@
 								        </button>
 								      </div>
 								      
-								      <form action="<%=request.getContextPath() %>/review_write.do" method="post">
+								      <form action="<%=request.getContextPath() %>/review_write.do" method="post" onsubmit="return nullCheck();">
 								      	<input type="hidden" name="travel_num_fk" value="${cont.getTravel_num() }">
 									      <div class="modal-body">
 									          <div class="form-group">
@@ -620,7 +618,7 @@
 									      </div>
 									      <div class="modal-footer">
 									        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-									        <button type="submit" class="btn btn-primary">등록</button>
+									        <button type="submit" id="modal_submit" class="btn btn-primary">등록</button>
 									      </div>
 								      </form>
 								    </div>
@@ -895,6 +893,41 @@
 	
 	<jsp:include page="include/footer.jsp" />
 	
+<script type="text/javascript" defer>
 	
+	$(document).ready(function() {
+		
+		let review = document.querySelector('#review_write_btn');
+		
+	    <%
+	    if(session.getAttribute("member_id") == null){ 
+	    %>
+	       review.addEventListener('click', function(){
+	    	   alert("로그인이 필요한 서비스 입니다.\n로그인을 먼저 진행해 주세요.");
+		       location.href="<%=request.getContextPath()%>/login.do";
+	       })
+	    <%
+	       }
+	    %>
+
+	}); 
+	
+	let text_cont = document.querySelector("#message-text");
+	let modal_submit = document.querySelector("#modal_submit");
+	let review = document.querySelector('#review_write_btn');
+	
+	function nullCheck(){
+		if(text_cont.value == "" || text_cont.value == null){
+				alert("내용을 입력해주세요.");
+				return false;
+		}
+	}
+	
+	
+
+
+	
+
+</script>	
 </body>
 </html>

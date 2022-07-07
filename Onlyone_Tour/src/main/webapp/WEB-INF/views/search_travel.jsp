@@ -38,7 +38,6 @@
 		<div class="row">
 	        <c:if test="${!empty find }">
 	        	<div class="search_main_name"><h5>여행 상품</h5></div>
-	        	<span class="search_count">총 ${find.size()}개의 검색결과가 있습니다.</span>
 	        	<br><br>
 				
 				<c:forEach items="${find}" var="dto" begin="0" end="3">
@@ -71,7 +70,6 @@
 			
 			<c:if test="${!empty hotel }">
 	        	<div class="search_main_name"><h5>호텔 상품</h5></div>
-	        	<span class="search_count">총 ${hotel.size()}개의 검색결과가 있습니다.</span>
 	        	<br><br>
 				
 				<c:forEach items="${hotel}" var="dto" begin="0" end="3">

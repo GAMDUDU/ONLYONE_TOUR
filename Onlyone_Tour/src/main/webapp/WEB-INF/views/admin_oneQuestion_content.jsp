@@ -31,7 +31,7 @@
 }
 
 input{
-	
+	width : 600px;
 	border : none;
 	
 }
@@ -71,26 +71,26 @@ input{
 			
 			<tr>
 				<th width="15%">답변상태</th>
-				<td><input name="service_num" readonly="readonly" value="${c.service_check}" ></td>
+				<td><input name="service_check" readonly="readonly" value="${c.service_check}" ></td>
 			</tr>
 			
 			<tr>
 				<th width="15%">카테고리</th>
-				<td><input name="service_num" readonly="readonly" value="${c.c_name }"></td>
+				<td><input name="service_code" readonly="readonly" value="${c.c_name }"></td>
 			</tr>
 			
 			<tr>
 				<th width="15%">아이디</th>
-				<td><input name="service_num" readonly="readonly" value="${c.member_id }"></td>
+				<td><input name="service_id" readonly="readonly" value="${c.member_id }"></td>
 			</tr>
 			<tr>
 				<th width="15%">작성자</th>
-				<td><input name="service_num" readonly="readonly" value="${c.service_title }"></td>
+				<td><input name="service_name" readonly="readonly" value="${c.service_name }"></td>
 			</tr>
 			
 			<tr>
 				<th width="15%">제목</th>
-				<td><input name="service_num" readonly="readonly" value="${c.service_title }"></td>
+				<td><input name="service_title" readonly="readonly" value="${c.service_title }"></td>
 			</tr>
 			
 			<tr>
@@ -119,12 +119,12 @@ input{
 			
 			<tr>
 				<th width="15%">작성일자</th>
-				<td><input name="service_num" readonly="readonly" value="${c.service_date }"></td>
+				<td><input name="service_date" readonly="readonly" value="${c.service_date }"></td>
 			</tr>
 			
 			<tr>
 				<th width="15%">조회수</th>
-				<td><input name="service_num" readonly="readonly" value="${c.service_view }"></td>
+				<td><input name="service_view" readonly="readonly" value="${c.service_view }"></td>
 			</tr>
 			
 		</table>

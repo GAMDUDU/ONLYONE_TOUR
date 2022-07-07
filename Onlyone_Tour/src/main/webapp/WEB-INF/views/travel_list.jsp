@@ -192,7 +192,7 @@
 	    </div>
 	    <br><hr><br>
 	    
-	    <div class="row" style="width: 100%">
+	    <div class="row">
 	    	<h5><b>베스트 상품</b></h5><br><br>
 	    	<c:if test="${!empty hitList }">
 				<c:forEach items="${hitList }" var="dto" begin="0" end="3">

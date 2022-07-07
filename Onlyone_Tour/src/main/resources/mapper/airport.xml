@@ -70,7 +70,8 @@
 	</update>
 	
 	<select id="AirMyReserve" resultType="AirReserveDTO" parameterType="String">
-		SELECT * FROM air_reserve_trip where re_mem_id=#{memid} and Re_no = 1 order by re_index desc
+		SELECT * FROM air_reserve_trip where re_mem_id=#{memid} and Re_no = 1 and re_status ='항공 예약 완료' 
+		order by re_index desc
 	</select>
 	
 	<select id="AirMyReserveCont" resultType="AirReserveDTO" parameterType="int">

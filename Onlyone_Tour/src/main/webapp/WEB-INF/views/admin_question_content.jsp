@@ -28,7 +28,7 @@
 }
 
 input{
-	
+	width : 600px;
 	border:0px;
 }
 
