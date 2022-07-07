@@ -327,7 +327,27 @@ public class ServiceController {
 			out.println("</script>");
 		}
 	}
+	
+	@RequestMapping("user_notice_search.do")
+	public String user_notice_searchList(@RequestParam("field") String field, @RequestParam("keyword") String keyword,
+			@RequestParam("page") int nowPage, Model model) {
+		
+		// 검색분류와 검색어에 해당하는 게시글의 수를 DB에서 확인하는 작업
+		totalRecord = this.dao.userSearchNoticeCount(field, keyword);
 
+		PageServDTO pdto = new PageServDTO(nowPage, rowsize, totalRecord, field, keyword);
+
+		// 검색 시 한페이지당 보여질 게시물의 수만큼 검색한 게시물을 List로 가져오는 메서드.
+		List<ServiceNoticeDTO> list = this.dao.userSearchNoticeList(pdto);
+
+		model.addAttribute("List", list);
+		model.addAttribute("Paging", pdto);
+
+		return "user_notice_searchList";
+		
+	}
+	
+	
 	@RequestMapping("notice_search.do")
 	public String notice_search(@RequestParam("field") String field, @RequestParam("keyword") String keyword,
 			@RequestParam("page") int nowPage, Model model) {
@@ -416,6 +436,10 @@ public class ServiceController {
 
 		return "user_question_list";
 	}
+	
+	
+	
+	
 
 //회원 1:1 문의	
 	@RequestMapping("user_oneQuestion.do")
@@ -525,7 +549,7 @@ public class ServiceController {
 		//1. 파일업로드 경로 설정(HttpServletRequest 객체를 이용해서 경로를 가져옴)
 		//request.getSession().getServletContext().getRealPath()  ->  /webapp/폴더경로
 		String savePath 
-		= "C:\\Users\\ubg11\\git\\ONLYONE-TOUR\\ONLYONE-TOUR\\Onlyone_Tour\\src\\main\\webapp\\resources\\image_service\\upload\\";
+		= "C:\\NCS\\ONLYONE-TOUR\\Onlyone_Tour\\src\\main\\webapp\\resources\\image_service\\upload\\";
 		
 		//request.getSession().getServletContext().getRealPath("/resources/image_service/upload/");
 		//패스 경로 위에처럼 해야하는데 안돼서 직접 복사
@@ -693,7 +717,7 @@ public class ServiceController {
 		
 		//파일과 현재 서블릿 연결
 		//String root = request.getSession().getServletContext().getRealPath("/"); ///webapp
-		String root = "C:\\Users\\ubg11\\git\\ONLYONE-TOUR\\ONLYONE-TOUR\\Onlyone_Tour\\src\\main\\webapp\\resources\\image_service\\upload\\";
+		String root = "C:\\NCS\\ONLYONE-TOUR\\Onlyone_Tour\\src\\main\\webapp\\resources\\image_service\\upload\\";
 		String downLoadFile = root + fileDTO.getFile_path();
 		System.out.println(fileDTO.getFile_path());
 		
@@ -767,7 +791,7 @@ public class ServiceController {
 		//1. 파일업로드 경로 설정(HttpServletRequest 객체를 이용해서 경로를 가져옴)
 		//request.getSession().getServletContext().getRealPath()  ->  /webapp/폴더경로
 		String savePath 
-		= "C:\\Users\\ubg11\\git\\ONLYONE-TOUR\\ONLYONE-TOUR\\Onlyone_Tour\\src\\main\\webapp\\resources\\image_service\\upload\\";
+		= "C:\\NCS\\ONLYONE-TOUR\\Onlyone_Tour\\src\\main\\webapp\\resources\\image_service\\upload\\";
 		
 		//request.getSession().getServletContext().getRealPath("/resources/image_service/upload/");
 		//패스 경로 위에처럼 해야하는데 안돼서 직접 복사

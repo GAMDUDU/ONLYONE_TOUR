@@ -324,6 +324,18 @@ public class ServiceDAOImpl implements ServiceDAO{
 		// TODO Auto-generated method stub
 		return this.sqlSession.selectList(field + "adminOQAllList", pDto);
 	}
+
+	@Override
+	public int userSearchNoticeCount(String field, String keyword) {
+		// TODO Auto-generated method stub
+		return this.sqlSession.selectOne(field + "userNotice", keyword);
+	}
+
+	@Override
+	public List<ServiceNoticeDTO> userSearchNoticeList(PageServDTO dto) {
+		// TODO Auto-generated method stub
+		return this.sqlSession.selectList(dto.getField() + "UserNoticeList", dto);
+	}
 	
 	
 	

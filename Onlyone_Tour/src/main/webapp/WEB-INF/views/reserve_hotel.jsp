@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
@@ -63,7 +63,9 @@ table th{width: 200px;}
 		</ul>
 	</div>
 	
+	
 	<form method="post" action="<%=request.getContextPath()%>/reserve_hotel_ok.do?no=${dto.hotel_num}">
+	
 	<div class="reserve-travel-cont">
 		<h3>${dto.hotel_hname }</h2>
 		<table border="1" cellspacing="0" width="650" class="table table-striped">
@@ -90,7 +92,6 @@ table th{width: 200px;}
 
 		</table>
 	</div>
-	
 	
 	<div class="reserve-hotel-member-cont">
 		<h2>여행자 정보</h2>

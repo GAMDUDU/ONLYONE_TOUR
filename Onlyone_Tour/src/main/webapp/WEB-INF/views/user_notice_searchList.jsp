@@ -17,10 +17,12 @@
 .container2{
 	position: absolute;
 	left: 57%;
-	top: 55%;
+	top: 60%;
 	transform:translate(-50%,-50%);
 	padding: 10px;
 	width: 900px;
+	padding-bottom: 100px;
+	margin-top: 10px;
 } 
 
 .foooooooter{
@@ -83,6 +85,7 @@
 	width: 50%; 
 	float:none; 
 	margin : 50px auto;
+	padding-bottom: 50px;
 }
 	
 a{
