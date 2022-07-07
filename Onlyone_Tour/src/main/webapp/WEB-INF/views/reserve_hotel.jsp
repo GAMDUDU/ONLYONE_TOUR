@@ -50,6 +50,8 @@ table th{width: 200px;}
 <c:set var="dto" value="${Cont }" />
 <c:set var="mem" value="${Member }" />
 <c:set var="res" value="${Res }" />
+<c:set var="room" value="${Room }" />
+<c:set var="price" value="${Price }" />
 
 <jsp:include page="include/top.jsp" />
 
@@ -64,7 +66,7 @@ table th{width: 200px;}
 	</div>
 	
 	
-	<form method="post" action="<%=request.getContextPath()%>/reserve_hotel_ok.do?no=${dto.hotel_num}">
+	<form method="post" action="<%=request.getContextPath()%>/reserve_hotel_ok.do?no=${dto.hotel_num}&room=${room}&price=${price}">
 	
 	<div class="reserve-travel-cont">
 		<h3>${dto.hotel_hname }</h2>
@@ -82,12 +84,12 @@ table th{width: 200px;}
 
 			<tr>
 				<th>객실정보</th>
-				<td>${dto.hotel_room1 }</td>
+				<td>${room }</td>
 			</tr>
 			
 			<tr>
 				<th>금액</th>
-				<td><input name="price_account" value=" ${dto.hotel_price1 }"></td>
+				<td><input name="price_account" value=" ${price }"></td>
 			</tr>
 
 		</table>

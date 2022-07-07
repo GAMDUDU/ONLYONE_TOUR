@@ -61,6 +61,8 @@
 <c:set var="dto" value="${Cont }" />
 <c:set var="mem" value="${Member }" />
 <c:set var="h" value="${hotel }" />
+<c:set var="room" value="${Room }" />
+<c:set var="price" value="${Price }" />
 
 		<div class="infor-txt">
 		<h3>${mem.member_name }님 예약이 완료 되었습니다.</h3>

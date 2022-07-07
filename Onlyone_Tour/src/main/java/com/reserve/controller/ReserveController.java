@@ -144,7 +144,8 @@ public class ReserveController {
 	//숙소예약
 	
 	@RequestMapping("reseve_hotel.do")
-	public String reservehotelList(@RequestParam("no") int no, Model model, @RequestParam("id") String id) {
+	public String reservehotelList(@RequestParam("no") int no, Model model, @RequestParam("id") String id,
+			@RequestParam("room") String room, @RequestParam("price") int price) {
 		
 		/*
 		 * MemberDTO mdto = new MemberDTO(); //멤버DTO HotelDTO hdto = new HotelDTO(); //
@@ -159,6 +160,8 @@ public class ReserveController {
 		model.addAttribute("Cont", hdto);
 		model.addAttribute("Member", mdto);
 		model.addAttribute("Res", rdto);
+		model.addAttribute("Room", room);
+		model.addAttribute("Price", price);
 		
 		return "reserve_hotel";
 		
@@ -166,7 +169,9 @@ public class ReserveController {
 	
 	
 	@RequestMapping("reserve_hotel_ok.do")
-	public String reserveHotelOk(@RequestParam("no") int no, @RequestParam("id") String id, HotelDTO hhdto, MemberDTO mdto, ReserveHotelDTO hdto, HttpServletResponse response,
+	public String reserveHotelOk(@RequestParam("no") int no, @RequestParam("id") String id, 
+			@RequestParam("room") String room, @RequestParam("price") int price,
+			HotelDTO hhdto, MemberDTO mdto, ReserveHotelDTO hdto, HttpServletResponse response,
 			Model model ) throws IOException {
 		
 		hhdto = this.dao.getReserveHotelCont(no);
@@ -178,6 +183,8 @@ public class ReserveController {
 		model.addAttribute("Cont", hdto); //예약정보
 		model.addAttribute("Member", mdto);
 		model.addAttribute("hotel", hhdto);
+		model.addAttribute("Room", room);
+		model.addAttribute("Price", price);		
 		
 		PrintWriter out = response.getWriter();
 		

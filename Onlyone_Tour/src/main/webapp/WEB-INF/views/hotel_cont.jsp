@@ -232,7 +232,7 @@
 				</td>
 				
 				<td align="right" width="20%">
-					<input type="button" id="hotel_reservation" value="예약하기" onclick="location.href='reseve_hotel.do?no=${cont.getHotel_num() }&id=${member_id}'"> 
+					<input type="button" id="hotel_reservation" value="예약하기" onclick="location.href='reseve_hotel.do?no=${cont.getHotel_num() }&id=${member_id}&room=${cont.getHotel_room1() }&price=${cont.getHotel_price1() }'"> 
 				</td>
 			</tr>
 			
@@ -255,7 +255,7 @@
 					</td>
 					
 					<td align="right" width="20%">
-						<input type="button" id="hotel_reservation" value="예약하기" onclick="location.href='reseve_hotel.do?num=${cont.getHotel_num() }&id=${member_id}'"> 
+						<input type="button" id="hotel_reservation" value="예약하기" onclick="location.href='reseve_hotel.do?no=${cont.getHotel_num() }&id=${member_id}&room=${cont.getHotel_room2() }&price=${cont.getHotel_price2() }'"> 
 					</td>
 				</tr>
 				
@@ -279,7 +279,7 @@
 					</td>
 					
 					<td align="right" width="20%">
-						<input type="button" id="hotel_reservation" value="예약하기" onclick="location.href='reseve_hotel.do?num=${cont.getHotel_num() }&id=${member_id}'"> 
+						<input type="button" id="hotel_reservation" value="예약하기" onclick="location.href='reseve_hotel.do?no=${cont.getHotel_num() }&id=${member_id}&room=${cont.getHotel_room3() }&price=${cont.getHotel_price3() }'"> 
 					</td>
 				</tr>
 				
