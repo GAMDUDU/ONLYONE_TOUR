@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
@@ -50,6 +50,8 @@ table th{width: 200px;}
 <c:set var="dto" value="${Cont }" />
 <c:set var="mem" value="${Member }" />
 <c:set var="res" value="${Res }" />
+<c:set var="room" value="${Room }" />
+<c:set var="price" value="${Price }" />
 
 <jsp:include page="include/top.jsp" />
 
@@ -63,7 +65,9 @@ table th{width: 200px;}
 		</ul>
 	</div>
 	
-	<form method="post" action="<%=request.getContextPath()%>/reserve_hotel_ok.do?no=${dto.hotel_num}">
+	
+	<form method="post" action="<%=request.getContextPath()%>/reserve_hotel_ok.do?no=${dto.hotel_num}&room=${room}&price=${price}">
+	
 	<div class="reserve-travel-cont">
 		<h3>${dto.hotel_hname }</h2>
 		<table border="1" cellspacing="0" width="650" class="table table-striped">
@@ -80,17 +84,16 @@ table th{width: 200px;}
 
 			<tr>
 				<th>객실정보</th>
-				<td>${dto.hotel_room1 }</td>
+				<td>${room }</td>
 			</tr>
 			
 			<tr>
 				<th>금액</th>
-				<td><input name="price_account" value=" ${dto.hotel_price1 }"></td>
+				<td><input name="price_account" value=" ${price }"></td>
 			</tr>
 
 		</table>
 	</div>
-	
 	
 	<div class="reserve-hotel-member-cont">
 		<h2>여행자 정보</h2>
@@ -156,6 +159,21 @@ table th{width: 200px;}
 	<input type="submit" value="다음단계" class="btn btn-outline-secondary" style="margin: auto;display: block;" >
 	
 	</form>
+	
+<script type="text/javascript" defer="defer">
+	$(document).ready(function() {
+	    
+	    <%
+	    if(session.getAttribute("member_id") == null){ 
+	    %>
+	       alert("로그인이 필요한 서비스 입니다.\n로그인을 먼저 진행해 주세요.");
+	       location.href="<%=request.getContextPath()%>/login.do";
+	    <%
+	       }
+	    %>
+	
+	}); 
+</script>
 
 </body>
 </html>

@@ -14,6 +14,10 @@ public interface ServiceDAO {
 	
 	public int getIndent(int service_group);
 
+	public int userSearchNoticeCount(String field, String keyword);
+	
+	public List<ServiceNoticeDTO> userSearchNoticeList(PageServDTO dto);
+	
 	//전체 게시물의 수를 찾아오는 메소드
 	public int getListCount();
 	

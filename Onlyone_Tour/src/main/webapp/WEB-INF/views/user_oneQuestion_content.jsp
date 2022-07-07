@@ -91,7 +91,7 @@ a:hover{
 			
 			<tr>
 				<th>작성자</th>
-				<td><input name="service_num" readonly="readonly" value="${c.service_title }"></td>
+				<td><input name="service_num" readonly="readonly" value="${c.service_name }"></td>
 			</tr>
 			
 			<tr>

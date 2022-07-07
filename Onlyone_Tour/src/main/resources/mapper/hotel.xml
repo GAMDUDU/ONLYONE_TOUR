@@ -40,13 +40,13 @@
 	
 	<select id="justHotelList" resultType="hoteldto">
 		<![CDATA[
-			select * from hotel_trip where hotel_hname like '%호텔%' order by hotel_num desc
+			select * from hotel_trip where hotel_hname like '%호텔%' order by dbms_random.value
 		]]>	
 	</select>
 	
 	<select id="justPensionList" resultType="hoteldto">
 		<![CDATA[
-			select * from hotel_trip where hotel_hname like '%펜션%' order by hotel_num desc
+			select * from hotel_trip where hotel_hname like '%펜션%' order by dbms_random.value
 		]]>	
 	</select>
 	

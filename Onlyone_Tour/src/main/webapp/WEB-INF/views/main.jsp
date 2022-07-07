@@ -30,6 +30,11 @@
 			        $('#three1').text('[골프/제주] 2일 #36홀라운드 #동일골프장 18홀*2회');
 			        $('#three2').text('#1박2일골프텔#서귀포골프');
 			        $('#three3').html('<fmt:formatNumber>355000</fmt:formatNumber>원~');
+			        
+			    	// 종엽 링크 추가
+			    	$('#a1').attr('href','<%=request.getContextPath() %>/travel_cont.do?num=13');
+			    	$('#a2').attr('href','<%=request.getContextPath() %>/travel_cont.do?num=14');
+			    	$('#a3').attr('href','<%=request.getContextPath() %>/travel_cont.do?num=15');
 			    }
 			});
 		 $("input[id='울릉도']").on({
@@ -46,6 +51,11 @@
 			        $('#three1').text('[포항신항개별집결] 울릉도 4일 #크루즈1박');
 			        $('#three2').text('#울릉도2박 #비치온 #관음도포함');
 			        $('#three3').html('<fmt:formatNumber>359000</fmt:formatNumber>원~');
+			        
+			    	// 종엽 링크 추가
+			    	$('#a1').attr('href','<%=request.getContextPath() %>/travel_cont.do?num=16');
+			    	$('#a2').attr('href','<%=request.getContextPath() %>/travel_cont.do?num=17');
+			    	$('#a3').attr('href','<%=request.getContextPath() %>/travel_cont.do?num=18');
 			    }
 			});
 		 $("input[id='통영']").on({
@@ -62,6 +72,11 @@
 			        $('#three1').text('[KTX-2박] 한려수도 3일 #남해안 완전일주');
 			        $('#three2').text('#거제/통영/남해/여수');
 			        $('#three3').html('<fmt:formatNumber>339000</fmt:formatNumber>원~');
+			        
+			    	// 종엽 링크 추가
+			    	$('#a1').attr('href','<%=request.getContextPath() %>/travel_cont.do?num=19');
+			    	$('#a2').attr('href','<%=request.getContextPath() %>/travel_cont.do?num=20');
+			    	$('#a3').attr('href','<%=request.getContextPath() %>/travel_cont.do?num=21');
 			    }
 			});
 	});
@@ -124,60 +139,61 @@
 			 <div class="package1 mt30">
 			  <div class="item_list package2 swiper-container swiper-container-pointer-events">
 				<div class="card1" style="width: 18rem;">
-				  <img src="${path }/resources/image/다낭.jpg" class="card-img-top">
-				  <div class="card-body">
-				    <h5 class="card-title"><b>다낭/호이안 4~6일 #베스트셀러 #시내호텔 #바나산</b></h5>
-				    
-				     <span class="badge rounded-pill bg-light text-dark">#바나산</span>
-				     <span class="badge rounded-pill bg-light text-dark">#호이안야경투어</span> 
-				     <br>
-				     <a href="#" class="card-link">
-   					 <strong> <fmt:formatNumber>1149900</fmt:formatNumber>원~</strong>
-   					 </a>
-				  </div>
+					<a href="<%=request.getContextPath() %>/travel_cont.do?num=10" class="card-link">
+					  <img src="${path }/resources/image/다낭.jpg" class="card-img-top">
+					  <div class="card-body">
+					    <h5 class="card-title"><b>다낭/호이안 4~6일 #베스트셀러 #시내호텔 #바나산</b></h5>
+					     <span class="badge rounded-pill bg-light text-dark">#바나산</span>
+					     <span class="badge rounded-pill bg-light text-dark">#호이안야경투어</span> 
+					     <br>
+	   					 <strong> <fmt:formatNumber>1149900</fmt:formatNumber>원~</strong>
+					  </div>
+				  	</a>
 				</div>
 				
 				<div class="card2" style="width: 18rem;">
-				  <img src="${path }/resources/image/보라카이.jpg" class="card-img-top">
-				  <div class="card-body">
-				    <h5 class="card-title"><b>보라카이 4,5,6일 #헤난라군</b></h5>
-				    
-				     <span class="badge rounded-pill bg-light text-dark">#세일링보트</span>
-				     <span class="badge rounded-pill bg-light text-dark">#호핑투어</span> 
-				     <br>
-				     <a href="#" class="card-link">
-   					 <strong> <fmt:formatNumber>1041000</fmt:formatNumber>원~</strong>
-   					 </a>
-				  </div>
+					<a href="<%=request.getContextPath() %>/travel_cont.do?num=11" class="card-link">
+					  <img src="${path }/resources/image/보라카이.jpg" class="card-img-top">
+					  <div class="card-body">
+					    <h5 class="card-title"><b>보라카이 4,5,6일 #헤난라군</b></h5>
+					     <span class="badge rounded-pill bg-light text-dark">#세일링보트</span>
+					     <span class="badge rounded-pill bg-light text-dark">#호핑투어</span> 
+					     <br>
+	   					 <strong> <fmt:formatNumber>1041000</fmt:formatNumber>원~</strong>
+				 	 </div>
+				  </a>
 				</div>
 				
 				<div class="card3" style="width: 18rem;">
-				  <img src="${path }/resources/image/괌.jpg" class="card-img-top">
-				  <div class="card-body">
-				    <h5 class="card-title"><b>괌 4~6일 #두짓타니리조트 #투몬시내중심 #미니바</b></h5>
-				    
-				     <span class="badge rounded-pill bg-light text-dark">#럭셔리 호캉스</span>
-				     <span class="badge rounded-pill bg-light text-dark">#오션뷰</span> 
-				     <br>
-				     <a href="#" class="card-link">
-   					 <strong> <fmt:formatNumber>3690000</fmt:formatNumber>원~</strong>
+					<a href="<%=request.getContextPath() %>/travel_cont.do?num=3" class="card-link">
+					  <img src="${path }/resources/image/괌.jpg" class="card-img-top">
+					  <div class="card-body">
+					    <h5 class="card-title"><b>괌 4~6일 #두짓타니리조트 #투몬시내중심 #미니바</b></h5>
+					    
+					     <span class="badge rounded-pill bg-light text-dark">#럭셔리 호캉스</span>
+					     <span class="badge rounded-pill bg-light text-dark">#오션뷰</span> 
+					     <br>
+					     
+	   					 <strong> <fmt:formatNumber>3690000</fmt:formatNumber>원~</strong>
+   					 	</div>
    					 </a>
-				  </div>
 				</div>
 				
 				
 				<div class="card4" style="width: 18rem;">
-				  <img src="${path }/resources/image/푸켓.jpg" class="card-img-top">
-				  <div class="card-body">
-				    <h5 class="card-title"><b>푸껫 5~6일#힐링여행 #1일1마사지</b></h5>
-				    
-				     <span class="badge rounded-pill bg-light text-dark">#미식여행</span>
-				     <span class="badge rounded-pill bg-light text-dark">#힐링여행</span> 
-				     <br>
-				     <a href="#" class="card-link">
-   					 <strong> <fmt:formatNumber>1389000</fmt:formatNumber>원~</strong>
-   					 </a>
-				  </div>
+				<a href="<%=request.getContextPath() %>/travel_cont.do?num=12" class="card-link">
+					  <img src="${path }/resources/image/푸켓.jpg" class="card-img-top">
+					  <div class="card-body">
+					    <h5 class="card-title"><b>푸껫 5~6일#힐링여행 #1일1마사지</b></h5>
+					    
+					     <span class="badge rounded-pill bg-light text-dark">#미식여행</span>
+					     <span class="badge rounded-pill bg-light text-dark">#힐링여행</span> 
+					     <br>
+					     
+	   					 <strong> <fmt:formatNumber>1389000</fmt:formatNumber>원~</strong>
+	   					 
+					  </div>
+				  </a>
 				</div>
 			</div>
 			</div>
@@ -227,6 +243,7 @@
 								<div class="prod_list row">
 									<ul class="type">
 										<li style="cursor: pointer;" class="li">
+											<a href="<%=request.getContextPath() %>/travel_cont.do?num=13" id="a1">
 											<div class="img">
 												<img src="${path }/resources/image/제주여행1.jpg" class="img1" id="one">
 											</div>
@@ -239,10 +256,11 @@
 												 	<strong class="price_1" id="one3"><fmt:formatNumber>439000</fmt:formatNumber>원~</strong>
 												</div>
 											</div>
-											
+											</a>
 										</li>
 										
 										<li style="cursor: pointer;" class="li">
+											<a href="<%=request.getContextPath() %>/travel_cont.do?num=14" id="a2">
 											<div class="img">
 												<img src="${path }/resources/image/제주여행2.jpg" class="img1" id="two">
 											</div>
@@ -255,9 +273,11 @@
 												 	<strong class="price_1" id="two3"><fmt:formatNumber>432900</fmt:formatNumber>원~</strong>
 												</div>
 											</div>
+											</a>
 										</li>
 										
 										<li style="cursor: pointer;" class="li">
+											<a href="<%=request.getContextPath() %>/travel_cont.do?num=15" id="a3">
 											<div class="img">
 												<img src="${path }/resources/image/제주여행3.jpg" class="img1" id="three">
 											</div>
@@ -270,6 +290,7 @@
 												 	<strong class="price_1" id="three3"><fmt:formatNumber>355000</fmt:formatNumber>원~</strong>
 												</div>
 											</div>
+											</a>
 										</li>										
 									</ul>
 								</div>
@@ -297,88 +318,103 @@
 				<div class="prod_slide">
 				<div class="prod_list row swiper-container col4 prevNext v-swiper2 swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events">
 				<ul class="type swiper" id="slides" aria-live="polite">
+				
 				<li class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-next"style="cursor: pointer; width: 282px; margin-right: 24px;" role="group">
-					<div class="img">
-					 <img src="${path }/resources/image/busan.jpg" class="img1" id="three">
-					</div>
-					<div class="ht1">
-						<div class="name_wrap">
-							<strong class="item_title" id="three1">[KTX-2박] 부산/거제/통영/남해로 떠나는 쪽빛바다 휴(休) 감성여행</strong>
+					<a href="<%=request.getContextPath() %>/travel_cont.do?num=24">
+						<div class="img">
+						 <img src="${path }/resources/image/busan.jpg" class="img1" id="three">
 						</div>
-					<div class="price">
-						<strong class="price_1" id="three3"><fmt:formatNumber>319000</fmt:formatNumber>원~</strong>
-					</div>
-					</div>
+						<div class="ht1">
+							<div class="name_wrap">
+								<strong class="item_title" id="three1">[KTX-2박] 부산/거제/통영/남해로 떠나는 쪽빛바다 휴(休) 감성여행</strong>
+							</div>
+						<div class="price">
+							<strong class="price_1" id="three3"><fmt:formatNumber>319000</fmt:formatNumber>원~</strong>
+						</div>
+						</div>
+					</a>
 				</li>
 				
 				<li class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-next" style="cursor: pointer; width: 282px; margin-right: 24px;" role="group">
-					<div class="img">
-					 <img src="${path }/resources/image/제주여행3.jpg" class="img1" id="three">
-					</div>
-					<div class="ht1">
-						<div class="name_wrap">
-							<strong class="item_title" id="three1">[골프/제주] 2일 #36홀라운드 #동일골프장 18홀*2회</strong>
+					<a href="<%=request.getContextPath() %>/travel_cont.do?num=15">
+						<div class="img">
+						 <img src="${path }/resources/image/제주여행3.jpg" class="img1" id="three">
 						</div>
-					<div class="price">
-						<strong class="price_1" id="three3"><fmt:formatNumber>355000</fmt:formatNumber>원~</strong>
-					</div>
-					</div>
+						<div class="ht1">
+							<div class="name_wrap">
+								<strong class="item_title" id="three1">[골프/제주] 2일 #36홀라운드 #동일골프장 18홀*2회</strong>
+							</div>
+						<div class="price">
+							<strong class="price_1" id="three3"><fmt:formatNumber>355000</fmt:formatNumber>원~</strong>
+						</div>
+						</div>
+					</a>
 				</li>
 				
 				<li class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-next" style="cursor: pointer; width: 282px; margin-right: 24px;" role="group">
-					<div class="img">
-					 <img src="${path }/resources/image/ulsan.jpg" class="img1" id="three">
-					</div>
-					<div class="ht1">
-						<div class="name_wrap">
-							<strong class="item_title" id="three1">[대구출발] 울산/밀양 당일투어</strong>
+					<a href="<%=request.getContextPath() %>/travel_cont.do?num=23">
+						<div class="img">
+						 <img src="${path }/resources/image/ulsan.jpg" class="img1" id="three">
 						</div>
-					<div class="price">
-						<strong class="price_1" id="three3"><fmt:formatNumber>59000</fmt:formatNumber>원~</strong>
-					</div>
-					</div>
+						<div class="ht1">
+							<div class="name_wrap">
+								<strong class="item_title" id="three1">[대구출발] 울산/밀양 당일투어</strong>
+							</div>
+						<div class="price">
+							<strong class="price_1" id="three3"><fmt:formatNumber>59000</fmt:formatNumber>원~</strong>
+						</div>
+						</div>
+					</a>
 				</li>
 				
 				<li class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-next" style="cursor: pointer; width: 282px; margin-right: 24px;" role="group">
-					<div class="img">
-					 <img src="${path }/resources/image/yeosu.jpg" class="img1" id="three">
-					</div>
-					<div class="ht1">
-						<div class="name_wrap">
-							<strong class="item_title" id="three1">[연합상품] 여수/남해 2일 #오동도 #향일암 #여수해상케이블카</strong>
+					<a href="<%=request.getContextPath() %>/travel_cont.do?num=22">
+						<div class="img">
+						 <img src="${path }/resources/image/yeosu.jpg" class="img1" id="three">
 						</div>
-					<div class="price">
-						<strong class="price_1" id="three3"><fmt:formatNumber>147000</fmt:formatNumber>원~</strong>
-					</div>
-					</div>
+						<div class="ht1">
+							<div class="name_wrap">
+								<strong class="item_title" id="three1">[연합상품] 여수/남해 2일 #오동도 #향일암 #여수해상케이블카</strong>
+							</div>
+						<div class="price">
+							<strong class="price_1" id="three3"><fmt:formatNumber>147000</fmt:formatNumber>원~</strong>
+						</div>
+						</div>
+					</a>
 				</li>
 				
 				<li class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-next" id="swiper-slide" style="cursor: pointer; width: 282px; margin-right: 24px;" role="group">
-					<div class="img">
-					 <img src="${path }/resources/image/울릉도여행1.jpg" class="img1" id="three">
-					</div>
-					<div class="ht1">
-						<div class="name_wrap">
-							<strong class="item_title" id="three1">[강릉항개별집결] 울릉도 3일 #독도포함 #비치온관광호텔 #울릉도별미식포함 #나물세트제공</strong>
+					<a href="<%=request.getContextPath() %>/travel_cont.do?num=16">
+						<div class="img">
+						 <img src="${path }/resources/image/울릉도여행1.jpg" class="img1" id="three">
 						</div>
-					<div class="price">
-						<strong class="price_1" id="three3"><fmt:formatNumber>479000</fmt:formatNumber>원~</strong>
-					</div>
-					</div>
+						<div class="ht1">
+							<div class="name_wrap">
+								<strong class="item_title" id="three1">[강릉항개별집결] 울릉도 3일 #독도포함 #비치온관광호텔 #울릉도별미식포함 #나물세트제공</strong>
+							</div>
+						<div class="price">
+							<strong class="price_1" id="three3"><fmt:formatNumber>479000</fmt:formatNumber>원~</strong>
+						</div>
+						</div>
+					</a>
 				</li>
+				
 				<li class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-next" style="cursor: pointer; width: 282px; margin-right: 24px;" role="group">
-					<div class="img">
-					 <img src="${path }/resources/image/통영여행2.jpg" class="img1" id="three">
-					</div>
-					<div class="ht1">
-						<div class="name_wrap">
-							<strong class="item_title" id="three1">거제 3일#내차로자유여행#거제삼성호텔#거제씨월드#통영루지체험포함</strong>
+					<a href="<%=request.getContextPath() %>/travel_cont.do?num=20">
+						<div class="img">
+						 <img src="${path }/resources/image/통영여행2.jpg" class="img1" id="three">
 						</div>
-					<div class="price">
-						<strong class="price_1" id="three3"><fmt:formatNumber>245000</fmt:formatNumber>원~</strong>
-					</div>
-					</div>
+						<div class="ht1">
+							<div class="name_wrap">
+								<strong class="item_title" id="three1">거제 3일#내차로자유여행#거제삼성호텔#거제씨월드#통영루지체험포함</strong>
+							</div>
+						<div class="price">
+							<strong class="price_1" id="three3"><fmt:formatNumber>245000</fmt:formatNumber>원~</strong>
+						</div>
+						</div>
+					</a>
 				</li>
+				
 				</ul>
 				<a href="#none" class="prev" tabindex="0" role="button"><span class="blind">이전</span></a>
 				<a href="#none" class="next" tabindex="0" role="button"><span class="blind">다음</span></a>

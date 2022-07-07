@@ -80,7 +80,7 @@ table th{width: 200px;}
 			<th>상품명</th><td>${dto.travel_name }</td>
 			</tr>
 			<tr>
-			<th>여행기간</th><td>${dto.travel_departure_date.substring(0,20) }~${dto.travel_return_date.substring(25,41) }</td>
+			<th>여행기간</th><td>${dto.travel_departure_date}~${dto.travel_return_date}</td>
 			</tr>
 			<tr>
 			<th>여행인원</th><td>${res.reserve_count }명</td>

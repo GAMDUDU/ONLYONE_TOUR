@@ -485,4 +485,66 @@
 				
 		]]> -->
 	</select>
+	
+	<select id="n_numuserNotice" parameterType="String" resultType="int">
+		
+		select count(*) from service_notice_trip
+			where n_num like '%' || #{keyword} || '%' 
+				and n_oc = '공개'
+	
+	</select>
+	
+	<select id="n_titleuserNotice" parameterType="String" resultType="int">
+		
+		select count(*) from service_notice_trip
+			where n_title like '%' || #{keyword} || '%' 
+				and n_oc = '공개' 
+	
+	</select>
+	
+	<select id="n_contuserNotice" parameterType="String" resultType="int">
+		
+		select count(*) from service_notice_trip
+			where n_cont like '%' || #{keyword} || '%' 
+				and n_oc = '공개' 
+	
+	</select>
+	
+	<select id="n_numUserNoticeList" parameterType="PageServDTO" resultType="ServiceNoticeDTO">
+		
+		<![CDATA[
+			select * from 
+				(select n.*, row_number()
+					over(order by n_num desc) rnum from service_notice_trip n where n_oc = '공개'
+						and n_num like '%' || #{keyword} || '%')
+						where rnum >= #{startNo} and rnum <= #{endNo} 
+		]]>
+		
+	</select>
+	
+	<select id="n_titleUserNoticeList" parameterType="PageServDTO" resultType="ServiceNoticeDTO">
+		
+		<![CDATA[
+			select * from 
+				(select n.*, row_number()
+					over(order by n_num desc) rnum from service_notice_trip n where n_oc = '공개'
+						and n_title like '%' || #{keyword} || '%')
+						where rnum >= #{startNo} and rnum <= #{endNo} 
+		]]>
+		
+	
+	</select>
+	
+	<select id="n_contUserNoticeList" parameterType="PageServDTO" resultType="ServiceNoticeDTO">
+		
+		<![CDATA[
+			select * from 
+				(select n.*, row_number()
+					over(order by n_num desc) rnum from service_notice_trip n where n_oc = '공개'
+						and n_cont like '%' || #{keyword} || '%')
+						where rnum >= #{startNo} and rnum <= #{endNo} 
+		]]>
+		
+	</select>
+	
 </mapper>    

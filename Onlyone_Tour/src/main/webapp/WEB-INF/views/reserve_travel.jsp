@@ -216,8 +216,8 @@ table th{width: 200px;}
 			<tr>
 				<th>항공편</th>
 				<td>${dto.travel_departure_airport } > ${dto.travel_arrival_airport }&nbsp;&nbsp;&nbsp;&nbsp;${dto.travel_air }<br>
-				한국출발 : ${dto.travel_departure_date.substring(0,20) }<br> 
-				한국도착 : ${dto.travel_return_date.substring(25,41) }
+				한국출발 : ${dto.travel_departure_date}<br> 
+				한국도착 : ${dto.travel_return_date}
 				</td>
 
 			</tr>
@@ -343,6 +343,24 @@ table th{width: 200px;}
    <input type="button" value="예약완료" onClick="form_submit()" class="btn btn-outline-secondary" style="margin: auto;display: block;" >
    	
 </form>
+
+
+<script type="text/javascript" defer>
+   
+     $(document).ready(function() {
+        
+         <%
+         if(session.getAttribute("member_id") == null){ 
+         %>
+            alert("로그인이 필요한 서비스 입니다.\n로그인을 먼저 진행해 주세요.");
+            location.href="<%=request.getContextPath()%>/login.do";
+         <%
+            }
+         %>
+
+     }); 
+     
+</script>
 
 </body>
 </html>
