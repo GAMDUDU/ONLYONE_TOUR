@@ -27,3 +27,10 @@
 * 관리자페이지 : 신규 패키지 등록/삭제/상세정보
 * 관리자페이지 : 등록된 호텔(숙소) 리스트 확인
 * 관리자페이지 : 신규 호텔(숙소) 등록/삭제/상세정보
+
+
+
+패키지예약
+
+![img](https://lh3.googleusercontent.com/DXZqBdQ-lbjrByoFiHljnjIZJfnwPSaIASg06lYaeJh7ZwZPF0gIT7zBEmAHCyg1bd1FqTH7PUhGQM-t1U9Z1pfwkRSpuZjKke17Uw7bBjrpWnNFwLxFS_nhvGcYhixqG64l7qGz_qACvBAWJCOnHA)
+
