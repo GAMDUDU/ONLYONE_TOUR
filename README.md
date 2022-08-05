@@ -6,15 +6,15 @@
 
 
 
-저희는 여행투어 사이트 '하나투어'를 참고하여 다목적 여행사이트 ONLY ONE TOUR**를 만들게 되었습니다.
+저희는 여행투어 사이트 '하나투어'를 참고하여 다목적 여행사이트 **ONLY ONE TOUR**를 만들게 되었습니다.
 
 
 
 **ONLY ONE TOUR**는 패키지,호텔,항공 예약사이트입니다.
 
-**일반회원**은 <u>회원가입/로그인/정보수정/예약/예약확인 등</u>을 할 수 있으며
+**일반회원**은 **<u>회원가입/로그인/정보수정/예약/예약확인 등</u>**을 할 수 있으며
 
-**관리자**는 <u>상품등록/회원등록/공지사항관리 등</u>을 수행할 수 있습니다.
+**관리자**는 **<u>상품등록/회원등록/공지사항관리 등</u>**을 수행할 수 있습니다.
 
 
 
@@ -88,27 +88,25 @@
 
 **관리자 패키지 리스트 / 삭제**
 
-![img](https://lh6.googleusercontent.com/kapCEnnlbCEHlXycrQ64bHs6GQiYyKhfsfvTHkFfNnLP-wchByv17_Q14q9g-Um7fScKIXDvmcrvnXmAuwCleNXJeTwDhr4-6V-t_nzSwDCHUFydD83-ddDY2Xomn_EpkinamgIkivKeJpj0OD6R5g)
+<img src="https://lh4.googleusercontent.com/4afeui7EaLt-Fvul7m3gSC3-8v8aKWOvnlv8RDVFCYoNbQOGLu33R-dU58FtqYMJdlCXAEt3epp0kRBPSoQBXRHB8Cmc0YEsV5XL9-eodcPyLSu03UQtLMlfN8giNzERtkHkubQJ9DI584k8VVzvSFdIOQ" alt="img" style="zoom:50%;" />
 
 ------
 
 **관리자 패키지 상세내역**
 
-![img](https://lh4.googleusercontent.com/O59njsTiBy-dKSTDqonmyOPsvYcNRmVwCpzvRV0K8bnfltV10NToYM4m_Wyh729Va4Xt_RgvuTAMnvwXxKcBQJRn2tNdTIxqYriDRhbvDp6mMAgl8Zq48kaIm2kvGrk1ev6C2-mFP6c_YwajvZeP3w)
-
-
+<img src="https://lh6.googleusercontent.com/HdeNK2wQdT3KYUv8V7TPaMbwLU9-ibX13Wbz8q8U50gQ5674aDqcd9KeCy8Cr7sU04zd1LdsUO_MrJQuA0WjBeazvbiPNxglNmSXC6RCgFNws5MuWG_r3eSuuq1H2YJVyGY5ZHTbhyd7EbYaesV95aUGig" alt="img" style="zoom:50%;" />
 
 ------
 
 **관리자 패키지 등록**
 
-![img](https://lh4.googleusercontent.com/6sg48eU0RwB5dLe4nq88hbtjLKo1PGs_o_qwHeis8tohEzQg8Vi5YceRjiL4uR7BhCdvS8MM03RsAWbBrL4bfVKiYxCskcTrzWm7Cn5fdtM2B7NK_AtLPgnpSB63YVlsTKq8FkpV5UFAM3W49yC_sg)
+<img src="https://lh4.googleusercontent.com/Hwcwbq5u_ykW8pq3tODIxQH1ewnA5HVN5i7nX3H0UwP77UQkIl_sUAVATDBeIwFhH7K5Wko31U59OFCuhJV5uI-fJNqzA1kLrw_PzXQorgt8hURHmeuOpkatghnccDZK8AeatvRSxr42DPKh5N0JthgKwg" alt="img" style="zoom:50%;" />
 
 ------
 
 **관리자 호텔(숙소)리스트/삭제**
 
-![img](https://lh6.googleusercontent.com/DPZC3hdSj3ibrxmMeK0eXqT6KvHI-jXf77nmAGL77GtnifS2yDQgzVq532aypgtGV34AoyoF6aC1r0HJB4PseobyefLCuRsosJuwdItW7LiC1UGt1YZHCCmRzLgtAwuGoDEM-ZL2atdrj2FKh0WX4g)
+<img src="https://lh5.googleusercontent.com/BWLh14Kwot0S_WDZ2Su3U6yQJ9_GuKk4N1LUVIjnlopWBcDxU-LkvEAvmGSpilF9gHXMqAiqXD-uCJy5owzxJP4-ail6itbU7bat9T-FdtN8wW84b0EMbGgDDDxtktkp-VDJ4xYEWaAak-5JEPDL5DiP3A" alt="img" style="zoom:50%;" />
 
 ------
 
@@ -116,10 +114,10 @@
 
 **관리자 호텔(숙소) 등록**
 
-![img](https://lh6.googleusercontent.com/F-WAzwetjFjSwaIBS1_eaE4hJCmODZMntGeb1n551fDYL6IJpgxjsZMWLd4DHk-Y7u_VYcvYPQW6F5TzZ70duxUT3eMCX1dMlkATt1QEGMdz3eOBSwRzBFgJiJay-zm-N23jzOP05932hNG8wCzvaw)
+<img src="https://lh6.googleusercontent.com/b4bdZMmN2EDhGIQxpwfsRudl3qJCgVmT5aWtiyDL4vC4YwKRClPxRrmSjJVFl8eAJfzboC1VY_eM-fP9KrSYtMlL7-XujIESyZDLZaM3oUktj--xB62s11G8-4im82hmZNI374-eBoZr1dnUO60pHDpcgQ" alt="img" style="zoom:50%;" />
 
 ------
 
 **관리자 호텔(숙소) 상세내용**
 
-![img](https://lh6.googleusercontent.com/4ST6wShikRfwPOHJK9ZpPAUQNPkQeU8lPel-uY-YC2GXZzo0ivBE-iahTQ-FIKfPiBcTdNgLmRSevmzzBWZ1zZWJYUQMe5abqgI6l2C3v7MGV4Cbxdl_BFkVWbYw85znMqAhNlztBu2gOVFqZlhKOg)
+<img src="https://lh3.googleusercontent.com/EtE10eBeBGmGa8JqUVgzkK0RMgW-NlwAmTR7A1UJNGj3H9E8Pxt87gNpAxUJd_SonR5QHVKIQsWMt2ETfVkcqCkmuaw7176jVDdwhM85HJwDQeH4aHu4O_MnR5Eq8aB5PJ3BHkiT-N-iee2h9gAwphNxIQ" alt="img" style="zoom:50%;" />
